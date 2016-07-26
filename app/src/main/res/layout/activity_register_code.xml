@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <RelativeLayout
+            android:id="@+id/about_rl_tilte"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp50"
+            android:background="@color/title_container_color"
+            android:gravity="center_vertical">
+
+
+            <ImageView
+                android:id="@+id/title_left"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="11dp"
+                android:src="@mipmap/title_left_back" />
+
+            <TextView
+                android:id="@+id/title_content"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_centerVertical="true"
+                android:text="注册"
+                android:textColor="@color/title_text_color"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+        </RelativeLayout>
+
+        <ImageView
+            android:layout_gravity="center_horizontal"
+            android:src="@mipmap/register_phone"
+            android:layout_marginTop="@dimen/dp20"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <com.bailibao.view.stepview.StepsView
+            android:id="@+id/register_steps"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"/>
+
+        <LinearLayout
+            style="@style/bk_layout"
+            android:background="@null"
+            android:layout_marginTop="@dimen/dp20"
+            android:clickable="false" >
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dp20"
+                android:background="@mipmap/login_message" />
+
+            <EditText
+                android:id="@+id/login_activity_pw_et"
+                style="@style/bk_textView"
+                android:layout_height="fill_parent"
+                android:gravity="left|center"
+                android:hint="请输入验证码"
+                android:numeric="integer"
+                android:layout_marginRight="@dimen/dp5"/>
+
+            <TextView
+                android:id="@+id/tv_get_code"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:gravity="center_vertical"
+                android:layout_marginRight="@dimen/dp20"
+                android:paddingLeft="@dimen/dp5"
+                android:paddingRight="@dimen/dp5"
+                android:background="@drawable/more_quit_item"
+                android:text="获取验证码"
+                android:textColor="@color/more_item_quit"
+                android:textSize="@dimen/sp15" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/login_activity_login_tv"
+            android:layout_width="fill_parent"
+            android:layout_height="@dimen/dp50"
+            android:layout_marginLeft="@dimen/dp25"
+            android:layout_marginRight="@dimen/dp25"
+            android:layout_marginTop="@dimen/dp20"
+            android:background="@drawable/rectangle"
+            android:clickable="true"
+            android:gravity="center"
+            android:text="下一步"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            android:textSize="@dimen/sp15" />
+    </LinearLayout>
+
+    <include layout="@layout/loading_view"/>
+
+
+</RelativeLayout>

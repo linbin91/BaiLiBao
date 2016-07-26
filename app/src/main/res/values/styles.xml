@@ -1,0 +1,84 @@
+<resources>
+
+    <style name="MainBottomTab">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:gravity">center_horizontal|bottom</item>
+        <item name="android:button">@null</item>
+        <item name="android:textColor">@color/text_selector</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:paddingBottom">4dp</item>
+        <item name="android:background">@drawable/transparent</item>
+        <item name="android:drawablePadding">3dp</item>
+    </style>
+
+    <style name="bk_layout">
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:background">@color/white</item>
+        <item name="android:clickable">true</item>
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:minHeight">@dimen/dp50</item>
+    </style>
+
+    <style name="bk_textView">
+        <item name="android:textSize">@dimen/sp15</item>
+        <item name="android:textColor">@color/more_item_text_color</item>
+        <item name="android:duplicateParentState">true</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginLeft">@dimen/dp20</item>
+        <item name="android:layout_weight">1.0</item>
+    </style>
+
+    <style name="MyRatingBar" parent="@android:style/Widget.RatingBar">
+        <item name="android:progressDrawable">@drawable/bg_star_level</item>
+    </style>
+
+    <style name="list_item_chevron">
+        <item name="android:layout_width">@dimen/dp14</item>
+        <item name="android:layout_height">@dimen/dp14</item>
+        <item name="android:layout_marginLeft">@dimen/dp6</item>
+        <item name="android:layout_marginRight">@dimen/dp15</item>
+        <item name="android:src">@drawable/chevron</item>
+    </style>
+
+    <style name="chevron_item_account">
+        <item name="android:duplicateParentState">true</item>
+        <item name="android:layout_width">@dimen/dp14</item>
+        <item name="android:layout_height">@dimen/dp14</item>
+        <item name="android:src">@drawable/chevron</item>
+        <item name="android:layout_alignParentRight">true</item>
+        <item name="android:layout_centerVertical">true</item>
+    </style>
+    <style name="rela_account">
+        <item name="android:orientation">horizontal</item>
+        <item name="android:background">@drawable/shape_top_line</item>
+        <item name="android:paddingRight">@dimen/dp15</item>
+        <item name="android:clickable">true</item>
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">@dimen/dp50</item>
+    </style>
+    <style name="sty_line_view">
+        <item name="android:background">@color/lightgray</item>
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">@dimen/dp0.5</item>
+    </style>
+
+
+        <style name="BaseAppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+            <!-- Customize your theme here. -->
+            <item name="colorPrimary">@color/primary</item>
+            <item name="colorPrimaryDark">@color/primary_dark</item>
+            <item name="colorAccent">#FF4081</item>
+        </style>
+
+        <!-- Base application theme. -->
+        <style name="AppTheme" parent="@style/BaseAppTheme">
+        </style>
+
+
+
+</resources>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="mytext">15.0sp</dimen>
+    <dimen name="strokeWidth">5.0dip</dimen>
+    <dimen name="linePaint">2.0dip</dimen>
+    <dimen name="dp5">10.0dip</dimen>
+    <dimen name="mytext2">10.0sp</dimen>
+    <dimen name="multext">70.0sp</dimen>
+    <dimen name="star_height">15.0px</dimen>
+</resources>

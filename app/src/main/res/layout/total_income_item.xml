@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dp11"
+        android:layout_marginRight="@dimen/dp11"
+        android:background="@color/white">
+
+        <TextView
+            android:layout_marginTop="@dimen/dp10"
+            android:layout_alignParentLeft="true"
+            android:id="@+id/product_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center|left"
+            android:text="火球理财"
+            android:textStyle="bold"
+            android:textColor="#353535"
+            android:textSize="@dimen/sp14" />
+
+        <TextView
+            android:id="@+id/product_time"
+            android:layout_marginTop="@dimen/dp5"
+            android:layout_below="@id/product_name"
+            android:layout_alignParentLeft="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="2016:04:27 23:04"
+            android:textColor="#777777"
+            android:textSize="@dimen/sp13" />
+
+        <View
+            android:layout_below="@id/product_time"
+            android:layout_marginTop="@dimen/dp5"
+            android:background="@color/dividing_line_handle_cate"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp0.5"/>
+
+        <TextView
+            android:id="@+id/tv_income"
+            android:layout_centerVertical="true"
+            android:gravity="right"
+            android:layout_marginBottom="@dimen/dp5"
+            android:layout_alignParentRight="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="+1.00"
+            android:textColor="#ff7d36"
+            android:textStyle="bold"
+            android:textSize="@dimen/sp16" />
+    </RelativeLayout>
+
+
+</LinearLayout>

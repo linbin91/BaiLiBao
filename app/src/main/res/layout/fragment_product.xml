@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:id="@+id/about_rl_tilte"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp50"
+            android:background="@color/title_container_color"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:id="@+id/title_content"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_centerVertical="true"
+                android:text="理财产品"
+                android:textColor="@color/title_text_color"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:paddingRight="@dimen/dp11"
+                android:paddingLeft="@dimen/dp11"
+                android:text="帮助"
+                android:textColor="@color/white"
+                android:textSize="@dimen/sp16" />
+        </RelativeLayout>
+
+        <com.bailibao.view.pullview.PullToRefreshListView
+            android:id="@+id/puduct_list"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:cacheColorHint="#00000000"
+            android:divider="@null" />
+    </LinearLayout>
+
+    <include layout="@layout/loading_view"/>
+
+</RelativeLayout>

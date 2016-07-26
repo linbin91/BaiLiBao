@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/group_tiem_layout"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/list_item_bg"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="@dimen/dp50"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:id="@+id/groupItem"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left|center"
+                android:layout_marginLeft="@dimen/dp20"
+                android:layout_weight="1.0"
+                android:gravity="left"
+                android:text="222"
+                android:textColor="@color/text_handle_cate"
+                android:textSize="@dimen/sp14" />
+
+            <ImageView
+                android:id="@+id/group_item_img"
+                android:layout_width="20.0dip"
+                android:layout_height="20.0dip"
+                android:layout_gravity="center_vertical"
+                android:layout_marginRight="@dimen/dp20"
+                android:layout_weight="0.0"
+                android:background="@mipmap/withdrawal_unselect_bk" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1.0dip"
+        android:layout_marginLeft="@dimen/dp20"
+        android:layout_marginRight="@dimen/dp20"
+        android:background="@color/divider_color_gray" />
+
+</LinearLayout>

@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp50"
+            android:background="@color/title_container_color"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:id="@+id/title_content"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_centerVertical="true"
+                android:textColor="@color/title_text_color"
+                android:text="更多"
+                android:textStyle="bold"
+                android:textSize="18sp" />
+        </RelativeLayout>
+
+
+        <ScrollView
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:scrollbars="none" >
+
+            <LinearLayout
+                android:background="@color/login_body_bgcolor"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:orientation="vertical" >
+
+                <LinearLayout
+                    android:id="@+id/more_frame_authentication_name_ll"
+                    style="@style/bk_layout"
+                    android:layout_marginTop="20.0dip" >
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/dp15"
+                        android:background="@mipmap/authen" />
+
+                    <TextView
+                        style="@style/bk_textView"
+                        android:layout_marginLeft="10dip"
+                        android:layout_weight="0.0"
+                        android:gravity="left|center"
+                        android:text="实名认证" />
+
+                    <TextView
+                        android:text="未认证"
+                        android:id="@+id/more_frame_authentication_name_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="fill_parent"
+                        android:layout_weight="1.0"
+                        android:gravity="right|center"
+                        android:textColor="@color/more_item_state_clore" />
+
+                    <ImageView
+                        android:id="@+id/more_frame_authentication_iv"
+                        style="@style/list_item_chevron"
+                        android:visibility="invisible" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/more_frame_bangding_phone_ll"
+                    style="@style/bk_layout"
+                    android:layout_marginTop="10.0dip" >
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/dp15"
+                        android:background="@mipmap/more_phone" />
+
+                    <TextView
+                        style="@style/bk_textView"
+                        android:layout_marginLeft="10dip"
+                        android:layout_weight="0.0"
+                        android:gravity="left|center"
+                        android:text="绑定手机号码" />
+
+                    <TextView
+                        android:text="未绑定"
+                        android:id="@+id/more_frame_bangding_phone_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="fill_parent"
+                        android:layout_weight="1.0"
+                        android:gravity="right|center"
+                        android:textColor="@color/more_item_state_clore" />
+
+                    <ImageView style="@style/list_item_chevron" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/more_frame_login_password_ll"
+                    style="@style/bk_layout"
+                    android:layout_marginTop="@dimen/dp10"
+                    android:background="@drawable/shape_top_line" >
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/dp15"
+                        android:background="@mipmap/more_editloginpw" />
+
+                    <TextView
+                        style="@style/bk_textView"
+                        android:layout_marginLeft="10dip"
+                        android:layout_weight="0.0"
+                        android:gravity="left|center"
+                        android:text="登入密码" />
+
+                    <TextView
+                        android:id="@+id/more_frame_login_password_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="fill_parent"
+                        android:layout_weight="1.0"
+                        android:gravity="right|center"
+                        android:text="修改"
+                        android:textColor="@color/more_item_state_clore" />
+
+                    <ImageView style="@style/list_item_chevron" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/more_frame_deal_password_ll"
+                    style="@style/bk_layout"
+                    android:background="@drawable/shape_top_line" >
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/dp15"
+                        android:background="@mipmap/more_edittradepw" />
+
+                    <TextView
+                        style="@style/bk_textView"
+                        android:layout_marginLeft="10dip"
+                        android:layout_weight="0.0"
+                        android:gravity="left|center"
+                        android:text="交易密码" />
+
+                    <TextView
+                        android:id="@+id/more_frame_deal_password_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="fill_parent"
+                        android:layout_weight="1.0"
+                        android:gravity="right|center"
+                        android:text="修改"
+                        android:textColor="@color/more_item_state_clore" />
+
+                    <ImageView style="@style/list_item_chevron" />
+                </LinearLayout>
+
+                <LinearLayout
+                    style="@style/bk_layout"
+                    android:background="@drawable/shape_top_line"
+                    android:clickable="false" >
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/dp15"
+                        android:background="@mipmap/more_handlepw" />
+
+                    <TextView
+                        android:id="@+id/more_frame_isopen_tv"
+                        style="@style/bk_textView"
+                        android:layout_marginLeft="10dip"
+                        android:gravity="left|center"
+                        android:text="开启手势密码" />
+
+                    <CheckBox
+
+                        android:id="@+id/more_frame_toggle_btn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:button="@null"
+                        android:layout_marginRight="@dimen/dp15"
+                        android:background="@mipmap/toggle_button_off"
+                        android:textOff=""
+                        android:textOn="" />
+                </LinearLayout>
+
+                <View
+                    android:id="@+id/more_frame_line"
+                    android:layout_width="fill_parent"
+                    android:layout_height="@dimen/dp0.5"
+                    android:background="@color/lightgray" />
+
+                <LinearLayout
+                    android:id="@+id/more_frame_deal_handlepw_ll"
+                    style="@style/bk_layout"
+                    android:visibility="gone" >
+
+                    <TextView
+                        style="@style/bk_textView"
+                        android:layout_marginLeft="@dimen/dp50"
+                        android:layout_weight="1.0"
+                        android:gravity="left|center"
+                        android:text="修改手势密码" />
+
+                    <ImageView style="@style/list_item_chevron" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/more_frame_about_ll"
+                    style="@style/bk_layout"
+                    android:layout_marginBottom="@dimen/dp10"
+                    android:layout_marginTop="@dimen/dp10" >
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/dp15"
+                        android:background="@mipmap/more_abouthq" />
+
+                    <TextView
+                        style="@style/bk_textView"
+                        android:layout_marginLeft="10dip"
+                        android:layout_weight="1.0"
+                        android:gravity="left|center"
+                        android:text="关于" />
+
+                    <ImageView style="@style/list_item_chevron" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:visibility="gone"
+                    android:id="@+id/more_frame_loginout_ll"
+                    style="@style/bk_layout"
+                    android:layout_marginRight="@dimen/dp10"
+                    android:layout_marginLeft="@dimen/dp10"
+                    android:layout_marginTop="@dimen/dp10" >
+
+                    <TextView
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:background="@drawable/more_quit_item"
+                        android:text="退出当前账户"
+                        android:textColor="@color/more_item_quit"
+                        android:textSize="@dimen/sp15" />
+                </LinearLayout>
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
+    <include layout="@layout/loading_view"/>
+
+</RelativeLayout>

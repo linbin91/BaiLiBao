@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="sp5">5.0sp</dimen>
+    <dimen name="sp8">8.0sp</dimen>
+    <dimen name="sp11">11.0sp</dimen>
+    <dimen name="sp28">23.0sp</dimen>
+    <dimen name="dp20">20.0dip</dimen>
+    <dimen name="mytext">5.0sp</dimen>
+    <dimen name="strokeWidth">10.0dip</dimen>
+    <dimen name="linePaint">5.0dip</dimen>
+    <dimen name="dp5">10.0dip</dimen>
+    <dimen name="mytext2">15.0sp</dimen>
+    <dimen name="multext">15.0sp</dimen>
+    <dimen name="star_height">15.0px</dimen>
+    <dimen name="dp8">20.0dip</dimen>
+    <dimen name="dp95">85.0dip</dimen>
+    <dimen name="dp36">35.0dip</dimen>
+    <dimen name="dp42">20.0dip</dimen>
+    <dimen name="dp0">0.0dip</dimen>
+</resources>

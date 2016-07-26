@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.bailibao" >
+
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.GET_TASKS"/>
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+    <uses-permission android:name="android.permission.MANAGE_ACCOUNTS"/>
+    <uses-permission android:name="android.permission.GET_ACCOUNTS"/>
+    <!--添加可以向外拨打电话的权限  -->
+    <uses-permission android:name="android.permission.CALL_PHONE"/>
+    <application
+        android:name="com.bailibao.application.AppApplication"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+        <activity
+            android:name="com.bailibao.Activity.MainActivity"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name="com.mob.tools.MobUIShell"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustResize" >
+            <intent-filter>
+                <data android:scheme="tencent1105292737" />
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <activity android:name="com.bailibao.Activity.LoginLockActivity"/>
+        <activity android:name="com.bailibao.Activity.LoginActivity"/>
+        <activity android:name="com.bailibao.Activity.MessageActivity"/>
+        <activity android:name=".Activity.ProductDetailActivity"/>
+        <activity android:name=".Activity.NewUserBuyActivity"/>
+        <activity android:name="com.bailibao.Activity.RechargeActivity"/>
+        <activity android:name="com.bailibao.Activity.AboutActivity"/>
+        <activity android:name="com.bailibao.Activity.FeedbackActivity"/>
+        <activity android:name="com.bailibao.Activity.SetLockActivity"/>
+        <activity android:name=".Activity.InvestmentActivity"/>
+        <activity android:name=".Activity.BuyDetailActivity"/>
+        <activity android:name=".Activity.RedeemActivity"/>
+        <activity android:name=".Activity.RedemptionResultActivity"/>
+        <activity android:name=".Activity.TotalIncomeActivity"/>
+        <activity android:name=".Activity.RegisterCodeActivity"/>
+        <activity android:name=".Activity.RegisterPasswordActivity"/>
+        <activity android:name=".Activity.RegisterCompleteActivity"/>
+        <activity android:name=".Activity.RegisterActivity"/>
+        <activity android:name=".Activity.AuthenActivity"/>
+        <activity android:name=".Activity.NewEditPhone"/>
+        <activity android:name=".Activity.NewEditPassword"/>
+        <activity android:name=".Activity.EditLoginPassworActivity"/>
+        <activity android:name=".Activity.DealActivity"/>
+        <activity android:name=".Activity.MessageDetailActivity"/>
+        <activity android:name=".Activity.ProductBuyActivity"/>
+        <activity android:name=".Activity.ProductBuyState"/>
+        <activity android:name=".Activity.ProductIntroduceActivity"/>
+        <activity android:name=".Activity.ProductProgressActivity"/>
+        <activity android:name=".Activity.UserBalanceActivity"/>
+        <activity android:name=".Activity.TransactionRecordActivity"/>
+        <activity android:name=".Activity.MyBankCardActivity"/>
+        <activity android:name=".Activity.WebViewActivity"/>
+        <activity android:name=".Activity.WithdrawActivity"/>
+        <activity android:name=".wxapi.WXEntryActivity"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"
+            android:exported="true"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name=".Activity.FuiouWebviewActivity"/>
+    </application>
+
+</manifest>

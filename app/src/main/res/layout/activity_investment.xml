@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#fff3f3f2">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <RelativeLayout
+            android:id="@+id/activity_investment_title"
+            android:layout_width="fill_parent"
+            android:layout_height="50.0dip"
+            android:layout_alignParentTop="true"
+            android:background="@mipmap/title_red_bg">
+
+            <ImageView
+                android:id="@+id/title_left"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerInParent="true"
+                android:paddingRight="@dimen/dp11"
+                android:paddingLeft="@dimen/dp11"
+                android:src="@mipmap/title_left_back" />
+
+            <TextView
+                android:id="@+id/title_content"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_centerVertical="true"
+                android:text="在投资金"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="@color/title_text_color" />
+
+        </RelativeLayout>
+
+        <com.bailibao.view.pullview.PullToRefreshListView
+            android:id="@+id/inverstment_list"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:cacheColorHint="#00000000"
+            android:divider="@null"/>
+    </LinearLayout>
+
+    <include layout="@layout/loading_view"/>
+
+</RelativeLayout>

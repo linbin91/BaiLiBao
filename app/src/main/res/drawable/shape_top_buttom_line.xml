@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape>
+            <solid android:color="@color/divider_color_gray" />
+        </shape>
+    </item>
+    <item android:top="@dimen/dp0.5" android:bottom="@dimen/dp0.5">
+        <shape>
+            <solid android:color="@color/white" />
+        </shape>
+    </item>
+</layer-list>

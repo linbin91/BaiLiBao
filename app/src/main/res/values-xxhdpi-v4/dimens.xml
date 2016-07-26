@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="sp18">25.0sp</dimen>
+    <dimen name="dp20">20.0dip</dimen>
+    <dimen name="mytext">15.0sp</dimen>
+    <dimen name="strokeWidth">4.0dip</dimen>
+    <dimen name="linePaint">3.0dip</dimen>
+    <dimen name="dp5">5.0dip</dimen>
+    <dimen name="mytext2">13.0sp</dimen>
+    <dimen name="multext">70.0sp</dimen>
+    <dimen name="star_height">40.0px</dimen>
+    <dimen name="dp8">0.0dip</dimen>
+    <dimen name="dp95">97.0dip</dimen>
+    <dimen name="dp36">40.0dip</dimen>
+    <dimen name="dp42">45.0dip</dimen>
+    <dimen name="dp0">0.0dip</dimen>
+    <dimen name="main_buttom_menu_font">11.0sp</dimen>
+    <dimen name="dp2">2.0dip</dimen>
+</resources>

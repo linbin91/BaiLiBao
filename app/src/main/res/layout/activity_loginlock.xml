@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/lock">
+
+    <LinearLayout
+            android:paddingTop="@dimen/dp50"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:layout_centerInParent="true">
+
+        <ImageView
+            android:src="@mipmap/login_person"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/tv_phone_num"
+            android:textColor="@color/white"
+            android:textSize="@dimen/dp15"
+            android:gravity="center"
+            android:layout_marginTop="@dimen/dp8"
+            android:text="18959298002"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/login_warn"
+            android:layout_marginTop="@dimen/dp10"
+            android:gravity="center"
+            android:textSize="@dimen/sp17"
+            android:textColor="@color/common_orange"
+            android:text="密码错误，您还可以输入3次"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <com.bailibao.view.CustomLockView
+            android:id="@+id/cl"
+            android:layout_width="260dp"
+            android:layout_height="260dp"
+            android:layout_marginTop="@dimen/dp30" />
+
+       <RelativeLayout
+           android:layout_width="match_parent"
+           android:layout_height="match_parent">
+
+           <TextView
+               android:id="@+id/tv_forget_gesture"
+               android:gravity="center"
+               android:layout_alignParentLeft="true"
+               android:layout_marginLeft="@dimen/dp15"
+               android:text="忘记手势密码"
+               android:textColor="@color/tv_gray_plan"
+               android:layout_width="wrap_content"
+               android:layout_height="match_parent" />
+
+           <TextView
+               android:id="@+id/tv_login_other"
+               android:gravity="center"
+               android:layout_alignParentRight="true"
+               android:layout_marginRight="@dimen/dp15"
+               android:text="登录其他用户"
+               android:textColor="@color/tv_gray_plan"
+               android:layout_width="wrap_content"
+               android:layout_height="match_parent" />
+       </RelativeLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#f1f1f1" >
+
+    <ImageView
+        android:id="@+id/fragment_iv_alarm"
+        android:layout_centerVertical="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="@dimen/dp11"
+        android:src="@mipmap/fragment_sroll_alarm"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent" />
+
+    <TextView
+        android:gravity="center"
+        android:layout_centerVertical="true"
+        android:textSize="@dimen/sp12"
+        android:textColor="#777777"
+        android:text="53分钟前购买了1000分"
+        android:layout_toRightOf="@id/fragment_iv_alarm"
+        android:layout_marginLeft="@dimen/dp5"
+        android:id="@+id/fragment_tv_lable"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent" />
+</RelativeLayout>

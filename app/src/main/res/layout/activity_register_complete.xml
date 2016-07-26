@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/about_rl_tilte"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp50"
+        android:background="@color/title_container_color"
+        android:gravity="center_vertical">
+
+        <ImageView
+            android:id="@+id/title_left"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:paddingLeft="@dimen/dp11"
+            android:paddingRight="@dimen/dp11"
+            android:src="@mipmap/title_left_back" />
+        <TextView
+            android:id="@+id/title_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_centerVertical="true"
+            android:text="注册"
+            android:textColor="@color/title_text_color"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+    </RelativeLayout>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/dp20"
+        android:src="@mipmap/register_complete" />
+
+    <com.bailibao.view.stepview.StepsView
+        android:id="@+id/register_steps"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:textColor="#353535"
+        android:textSize="@dimen/sp13"
+        android:layout_marginTop="@dimen/dp15"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center"
+        android:text="您已经成功注册火球网"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/register_tv_auther"
+        android:textColor="#353535"
+        android:textSize="@dimen/sp13"
+        android:layout_marginTop="@dimen/dp5"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center"
+        android:text="@string/register_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <RelativeLayout
+        android:layout_marginTop="@dimen/dp20"
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+
+
+        <TextView
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="@dimen/dp20"
+            android:id="@+id/login_activity_auther_tv"
+            android:layout_height="match_parent"
+            android:layout_width="125dp"
+            android:background="@drawable/rectangle"
+            android:clickable="true"
+            android:gravity="center"
+            android:text="实名认证"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            android:textSize="@dimen/sp15" />
+
+        <TextView
+            android:layout_alignParentRight="true"
+            android:layout_gravity="right"
+            android:layout_marginRight="@dimen/dp20"
+            android:id="@+id/login_activity_complete_tv"
+            android:layout_height="match_parent"
+            android:layout_width="125dp"
+            android:background="@drawable/more_quit_item"
+            android:clickable="true"
+            android:gravity="center"
+            android:text="完成"
+            android:textStyle="bold"
+            android:textColor="@color/register_line_color"
+            android:textSize="@dimen/sp15" />
+
+    </RelativeLayout>
+</LinearLayout>

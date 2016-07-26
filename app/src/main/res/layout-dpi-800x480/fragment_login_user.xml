@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp30"
+        android:background="#f1f1f1"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/fragment_iv_alarm"
+            android:layout_centerVertical="true"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="@dimen/dp11"
+            android:src="@mipmap/fragment_sroll_alarm"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" />
+
+        <TextView
+            android:gravity="center"
+            android:layout_centerVertical="true"
+            android:textSize="@dimen/sp12"
+            android:textColor="#777777"
+            android:text="53分钟前购买了1000分"
+            android:layout_toRightOf="@id/fragment_iv_alarm"
+            android:layout_marginLeft="@dimen/dp5"
+            android:id="@+id/fragment_tv_lable"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" />
+    </RelativeLayout>
+
+    <ImageView
+        android:layout_marginTop="@dimen/dp5"
+        android:src="@mipmap/fragment_money"
+        android:layout_gravity="center_horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:layout_gravity="center_horizontal"
+        android:text="昨日在投收益：10.00元"
+        android:textColor="@color/white"
+        android:textSize="@dimen/sp15"
+        android:gravity="center"
+        android:background="@drawable/fragment_incoming_text"
+        android:layout_width="@dimen/dp200"
+        android:layout_height="@dimen/dp30" />
+
+    <View
+        android:layout_marginTop="@dimen/dp5"
+        android:background="#c9c9c9"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp1"/>
+
+    <LinearLayout
+        android:paddingBottom="@dimen/dp5"
+        android:layout_marginTop="@dimen/dp5"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="horizontal" >
+
+        <LinearLayout
+            android:layout_gravity="center_horizontal"
+            android:layout_width="0.0dip"
+            android:layout_height="fill_parent"
+            android:layout_weight="1.0"
+            android:orientation="vertical" >
+
+            <TextView
+                android:layout_gravity="center_horizontal"
+                android:id="@+id/rank_all"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="top"
+                android:textSize="@dimen/sp13"
+                android:textColor="#353535"
+                android:lines="1"
+                android:text="昨日在投收益排名" />
+            <RelativeLayout
+                android:layout_marginTop="@dimen/dp5"
+                android:layout_gravity="center_horizontal"
+                android:background="@mipmap/fragment_cirlce"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_centerInParent="true"
+                    android:layout_centerVertical="true"
+                    android:id="@+id/rank"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="暂无排名"
+                    android:textStyle="bold"
+                    android:textColor="#ff7d36"
+                    android:textSize="@dimen/sp13" />
+            </RelativeLayout>
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="1dip"
+            android:layout_height="fill_parent"
+            android:background="@color/lightgray" />
+
+        <LinearLayout
+            android:gravity="center_horizontal"
+            android:layout_width="0.0dip"
+            android:layout_height="fill_parent"
+            android:layout_weight="1.0"
+            android:orientation="vertical" >
+
+            <TextView
+                android:textSize="@dimen/sp13"
+                android:textColor="#353535"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="top"
+                android:text="今日年化收益(%)" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="top"
+                    android:text="火球计划"
+                    android:textColor="#777777"
+                    android:textSize="@dimen/dp11" />
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal" >
+
+                    <TextView
+                        android:text="1"
+                        android:textColor="@color/white"
+                        android:background="@mipmap/fragment_number_bk"
+                        android:textSize="@dimen/sp15"
+                        android:textStyle="bold"
+                        android:layout_alignParentLeft="true"
+                        android:id="@+id/flipper1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center" />
+
+                    <TextView
+                        android:text="1"
+                        android:textColor="@color/white"
+                        android:background="@mipmap/fragment_number_bk"
+                        android:textSize="@dimen/sp15"
+                        android:textStyle="bold"
+                        android:layout_toRightOf="@id/flipper1"
+                        android:layout_marginLeft="@dimen/dp5"
+                        android:id="@+id/flipper2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center" />
+
+                    <TextView
+                        android:layout_toRightOf="@id/flipper2"
+                        android:id="@+id/bottom_dot1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="bottom|center"
+                        android:text="."
+                        android:textColor="@color/text_color_red"
+                        android:textSize="@dimen/dp20" />
+
+                    <TextView
+                        android:text="0"
+                        android:textColor="@color/white"
+                        android:background="@mipmap/fragment_number_bk"
+                        android:textSize="@dimen/sp15"
+                        android:textStyle="bold"
+                        android:layout_toRightOf="@id/bottom_dot1"
+                        android:id="@+id/flipper3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center" />
+                    <TextView
+                        android:text="0"
+                        android:textColor="@color/white"
+                        android:background="@mipmap/fragment_number_bk"
+                        android:textSize="@dimen/sp15"
+                        android:textStyle="bold"
+                        android:layout_toRightOf="@id/flipper3"
+                        android:id="@+id/flipper4"
+                        android:layout_marginLeft="@dimen/dp5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center" />
+
+                </RelativeLayout>
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="top"
+                    android:text="小火球"
+                    android:textColor="#777777"
+                    android:textSize="@dimen/dp11" />
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal" >
+
+                    <TextView
+                        android:text="1"
+                        android:textColor="@color/white"
+                        android:background="@mipmap/fragment_number_bk"
+                        android:textSize="@dimen/sp15"
+                        android:textStyle="bold"
+                        android:layout_alignParentLeft="true"
+                        android:id="@+id/small_flipper1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center" />
+
+
+
+                    <TextView
+                        android:layout_toRightOf="@id/small_flipper1"
+                        android:id="@+id/bottom_dot2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="bottom|center"
+                        android:text="."
+                        android:textColor="@color/text_color_red"
+                        android:textSize="@dimen/dp20" />
+
+                    <TextView
+                        android:text="0"
+                        android:textColor="@color/white"
+                        android:background="@mipmap/fragment_number_bk"
+                        android:textSize="@dimen/sp15"
+                        android:textStyle="bold"
+                        android:layout_toRightOf="@id/bottom_dot2"
+                        android:id="@+id/small_flipper2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center" />
+                    <TextView
+                        android:text="0"
+                        android:textColor="@color/white"
+                        android:background="@mipmap/fragment_number_bk"
+                        android:textSize="@dimen/sp15"
+                        android:textStyle="bold"
+                        android:layout_toRightOf="@id/small_flipper2"
+                        android:id="@+id/small_flipper3"
+                        android:layout_marginLeft="@dimen/dp5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center" />
+
+                </RelativeLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+    </LinearLayout>
+</LinearLayout>

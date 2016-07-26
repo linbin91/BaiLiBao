@@ -1,0 +1,335 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/login_body_bgcolor"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:gravity="center_vertical"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp50"
+        android:background="@color/title_container_color">
+
+        <TextView
+            android:text="充值"
+            android:id="@+id/title_left"
+            android:textColor="@color/white"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:textSize="@dimen/sp15"
+            android:layout_margin="11dp" />
+
+        <TextView
+            android:textColor="@color/white"
+            android:id="@+id/title_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_centerVertical="true"
+            android:text="购买新用户专享"
+            android:textSize="15sp" />
+
+        <ImageView
+            android:id="@+id/title_right"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:gravity="center_vertical"
+            android:src="@mipmap/deal_close"
+            android:layout_marginRight="@dimen/dp11" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/top_content"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp20"
+            android:layout_marginRight="@dimen/dp20"
+            android:layout_marginTop="@dimen/dp15"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.0"
+                android:gravity="left"
+                android:text="锁定期"
+                android:textColor="@color/huoqiuLightblackColor"
+                android:textSize="@dimen/sp16" />
+
+            <TextView
+                android:id="@+id/activity_buy_limit"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.0"
+                android:gravity="center"
+                android:text="到期日"
+                android:textColor="@color/huoqiuLightblackColor"
+                android:textSize="@dimen/sp16" />
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.0"
+                android:gravity="right"
+                android:text="手续费"
+                android:textColor="@color/huoqiuLightblackColor"
+                android:textSize="@dimen/sp16" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp20"
+            android:layout_marginRight="@dimen/dp20"
+            android:layout_marginTop="@dimen/dp15"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:id="@+id/structbuy_lockuptime"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.0"
+                android:gravity="left"
+                android:text="7天"
+                android:textColor="@color/orangered"
+                android:textSize="@dimen/sp16" />
+
+            <TextView
+                android:id="@+id/structbuy_limitdate"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.0"
+                android:gravity="center"
+                android:text="2016-04-22"
+                android:textColor="@color/huoqiuGrayblackColor"
+                android:textSize="@dimen/sp15" />
+
+            <TextView
+                android:id="@+id/buy_fee"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.0"
+                android:gravity="right"
+                android:text="0元"
+                android:textColor="@color/huoqiuGrayblackColor"
+                android:textSize="@dimen/sp16" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="0.5dip"
+            android:layout_marginLeft="@dimen/dp20"
+            android:layout_marginRight="@dimen/dp20"
+            android:layout_marginTop="@dimen/dp15"
+            android:background="@color/lightgray" />
+
+        <TextView
+            android:id="@+id/activity_buy_dayinfo"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/dp10"
+            android:gravity="center"
+            android:text="到期自动还本付息"
+            android:textColor="@color/huoqiuGrayblackColor"
+            android:textSize="@dimen/sp15" />
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="0.5dip"
+            android:layout_marginBottom="@dimen/dp15"
+            android:background="@color/lightgray" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="0.5dip"
+        android:background="@color/lightgray" />
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="vertical" >
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="0.5dip"
+            android:background="@color/lightgray" />
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp20"
+            android:layout_marginRight="@dimen/dp20"
+            android:layout_marginTop="@dimen/dp18"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.0"
+                android:text="账户余额 (元)"
+                android:textColor="@color/huoqiuLightblackColor"
+                android:textSize="@dimen/sp16" />
+
+            <TextView
+                android:id="@+id/activity_structbuy_accountmoney"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.0"
+                android:gravity="right"
+                android:text="0.00"
+                android:textColor="@color/huoqiuDarkblackColor"
+                android:textSize="@dimen/sp16" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="@dimen/dp50"
+            android:layout_marginLeft="@dimen/dp20"
+            android:layout_marginRight="@dimen/dp20"
+            android:layout_marginTop="@dimen/dp20"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:gravity="center_vertical"
+                android:text="买入份额"
+                android:textColor="@color/huoqiuLightblackColor"
+                android:textSize="@dimen/sp16" />
+
+            <EditText
+                android:id="@+id/activity_structbuy_writecount"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_marginLeft="@dimen/dp10"
+                android:layout_weight="1.0"
+                android:background="@drawable/buy_edit_rectangle"
+                android:gravity="right|center"
+                android:hint="每份价格1元"
+                android:maxLength="15"
+                android:numeric="integer"
+                android:paddingRight="@dimen/dp10"
+                android:textSize="@dimen/sp15" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:gravity="center_vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="@dimen/dp50"
+            android:layout_marginLeft="@dimen/dp20"
+            android:layout_marginRight="@dimen/dp20"
+            android:orientation="horizontal" >
+
+            <LinearLayout
+                android:id="@+id/struct_buy"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/dp50"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:gravity="center_vertical"
+                    android:text="可购份额"
+                    android:textColor="@color/huoqiuLightblackColor"
+                    android:textSize="@dimen/sp16" />
+
+                <TextView
+                    android:id="@+id/structbuy_buylimit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dp10"
+                    android:gravity="right"
+                    android:textColor="@color/text_handle_count_red"
+                    android:textSize="@dimen/sp15" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dp10"
+                    android:gravity="right"
+                    android:text="10000份"
+                    android:textColor="@color/huoqiuLightblackColor"
+                    android:textSize="@dimen/sp15" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/structbuy_bigbuy"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="right|center"
+                android:text="最大购买"
+                android:textColor="@color/huoqiublue" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="0.5dip"
+            android:background="@color/lightgray" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/agree_content"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left"
+        android:layout_marginLeft="@dimen/dp20"
+        android:layout_marginTop="@dimen/dp15"
+        android:gravity="center_vertical"
+        android:orientation="horizontal" >
+
+        <CheckBox
+            android:id="@+id/activity_structbuy_ctv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:button="@null"
+            android:background="@drawable/checkbox_style"
+            android:checked="true" />
+
+        <TextView
+            android:id="@+id/activity_structbuy_agree_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp6"
+            android:text="我已经阅读并同意"
+            android:textColor="@color/black"
+            android:textSize="@dimen/buy_agreefont" />
+
+        <TextView
+            android:id="@+id/activity_structbuy_autotrad"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="《火球计划服务协议》"
+            android:textColor="@color/huoqiublue"
+            android:textSize="@dimen/buy_agreefont" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/activity_structbuy_btn"
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/dp50"
+        android:layout_marginBottom="@dimen/dp50"
+        android:layout_marginLeft="@dimen/dp20"
+        android:layout_marginRight="@dimen/dp20"
+        android:layout_marginTop="@dimen/dp20"
+        android:background="@drawable/rectangle"
+        android:clickable="true"
+        android:gravity="center"
+        android:text="立即买入"
+        android:textColor="@color/white"
+        android:textSize="@dimen/sp16" />
+
+</LinearLayout>

@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:id="@+id/about_rl_tilte"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp50"
+            android:background="@color/title_container_color"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:id="@+id/title_content"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_centerVertical="true"
+                android:text="个人账户"
+                android:textColor="@color/title_text_color"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/title_right"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="@dimen/dp11"
+                android:text="充值"
+                android:textColor="@color/white"
+                android:textSize="@dimen/sp16" />
+        </RelativeLayout>
+
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp10"
+            android:layout_marginRight="@dimen/dp10"
+            android:layout_marginTop="@dimen/dp10"
+            android:background="@mipmap/bg_coupon_body_header"
+            android:orientation="vertical"
+            android:paddingBottom="@dimen/dp10">
+
+            <TextView
+                android:id="@+id/fragment_iv_incoming"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp20"
+                android:gravity="center"
+                android:text="0.00"
+                android:textColor="@color/white"
+                android:textSize="44sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp10"
+                android:gravity="center"
+                android:text="昨日在投收益（元）"
+                android:textColor="@color/white"
+                android:textSize="@dimen/sp13"
+                android:textStyle="bold" />
+
+            <FrameLayout
+                android:layout_width="fill_parent"
+                android:layout_height="90.0dip">
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:orientation="horizontal">
+
+                    <RelativeLayout
+                        android:id="@+id/rel_income_total"
+                        android:layout_width="0.0dip"
+                        android:layout_height="fill_parent"
+                        android:layout_weight="1.0"
+                        android:background="@drawable/selector_black_alpha_btn"
+                        android:clickable="true"
+                        android:gravity="center_vertical"
+                        android:paddingBottom="@dimen/dp10"
+                        android:paddingTop="@dimen/dp10">
+
+                        <TextView
+                            android:id="@+id/tv_income_total_pre"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/dp3"
+                            android:layout_marginTop="@dimen/dp2"
+                            android:gravity="center"
+                            android:text="0.00"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/sp30"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/tv_income_total"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/tv_income_total_pre"
+                            android:layout_marginTop="@dimen/dp10"
+                            android:gravity="center"
+                            android:text="累计收益（元）"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/sp13"
+                            android:textStyle="bold" />
+
+                    </RelativeLayout>
+
+                    <View
+                        android:layout_width="1dip"
+                        android:layout_height="70.0dip"
+                        android:layout_gravity="center_vertical"
+                        android:background="#ffe6e4e4" />
+
+                    <RelativeLayout
+                        android:id="@+id/rel_income_have"
+                        android:layout_width="0.0dip"
+                        android:layout_height="fill_parent"
+                        android:layout_weight="1.0"
+                        android:background="@drawable/selector_black_alpha_btn"
+                        android:clickable="true"
+                        android:gravity="center_vertical"
+                        android:paddingBottom="@dimen/dp10"
+                        android:paddingTop="@dimen/dp10">
+
+                        <TextView
+                            android:id="@+id/tv_income_have_pre"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/dp3"
+                            android:layout_marginTop="@dimen/dp2"
+                            android:gravity="center"
+                            android:text="0.00"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/sp30"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/tv_income_have"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/tv_income_have_pre"
+                            android:layout_marginTop="@dimen/dp10"
+                            android:gravity="center"
+                            android:text="在投资金（元）"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/sp13"
+                            android:textStyle="bold" />
+                    </RelativeLayout>
+                </LinearLayout>
+            </FrameLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp10"
+            android:layout_marginRight="@dimen/dp10"
+            android:layout_marginTop="@dimen/dp18"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:id="@+id/rel_count"
+                style="@style/rela_account">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:drawableLeft="@mipmap/icon_count"
+                    android:drawablePadding="@dimen/dp10"
+                    android:gravity="center_vertical"
+                    android:text="账户余额"
+                    android:textColor="#ff6b6969"
+                    android:textSize="@dimen/sp14" />
+
+                <TextView
+                    android:id="@+id/tv_count"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/dp15"
+                    android:textColor="#ff6b6969"
+                    android:textSize="@dimen/sp15" />
+
+                <ImageView style="@style/chevron_item_account" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rel_order"
+                style="@style/rela_account">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:drawableLeft="@mipmap/icon_order"
+                    android:drawablePadding="@dimen/dp10"
+                    android:gravity="center_vertical"
+                    android:text="交易记录"
+                    android:textColor="#ff6b6969"
+                    android:textSize="@dimen/sp14" />
+
+                <ImageView style="@style/chevron_item_account" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rel_bank"
+                style="@style/rela_account">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:drawableLeft="@mipmap/icon_bank"
+                    android:drawablePadding="@dimen/dp10"
+                    android:gravity="center_vertical"
+                    android:text="我的银行卡"
+                    android:textColor="#ff6b6969" />
+
+                <ImageView style="@style/chevron_item_account" />
+            </RelativeLayout>
+
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="0.5dip"
+                android:background="@drawable/shape_top_line" />
+        </LinearLayout>
+    </LinearLayout>
+    <include layout="@layout/loading_view"/>
+</RelativeLayout>

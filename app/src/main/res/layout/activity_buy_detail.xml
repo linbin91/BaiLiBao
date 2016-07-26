@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/login_body_bgcolor"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <RelativeLayout
+            android:id="@+id/activity_investment_title"
+            android:layout_width="fill_parent"
+            android:layout_height="50.0dip"
+            android:layout_alignParentTop="true"
+            android:background="@mipmap/title_red_bg">
+
+            <ImageView
+                android:id="@+id/title_left"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerInParent="true"
+                android:layout_marginLeft="@dimen/dp11"
+                android:src="@mipmap/title_left_back" />
+
+            <TextView
+                android:id="@+id/title_content"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_centerVertical="true"
+                android:text="小火球"
+                android:textColor="@color/lock_top_fontcolor"
+                android:textSize="@dimen/sp16" />
+        </RelativeLayout>
+
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="0.0dip"
+            android:layout_weight="6.0"
+            android:orientation="vertical" >
+
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="0.0dip"
+                android:layout_weight="1.0"
+                android:paddingLeft="@dimen/dp25" >
+
+                <View
+                    android:id="@+id/left_icon"
+                    android:layout_width="2.0dip"
+                    android:layout_height="14.0dip"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginBottom="2.0dip"
+                    android:background="@color/text_color_red"
+                    android:paddingTop="2.0dip" />
+
+                <TextView
+                    android:id="@+id/item_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginLeft="3.0dip"
+                    android:layout_toRightOf="@id/left_icon"
+                    android:text="昨日收益(元)"
+                    android:textColor="@color/text_color_black"
+                    android:textSize="14.0sp" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="0.0dip"
+                android:layout_weight="2.0" >
+
+                <TextView
+                    android:id="@+id/all_earnings"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:paddingTop="@dimen/dp10"
+                    android:text="0.00"
+                    android:textColor="@color/text_color_red"
+                    android:textSize="33.0sp" />
+
+            </RelativeLayout>
+        </LinearLayout>
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="0.5dip"
+            android:background="@color/lightgray" />
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="0.0dip"
+            android:layout_weight="1.0"
+            android:background="#fff3f3f2" />
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="0.5dip"
+            android:background="@color/lightgray" />
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="0.0dip"
+            android:layout_weight="18.0"
+            android:orientation="vertical" >
+
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingLeft="@dimen/dp25"
+                android:paddingRight="@dimen/dp40"
+                android:paddingTop="@dimen/dp20" >
+
+                <TextView
+                    android:id="@+id/amount_pre"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:text="持有份额(份)"
+                    android:textColor="@color/text_color_black"
+                    android:textSize="@dimen/sp14" />
+
+                <TextView
+                    android:id="@+id/amount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:text="0"
+                    android:textColor="@color/text_color_black"
+                    android:textSize="@dimen/sp14" />
+
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingBottom="@dimen/dp15"
+                android:paddingLeft="@dimen/dp25"
+                android:paddingRight="@dimen/dp40"
+                android:paddingTop="@dimen/dp15" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:text="累计收益(元)"
+                    android:textColor="@color/text_color_black" />
+
+                <TextView
+                    android:id="@+id/earnings"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:text="0"
+                    android:textColor="@color/text_color_red" />
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="right|center"
+                android:paddingBottom="@dimen/dp20"
+                android:paddingRight="@dimen/dp40" >
+
+                <TextView
+                    android:id="@+id/huoqiu_detail_redemation"
+                    android:layout_width="@dimen/dp120"
+                    android:layout_height="@dimen/dp40"
+                    android:background="@drawable/shape_select_rectangle"
+                    android:clickable="true"
+                    android:gravity="center"
+                    android:text="赎回"
+                    android:textColor="@color/huoqiuLightblackColor"
+                    android:textSize="@dimen/sp17" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+    <include layout="@layout/loading_view"/>
+
+</LinearLayout>

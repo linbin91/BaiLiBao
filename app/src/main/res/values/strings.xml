@@ -1,0 +1,25 @@
+
+<resources>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="main_view">首页</string>
+    <string name="manager_product">理财产品</string>
+    <string name="person_acount">个人账户</string>
+    <string name="more">更多</string>
+    <string name="app_name">佰利宝</string>
+    <string name="safe_tips">账户资金安全由新浪提供保障</string>
+    <string name="pull_to_refresh_pull_label">下拉刷新...</string>
+    <string name="pull_to_refresh_release_label">释放刷新...</string>
+    <string name="pull_to_refresh_refreshing_label">正在加载...</string>
+
+    <string name="pull_to_refresh_from_bottom_pull_label">@string/pull_to_refresh_pull_label</string>
+    <string name="pull_to_refresh_from_bottom_release_label">@string/pull_to_refresh_release_label</string>
+    <string name="pull_to_refresh_from_bottom_refreshing_label">@string/pull_to_refresh_refreshing_label</string>
+    <string name="about_content2">" "<p>　　火球网（www.huoqiu.cn）是专业的互联网金融投资理财平台，提供优质，低风险，高收益，低门槛的互联网理财服务。</p>" "</string>
+    <string name="telephone_num">4000220101</string>
+    <string name="register_name">您可以继续完成以提高账户安全性</string>
+    <string name="authentication_title_info">请务必使用真实的身份信息，否则可能导致无法购 买提现等操作</string>
+    <string name="product_buy_loading">系统正在努力地为您购买，请耐心等待片刻。您可以选择继续等待也可以点击\"完成\"稍后到个人账户里的\"账单\"查看订单。</string>
+    <string name="mybanktip">您还没有绑定认证银行卡，您可以通过一次充值完成绑定</string>>
+</resources>

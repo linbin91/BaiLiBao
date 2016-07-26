@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/login_body_bgcolor"
+    android:focusable="true"
+    android:focusableInTouchMode="true">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <RelativeLayout
+            android:id="@+id/safety_title"
+            android:gravity="center_vertical"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp50"
+            android:background="@mipmap/title_red_bg">
+
+            <TextView
+                android:id="@+id/title_content"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_centerVertical="true"
+                android:textColor="@color/title_text_color"
+                android:text="赎回"
+                android:textStyle="bold"
+                android:textSize="18sp" />
+
+            <ImageView
+                android:paddingRight="@dimen/dp11"
+                android:layout_alignParentRight="true"
+                android:layout_centerInParent="true"
+                android:src="@mipmap/deal_close"
+                android:id="@+id/title_right"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </RelativeLayout>
+
+        <LinearLayout
+            style="@style/bk_layout"
+            android:layout_marginTop="@dimen/dp30"
+            android:clickable="false"
+            android:gravity="center_vertical">
+
+            <TextView
+                style="@style/bk_textView"
+                android:layout_marginLeft="@dimen/dp15"
+                android:gravity="left|center"
+                android:text="当前持有份额 (份)" />
+
+            <TextView
+                android:id="@+id/tv_share"
+                style="@style/bk_textView"
+                android:layout_marginRight="@dimen/dp20"
+                android:gravity="right"
+                android:text="0"
+                android:textColor="@color/gray" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="@dimen/dp60"
+            android:layout_marginTop="@dimen/dp10"
+            android:background="@drawable/shape_top_buttom_line">
+
+            <TextView
+                style="@style/bk_textView"
+                android:layout_marginLeft="@dimen/dp15"
+                android:layout_weight="0.0"
+                android:gravity="left|center"
+                android:text="本次赎回份额 (份)" />
+
+            <EditText
+                android:id="@+id/et_acccount"
+                style="@style/bk_textView"
+                android:layout_height="fill_parent"
+                android:background="@null"
+                android:gravity="right|center"
+                android:hint="请输入赎回份额"
+                android:maxLength="9"
+                android:inputType="number"
+                android:paddingRight="@dimen/dp20" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="@dimen/dp60"
+            android:layout_marginTop="@dimen/dp10"
+            android:background="@drawable/shape_top_buttom_line">
+
+            <TextView
+                style="@style/bk_textView"
+                android:layout_marginLeft="@dimen/dp15"
+                android:layout_weight="0.0"
+                android:gravity="left|center"
+                android:text="交易密码" />
+
+            <EditText
+                android:id="@+id/et_password"
+                style="@style/bk_textView"
+                android:layout_height="fill_parent"
+                android:background="@null"
+                android:gravity="right|center"
+                android:hint="请输入交易密码"
+                android:maxLength="20"
+                android:paddingRight="@dimen/dp20"
+                android:password="true" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/redemption_activity_shuhui_btn"
+            android:layout_width="fill_parent"
+            android:layout_height="@dimen/dp50"
+            android:layout_marginLeft="@dimen/dp15"
+            android:layout_marginRight="@dimen/dp15"
+            android:layout_marginTop="@dimen/dp20"
+            android:background="@drawable/rectangle"
+            android:clickable="true"
+            android:gravity="center"
+            android:text="赎回"
+            android:textColor="@color/white"
+            android:textSize="@dimen/sp15" />
+    </LinearLayout>
+    <include layout="@layout/loading_view"/>
+</RelativeLayout>

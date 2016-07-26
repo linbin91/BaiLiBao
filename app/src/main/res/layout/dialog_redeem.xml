@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/rectangle_gray"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/dialog_title"
+            android:layout_width="fill_parent"
+            android:layout_height="@dimen/dp40"
+            android:background="@drawable/sina_create_tips"
+            android:gravity="center"
+            android:text="确认赎回？"
+            android:textColor="@color/white"
+            android:textSize="@dimen/sp16" />
+
+        <View style="@style/sty_line_view" />
+
+        <TextView
+            android:id="@+id/dialog_content"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/dp15"
+            android:layout_marginLeft="@dimen/dp15"
+            android:layout_marginTop="@dimen/dp15"
+            android:gravity="left"
+            android:lineSpacingExtra="5.0dip"
+            android:text="成千上万的人抢不到火球计划，10%年化收益率就这样放弃了？"
+            android:textColor="@color/dream_dark_fontcolor"
+            android:textSize="@dimen/sp15" />
+
+        <View style="@style/sty_line_view" />
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="@dimen/dp40"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:id="@+id/dialog_ok"
+                android:layout_width="0.0dip"
+                android:layout_height="fill_parent"
+                android:layout_weight="1.0"
+                android:background="@drawable/rectangle_select_btn_gray"
+                android:gravity="center"
+                android:text="继续"
+                android:textColor="@color/dream_dark_fontcolor"
+                android:textSize="@dimen/sp15" />
+
+            <View
+                android:layout_width="@dimen/dp0.5"
+                android:layout_height="fill_parent"
+                android:background="@color/lightgray" />
+
+            <TextView
+                android:id="@+id/dialog_cancle"
+                android:layout_width="0.0dip"
+                android:layout_height="fill_parent"
+                android:layout_weight="1.0"
+                android:background="@drawable/rectangle_select_btn_gray"
+                android:gravity="center"
+                android:text="放弃赎回"
+                android:textColor="@color/dream_dark_fontcolor"
+                android:textSize="@dimen/sp15" />
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>
