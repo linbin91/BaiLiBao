@@ -38,7 +38,7 @@ public class AdImageAdapter extends  BasePagerAdapter<AdBean.AdItem> {
             return null;
         }else{
             final int curPos = position % mList.size();
-            if (mList.get(curPos).logo != null){
+            if (mList.get(curPos).imageUrl != null){
                 View convertView = mInflater.inflate(R.layout.ad_item,container,false);
                 ImageView img = (ImageView) convertView.findViewById(R.id.ad_imageView1);
                 container.addView(convertView);

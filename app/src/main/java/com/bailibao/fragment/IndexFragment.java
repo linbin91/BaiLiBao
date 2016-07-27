@@ -93,9 +93,11 @@ public class IndexFragment extends BaseFragment implements IGetDataView {
         if (mLoginUser == null){
             mLoginUser = new LoginUserView(mContext);
         }
+        mLoginUser.startTipAnimation();
         mLoginUserView = mLoginUser.getView();
         mFragmentContent.addView(mLoginUserView);
     }
+
 
     /**
      * 显示没有登录的view

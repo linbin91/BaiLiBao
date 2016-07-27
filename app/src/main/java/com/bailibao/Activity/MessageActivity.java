@@ -13,6 +13,7 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bailibao.R;
 import com.bailibao.base.BaseActivity;
@@ -85,8 +86,12 @@ public class MessageActivity extends BaseActivity implements IGetDataView {
                 intent.putExtra("title","消息详情");
                 intent.putExtra("path",mMessageList.get(position).path);
                 startActivity(intent);
-                mMessageList.get(position).status = 1;
-                mAdapter.notifyDataSetChanged();
+                if (mMessageList.get(position).status == 0){
+                    doReadAction(position);
+                }
+
+
+
             }
         });
 
@@ -125,6 +130,15 @@ public class MessageActivity extends BaseActivity implements IGetDataView {
         mAuth = PreferencesUtils.getString(mContext, ConfigsetData.CONFIG_KEY_AUTH);
 
         getMessage();
+    }
+
+    private void doReadAction(int position) {
+        mMessageList.get(position).status = 1;
+        mAdapter.notifyDataSetChanged();
+        String url = HttpURLData.APPFUN_MESSAGE_READ;
+        UrlParse parse = new UrlParse(url);
+        parse.putValue("id",mMessageList.get(position).id);
+        mPresenter.postNetDataWithAuth(parse.toString(),mAuth);
     }
 
     /**
@@ -212,7 +226,7 @@ public class MessageActivity extends BaseActivity implements IGetDataView {
 
     @Override
     public void toast(String msg) {
-
+        Toast.makeText(this,msg,Toast.LENGTH_SHORT).show();
     }
 
     @Override

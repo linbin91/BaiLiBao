@@ -1,16 +1,23 @@
 package com.bailibao.bean;
 
+import com.bailibao.bean.base.BaseBean;
+
 import java.util.List;
 
 /**
  * Created by lin on 2016/4/10.
  */
-public class AdBean {
+public class AdBean extends BaseBean{
 
-    public List<AdItem> items;
+    public List<AdItem> resources;
+    public int totalCount;
+    public boolean hasNextPage;
 
     public static  class  AdItem{
-        public  String logo;
-        public  String act;
+        public int id;
+        public String title;
+        public  String linkUrl;
+        public  String imageUrl;
+        public  int jump;
     }
 }

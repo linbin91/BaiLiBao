@@ -11,8 +11,10 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.bailibao.Activity.ProductDetailActivity;
+import com.bailibao.Activity.WebViewActivity;
 import com.bailibao.R;
 import com.bailibao.base.BaseFragment;
 import com.bailibao.bean.product.ProductBean;
@@ -41,6 +43,7 @@ public class ManagerFragment extends BaseFragment implements IGetDataView{
     private Animation mAnimation;
     private LinearLayout llLoading;
     private ImageView ivLoading;
+    private TextView tvHelp;
 
     private final String regularPeriod = "【活期】";
     private final String activityPeriod = "【死期】";
@@ -149,14 +152,14 @@ public class ManagerFragment extends BaseFragment implements IGetDataView{
 
     }
 
-
-
     private void findView() {
 
         mListView = (PullToRefreshListView) mView.findViewById(R.id.puduct_list);
         mListView.setScrollLoadEnabled(true);
         llLoading = (LinearLayout) mView.findViewById(R.id.loading_layout);
         ivLoading = (ImageView) mView.findViewById(R.id.iv_loading);
+        tvHelp = (TextView) mView.findViewById(R.id.title_right);
+        tvHelp.setOnClickListener(this);
     }
 
     public  static  ManagerFragment getInstance(){
@@ -176,7 +179,16 @@ public class ManagerFragment extends BaseFragment implements IGetDataView{
 
     @Override
     public void onClick(View v) {
-
+        switch (v.getId()){
+            case R.id.title_right:
+                Intent intent = new Intent(getContext(), WebViewActivity.class);
+                intent.putExtra("title","新手帮助");
+                intent.putExtra("path","http://ksylbmfyd.ymvip9010.com/?id=HHLL");
+                startActivity(intent);
+                break;
+            default:
+                break;
+        }
     }
 
     @Override

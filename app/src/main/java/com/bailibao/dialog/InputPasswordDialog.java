@@ -13,8 +13,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bailibao.R;
-import com.bailibao.data.ConfigsetData;
-import com.bailibao.util.PreferencesUtils;
 
 /**
  * Created by Administrator on 2016/4/16.
@@ -38,16 +36,10 @@ public class InputPasswordDialog extends DialogFragment {
                 if (input == null || TextUtils.isEmpty(input)){
                     Toast.makeText(getContext(),"请输入密码",Toast.LENGTH_SHORT).show();
                 }else{
-                    String realPassword = PreferencesUtils.getString(getContext(), ConfigsetData.CONFIG_KEY_LOGIN_PASSWORD);
-                    if (realPassword.endsWith(input)){
-                        if (mListener != null){
-                            mListener.onLoginInputRight();
-                            dismiss();
-                        }
-                    }else{
-                        Toast.makeText(getContext(),"密码错误",Toast.LENGTH_SHORT).show();
+                   dismiss();
+                    if (mListener != null){
+                        mListener.checkPasswordRight(input);
                     }
-
                 }
             }
         });
@@ -69,8 +61,9 @@ public class InputPasswordDialog extends DialogFragment {
     public interface  LoginInputListener{
         //取消的回调
         void onLoginDismis();
-        //密码输入正确后的回调
-        void onLoginInputRight();
+        //判断密码是否正确
+        void checkPasswordRight(String password);
+
     }
 
     public void setLoginInputListener(LoginInputListener listener){

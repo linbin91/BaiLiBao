@@ -54,7 +54,7 @@ public class LoginUserView extends BaseView implements IGetDataView{
     //请求服务端次数，因为要tip接口分开了，然后所需两次数据回来，才消除loading
     private int mGetDataCount = 0;
     private boolean isShowLoading = false;
-
+    private boolean isAnimation = false;
 
     public LoginUserView(Context context) {
         super(context);
@@ -133,6 +133,7 @@ public class LoginUserView extends BaseView implements IGetDataView{
 
     }
 
+
     @Override
     public View getView() {
         return super.getView();
@@ -150,6 +151,7 @@ public class LoginUserView extends BaseView implements IGetDataView{
                         mLableData = new ArrayList<>();
                     }
                     mLableData.addAll(tips.resources);
+                    isAnimation = true;
                     startTipAnimation();
                 }
             }else{
@@ -194,16 +196,19 @@ public class LoginUserView extends BaseView implements IGetDataView{
     /**
      * tip 轮播
      */
-    private void startTipAnimation() {
+    public void startTipAnimation() {
 
-        TipBean.TipItem item = mLableData.get(mScrollCount % (mLableData.size()));
-        if (item.phone != null && item.name != null && item.lapsedTime != null) {
-            String tip = item.lapsedTime + "前" + item.phone + "购买了" + item.count + "份" + item.name;
-            mScollLable.setText(tip);
+        if (isAnimation){
+            TipBean.TipItem item = mLableData.get(mScrollCount % (mLableData.size()));
+            if (item.phone != null && item.name != null && item.lapsedTime != null) {
+                String tip = item.lapsedTime + "前" + item.phone + "购买了" + item.count + "份" + item.name;
+                mScollLable.setText(tip);
+            }
+            mScollLable.setAnimation(mAnimation);
+            mScollLable.requestLayout();
+            mAnimation.start();
         }
-        mScollLable.setAnimation(mAnimation);
-        mScollLable.requestLayout();
-        mAnimation.start();
+
     }
 
     @Override

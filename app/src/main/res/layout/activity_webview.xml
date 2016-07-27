@@ -33,18 +33,6 @@
             android:textStyle="bold"
             android:textSize="18sp" />
 
-        <TextView
-            android:visibility="invisible"
-            android:id="@+id/title_right"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:paddingRight="@dimen/dp11"
-            android:paddingLeft="@dimen/dp11"
-            android:textColor="@color/title_text_color"
-            android:text="注册"/>
-
     </RelativeLayout>
 
     <WebView

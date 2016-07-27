@@ -11,6 +11,7 @@ import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bailibao.Activity.AboutActivity;
 import com.bailibao.Activity.AuthenActivity;
@@ -28,9 +29,11 @@ import com.bailibao.dialog.LoginDialog;
 import com.bailibao.dialog.LoginOutDialog;
 import com.bailibao.module.presenter.ViewPresenter;
 import com.bailibao.module.view.IGetDataView;
+import com.bailibao.util.Base64Util;
 import com.bailibao.util.LockUtil;
 import com.bailibao.util.PreferencesUtils;
 import com.bailibao.util.StringUtil;
+import com.bailibao.util.UrlParse;
 import com.google.gson.Gson;
 
 /**
@@ -57,6 +60,8 @@ public class MoreFragment extends BaseFragment implements IGetDataView{
 //    private boolean mIsOpenGesture;
 
     private Toolbar toolbar;
+    private int type;
+    private ViewPresenter mPresenter;
 
 
     @Override
@@ -72,6 +77,8 @@ public class MoreFragment extends BaseFragment implements IGetDataView{
 //        if (mIsOpenGesture){
 //            mGestureToggle.setBackgroundResource(R.mipmap.toggle_button_on);
 //        }
+
+        mPresenter = new ViewPresenter(this);
     }
 
     private void findView() {
@@ -164,6 +171,7 @@ public class MoreFragment extends BaseFragment implements IGetDataView{
         dialog.show(getFragmentManager(),"");
     }
 
+
     /**
      * 一系列退出的操作
      */
@@ -172,9 +180,9 @@ public class MoreFragment extends BaseFragment implements IGetDataView{
         //退出的接口
         String url = HttpURLData.APPFUN_LOGOUT;
         String auth = PreferencesUtils.getString(mContext,ConfigsetData.CONFIG_KEY_AUTH);
-        ViewPresenter presenter = new ViewPresenter(this);
-        presenter.postNetDataWithAuth(url,auth);
 
+        mPresenter.postNetDataWithAuth(url,auth);
+        type = 1;
     }
 
     private void doDealAction(boolean isLogin) {
@@ -235,18 +243,16 @@ public class MoreFragment extends BaseFragment implements IGetDataView{
     private void toModifyLock() {
         InputPasswordDialog dialog = new InputPasswordDialog();
         dialog.show(getFragmentManager(), "password");
-        dialog.setLoginInputListener(new InputPasswordDialog.LoginInputListener(){
 
+        dialog.setLoginInputListener(new InputPasswordDialog.LoginInputListener() {
             @Override
             public void onLoginDismis() {
                 //不需要操作什么
             }
 
             @Override
-            public void onLoginInputRight() {
-                //启动手势图密码界面
-                Intent intent = new Intent(getActivity(), SetLockActivity.class);
-                startActivity(intent);
+            public void checkPasswordRight(String password) {
+                requestCheckPassword(password);
             }
         });
     }
@@ -261,6 +267,7 @@ public class MoreFragment extends BaseFragment implements IGetDataView{
             mGestureToggle.setBackgroundResource(R.mipmap.toggle_button_on);
             InputPasswordDialog dialog = new InputPasswordDialog();
             dialog.show(getFragmentManager(), "password");
+
             dialog.setLoginInputListener(new InputPasswordDialog.LoginInputListener() {
                 @Override
                 public void onLoginDismis() {
@@ -269,15 +276,12 @@ public class MoreFragment extends BaseFragment implements IGetDataView{
                     }else {
                         mGestureToggle.setBackgroundResource(R.mipmap.toggle_button_off);
                     }
-
                 }
-                @Override
-                public void onLoginInputRight() {
 
+                @Override
+                public void checkPasswordRight(String password) {
                     if (!isOpenGesture){
-                        //启动手势图密码界面
-                        Intent intent = new Intent(getActivity(), SetLockActivity.class);
-                        startActivity(intent);
+                        requestCheckPassword(password);
                     }else{
                         //那就关闭掉
                         mGestureToggle.setBackgroundResource(R.mipmap.toggle_button_off);
@@ -290,6 +294,16 @@ public class MoreFragment extends BaseFragment implements IGetDataView{
             LoginDialog dialog = new LoginDialog();
             dialog.show(getFragmentManager(), "login");
         }
+    }
+
+    private void requestCheckPassword(String password) {
+        String pwd = Base64Util.encodeAndMD5(password);
+        String url = HttpURLData.APPFUN_PASSWORD_CHECK;
+        UrlParse parse = new UrlParse(url);
+        parse.putValue("password",pwd);
+        String auth = PreferencesUtils.getString(mContext, ConfigsetData.CONFIG_KEY_AUTH);
+        mPresenter.postNetDataWithAuth(parse.toString(),auth);
+        type = 2;
     }
 
     /**
@@ -351,21 +365,36 @@ public class MoreFragment extends BaseFragment implements IGetDataView{
     public void fillView(String content) {
         if (content != null && !TextUtils.isEmpty(content)){
             Gson gson = new Gson();
-            BaseBean bean = gson.fromJson(content,BaseBean.class);
-            if (bean != null && bean.respCode == ResponseData.RESP_CODE_OK){
-                PreferencesUtils.putBoolean(mContext,ConfigsetData.CONFIG_KEY_LOGIN,false);
-                PreferencesUtils.removeConfig(mContext,ConfigsetData.CONFIG_KEY_AUTH);
-                PreferencesUtils.removeConfig(mContext,ConfigsetData.CONFIG_KEY_USER_TOKEN);
-                PreferencesUtils.removeConfig(mContext,ConfigsetData.CONFIG_KEY_USER_UID);
-                LockUtil.setPwdStatus(mContext,false);
-                setData();
+            if (type == 1){
+                clearConfig(content, gson);
+            }else if (type == 2){
+                //启动手势图密码界面
+                BaseBean bean = gson.fromJson(content,BaseBean.class);
+                if (bean.respCode == 0){
+                    Intent intent = new Intent(getActivity(), SetLockActivity.class);
+                    startActivity(intent);
+                }
+
             }
+
+        }
+    }
+
+    private void clearConfig(String content, Gson gson) {
+        BaseBean bean = gson.fromJson(content,BaseBean.class);
+        if (bean != null && bean.respCode == ResponseData.RESP_CODE_OK){
+            PreferencesUtils.putBoolean(mContext, ConfigsetData.CONFIG_KEY_LOGIN,false);
+            PreferencesUtils.removeConfig(mContext,ConfigsetData.CONFIG_KEY_AUTH);
+            PreferencesUtils.removeConfig(mContext,ConfigsetData.CONFIG_KEY_USER_TOKEN);
+            PreferencesUtils.removeConfig(mContext,ConfigsetData.CONFIG_KEY_USER_UID);
+            LockUtil.setPwdStatus(mContext,false);
+            setData();
         }
     }
 
     @Override
     public void toast(String msg) {
-
+        Toast.makeText(getContext(),msg,Toast.LENGTH_SHORT).show();
     }
 
     @Override

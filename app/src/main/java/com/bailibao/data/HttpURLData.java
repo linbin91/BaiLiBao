@@ -26,11 +26,16 @@ public class HttpURLData {
     //登入
     public  static  final String APPFUN_USER_LOGIN = HOST_BAILIBAO_API + "login";
 
+    //手势登录密码验证
+    public static final String APPFUN_PASSWORD_CHECK = HOST_BAILIBAO_API + "checkPassword";
+
     //产品界面
     public static  final String APPFUN_PRODUCT_ITEMS = HOST_BAILIBAO_API + "product";
 
     //消息界面
     public static  final  String APPFUN_MESSAGE = HOST_BAILIBAO_API + "message";
+
+    public static  final  String APPFUN_MESSAGE_READ = HOST_BAILIBAO_API + "message/read";
 
     //登入首页
     public static  final String APPFUN_INDEX_LOGIN = HOST_BAILIBAO_API + "index";

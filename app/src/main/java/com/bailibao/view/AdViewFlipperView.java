@@ -179,8 +179,7 @@ public class AdViewFlipperView implements IGetDataView {
 //        }
         mAdview.setVisibility(View.VISIBLE);
         AdBean.AdItem item = new AdBean.AdItem();
-        item.logo = "";
-        item.act = "";
+        item.imageUrl = "";
         mAdList.add(item);
         mAdList.add(item);
         updateAdView(mAdList);
@@ -263,8 +262,7 @@ public class AdViewFlipperView implements IGetDataView {
     public void fillView(String content) {
         mAdview.setVisibility(View.VISIBLE);
         AdBean.AdItem item = new AdBean.AdItem();
-        item.logo = "";
-        item.act = "";
+        item.imageUrl = "";
         mAdList.add(item);
         mAdList.add(item);
         updateAdView(mAdList);
