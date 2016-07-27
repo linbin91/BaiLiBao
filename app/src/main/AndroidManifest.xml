@@ -76,6 +76,7 @@
         <activity android:name=".Activity.MyBankCardActivity"/>
         <activity android:name=".Activity.WebViewActivity"/>
         <activity android:name=".Activity.WithdrawActivity"/>
+        <activity android:name=".Activity.ProgressDetailActivity"/>
         <activity android:name=".wxapi.WXEntryActivity"
             android:theme="@android:style/Theme.Translucent.NoTitleBar"
             android:exported="true"

@@ -42,11 +42,11 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
-                android:layout_marginRight="@dimen/dp11"
-                android:text="进展"
-                android:textColor="@color/title_text_color"
-                android:textSize="15sp"
-                android:textStyle="bold" />
+                android:paddingRight="@dimen/dp11"
+                android:paddingLeft="@dimen/dp11"
+                android:text="详情"
+                android:textColor="@color/white"
+                android:textSize="@dimen/sp16" />
 
         </RelativeLayout>
 

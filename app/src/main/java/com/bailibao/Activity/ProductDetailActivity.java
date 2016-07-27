@@ -23,7 +23,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by Administrator on 2016/4/14.
+ * 产品详请界面
  *
  *
  */

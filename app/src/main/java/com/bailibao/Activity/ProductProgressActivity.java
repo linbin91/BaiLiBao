@@ -1,15 +1,16 @@
 package com.bailibao.Activity;
 
+import android.content.Intent;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.webkit.WebView;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.bailibao.R;
 import com.bailibao.base.BaseActivity;
@@ -30,6 +31,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * 产品进展详情
  * Created by Administrator on 2016/4/25.
  */
 public class ProductProgressActivity extends BaseActivity implements IGetDataView{
@@ -58,8 +60,9 @@ public class ProductProgressActivity extends BaseActivity implements IGetDataVie
         mListView.getRefreshableView().setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                WebView webView = new WebView(mContext);
-                webView.loadUrl("http://baidu.com");
+                Intent intent = new Intent(ProductProgressActivity.this,ProgressDetailActivity.class);
+                intent.putExtra("id",bean.resources.get(position).id);
+                startActivity(intent);
             }
         });
 
@@ -118,15 +121,15 @@ public class ProductProgressActivity extends BaseActivity implements IGetDataVie
         }
     }
 
+    private ProductProgressBean bean;
     @Override
     public void fillView(String content) {
         if (content != null && !TextUtils.isEmpty(content)) {
             Gson gson = new Gson();
 
-            ProductProgressBean bean = gson.fromJson(content, ProductProgressBean.class);
+            bean = gson.fromJson(content, ProductProgressBean.class);
             if (bean != null && bean.resources != null && bean.resources.size() != 0) {
                 boolean hasMoreData = bean.hasNextPage;
-                ;
                 if (mStatus == Status.NO_PULL) {
                     mProgressList.addAll(bean.resources);
 
@@ -146,7 +149,7 @@ public class ProductProgressActivity extends BaseActivity implements IGetDataVie
 
     @Override
     public void toast(String msg) {
-
+        Toast.makeText(this,msg,Toast.LENGTH_SHORT).show();
     }
 
     @Override

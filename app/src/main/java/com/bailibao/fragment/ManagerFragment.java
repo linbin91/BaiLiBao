@@ -146,10 +146,6 @@ public class ManagerFragment extends BaseFragment implements IGetDataView{
                 initData();
             }
         });
-
-
-
-
     }
 
     private void findView() {
