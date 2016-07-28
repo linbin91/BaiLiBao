@@ -16,12 +16,14 @@ import com.bailibao.Activity.FuiouWebviewActivity;
 import com.bailibao.Activity.InvestmentActivity;
 import com.bailibao.Activity.MainActivity;
 import com.bailibao.Activity.MyBankCardActivity;
+import com.bailibao.Activity.RechargeActivity;
 import com.bailibao.Activity.TotalIncomeActivity;
 import com.bailibao.Activity.TransactionRecordActivity;
 import com.bailibao.Activity.UserBalanceActivity;
 import com.bailibao.R;
 import com.bailibao.base.BaseFragment;
 import com.bailibao.bean.PersonAccountBean;
+import com.bailibao.bean.user.BankCardBean;
 import com.bailibao.data.ConfigsetData;
 import com.bailibao.data.HttpURLData;
 import com.bailibao.dialog.LoginDialog;
@@ -178,17 +180,11 @@ public class PersonFragment extends BaseFragment implements IGetDataView{
      * 进入充值的界面
      */
     private void doRecharge() {
+        ///
+
         String auth = PreferencesUtils.getString(mContext, ConfigsetData.CONFIG_KEY_AUTH);
-        if (auth != null && !TextUtils.isEmpty(auth)){
-            UrlParse parse = new UrlParse(HttpURLData.APPFUN_MONEY_REGISTER);
-
-            if (mPresenter == null){
-                mPresenter = new ViewPresenter(this);
-            }
-            mPresenter.getNetDataWithAuth(parse.toString(),auth);
-
-            type = 2;
-        }
+        mPresenter.getNetDataWithAuth(HttpURLData.APPFUN_BANK_CARD, auth);
+        type = 3;
     }
 
     /**
@@ -255,6 +251,27 @@ public class PersonFragment extends BaseFragment implements IGetDataView{
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
+            }else if (type == 3){
+
+                BankCardBean bean = gson.fromJson(content, BankCardBean.class);
+                if (bean != null && bean.resources != null && bean.resources.size() != 0) {
+                    //跳转到充值
+                    Intent intent = new Intent(getActivity(), RechargeActivity.class);
+                    startActivity(intent);
+                }else{
+                    //跳转到注册页面
+                    String auth = PreferencesUtils.getString(mContext, ConfigsetData.CONFIG_KEY_AUTH);
+                    if (auth != null && !TextUtils.isEmpty(auth)) {
+                        UrlParse parse = new UrlParse(HttpURLData.APPFUN_MONEY_REGISTER);
+
+                        if (mPresenter == null) {
+                            mPresenter = new ViewPresenter(this);
+                        }
+                        mPresenter.getNetDataWithAuth(parse.toString(), auth);
+
+                        type = 2;
+                    }
+                }
             }
         }
     }

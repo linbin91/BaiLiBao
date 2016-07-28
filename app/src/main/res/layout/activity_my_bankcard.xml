@@ -1,59 +1,92 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <RelativeLayout
-        android:id="@+id/activity_investment_title"
-        android:layout_width="fill_parent"
-        android:layout_height="50.0dip"
-        android:layout_alignParentTop="true"
-        android:background="@mipmap/title_red_bg">
-
-        <ImageView
-            android:id="@+id/title_left"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_centerInParent="true"
-            android:paddingRight="@dimen/dp11"
-            android:paddingLeft="@dimen/dp11"
-            android:src="@mipmap/title_left_back" />
-
-        <TextView
-            android:id="@+id/title_content"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:layout_centerVertical="true"
-            android:text="我的银行卡"
-            android:textStyle="bold"
-            android:textColor="@color/lock_top_fontcolor"
-            android:textSize="@dimen/sp18" />
-    </RelativeLayout>
-
-   <TextView
-       android:layout_marginRight="@dimen/dp11"
-       android:layout_marginLeft="@dimen/dp11"
-       android:text="@string/mybanktip"
-       android:textColor="#353535"
-       android:textSize="@dimen/sp15"
-       android:layout_marginTop="@dimen/dp20"
-       android:layout_width="match_parent"
-       android:layout_height="wrap_content" />
-
-    <TextView
-        android:layout_marginRight="@dimen/dp11"
-        android:layout_marginLeft="@dimen/dp11"
-        android:gravity="center"
-        android:layout_marginTop="@dimen/dp20"
-        android:textColor="@color/white"
-        android:textStyle="bold"
-        android:textSize="@dimen/sp15"
-        android:text="充值绑定"
-        android:background="@drawable/rectangle"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dp45" />
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-</LinearLayout>
+        <RelativeLayout
+            android:id="@+id/activity_investment_title"
+            android:layout_width="fill_parent"
+            android:layout_height="50.0dip"
+            android:layout_alignParentTop="true"
+            android:background="@mipmap/title_red_bg">
+
+            <ImageView
+                android:id="@+id/title_left"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerInParent="true"
+                android:paddingLeft="@dimen/dp11"
+                android:paddingRight="@dimen/dp11"
+                android:src="@mipmap/title_left_back" />
+
+            <TextView
+                android:id="@+id/title_content"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_centerVertical="true"
+                android:text="我的银行卡"
+                android:textColor="@color/lock_top_fontcolor"
+                android:textSize="@dimen/sp18"
+                android:textStyle="bold" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:id="@+id/ll_no_card"
+                android:visibility="gone"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dp11"
+                    android:layout_marginRight="@dimen/dp11"
+                    android:layout_marginTop="@dimen/dp20"
+                    android:text="@string/mybanktip"
+                    android:textColor="#353535"
+                    android:textSize="@dimen/sp15" />
+
+                <TextView
+                    android:id="@+id/bangding"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp45"
+                    android:layout_marginLeft="@dimen/dp11"
+                    android:layout_marginRight="@dimen/dp11"
+                    android:layout_marginTop="@dimen/dp20"
+                    android:background="@drawable/rectangle"
+                    android:gravity="center"
+                    android:text="绑定"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/sp15"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <com.bailibao.view.pullview.PullToRefreshListView
+                android:layout_marginTop="@dimen/dp20"
+                android:id="@+id/inverstment_list"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:cacheColorHint="#00000000"
+                android:dividerHeight="18dp"
+                android:divider="@null" />
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <include layout="@layout/loading_view"/>
+
+
+</RelativeLayout>

@@ -3,6 +3,7 @@ package com.bailibao.Activity;
 import android.view.View;
 import android.webkit.WebView;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.bailibao.R;
 import com.bailibao.base.BaseActivity;
@@ -53,7 +54,7 @@ public class ProductIntroduceActivity extends BaseActivity implements IGetDataVi
 
     @Override
     public void toast(String msg) {
-
+        Toast.makeText(this,msg,Toast.LENGTH_SHORT).show();
     }
 
     @Override

@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.text.Html;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bailibao.R;
 import com.bailibao.base.BaseActivity;
@@ -70,7 +71,7 @@ public class RedemptionResultActivity extends BaseActivity implements IGetDataVi
 
     @Override
     public void toast(String msg) {
-
+        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
     }
 
     @Override

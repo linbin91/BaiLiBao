@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:gravity="center_vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="80dp"
+    android:background="#fff3f3f2">
+
+    <LinearLayout
+        android:paddingLeft="@dimen/dp20"
+        android:paddingRight="@dimen/dp20"
+        android:orientation="horizontal"
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="0dp">
+        <TextView
+            android:id="@+id/tv_bank"
+            android:gravity="center"
+            android:textSize="@dimen/sp15"
+            android:text="开户银行："
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" />
+        <TextView
+            android:id="@+id/tv_bank_detail"
+            android:layout_weight="1"
+            android:gravity="right|center"
+            android:textSize="@dimen/sp15"
+            android:text="招商银行"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:paddingLeft="@dimen/dp20"
+        android:paddingRight="@dimen/dp20"
+        android:orientation="horizontal"
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="0dp">
+        <TextView
+            android:id="@+id/tv_bank_num"
+            android:gravity="center"
+            android:textSize="@dimen/sp15"
+            android:text="银行卡号："
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" />
+        <TextView
+            android:id="@+id/tv_num_detail"
+            android:layout_weight="1"
+            android:gravity="right|center"
+            android:textSize="@dimen/sp15"
+            android:text="3555555555"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" />
+
+    </LinearLayout>
+
+
+</LinearLayout>

@@ -135,7 +135,7 @@ public class RegisterActivity extends BaseActivity implements IGetDataView {
 
     @Override
     public void toast(String msg) {
-
+        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
     }
 
     @Override

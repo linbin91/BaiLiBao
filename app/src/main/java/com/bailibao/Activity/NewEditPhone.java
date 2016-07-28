@@ -2,6 +2,7 @@ package com.bailibao.Activity;
 
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.bailibao.R;
 import com.bailibao.base.BaseActivity;
@@ -47,7 +48,7 @@ public class NewEditPhone extends BaseActivity implements IGetDataView {
 
     @Override
     public void toast(String msg) {
-
+        Toast.makeText(this,msg,Toast.LENGTH_SHORT).show();
     }
 
     @Override

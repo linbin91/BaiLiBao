@@ -1,6 +1,5 @@
 package com.bailibao.Activity;
 
-import android.os.Bundle;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -111,13 +110,5 @@ public class ProgressDetailActivity extends BaseActivity implements IGetDataView
     public void hideProgress() {
         ivLoading.clearAnimation();
         loadingLayout.setVisibility(View.GONE);
-    }
-
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        // TODO: add setContentView(...) invocation
-        ButterKnife.inject(this);
     }
 }

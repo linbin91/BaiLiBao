@@ -95,6 +95,8 @@ public class HttpURLData {
 
     public static final String APPFUN_PRODUCT_REDEEM = HOST_BAILIBAO_API + "redeem";
 
+    //获取银行卡的接口
+    public static final String APPFUN_BANK_CARD = HOST_BAILIBAO_API + "account/bank";
     //提现接口
     public static final String APPFUN_MONEY_WITHDRAW = HOST_BAILIBAO_API + "withdraw";
 

@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bailibao.R;
 import com.bailibao.base.BaseActivity;
@@ -290,7 +291,7 @@ public class TotalIncomeActivity extends BaseActivity implements IGetDataView{
 
     @Override
     public void toast(String msg) {
-
+        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
     }
 
     @Override

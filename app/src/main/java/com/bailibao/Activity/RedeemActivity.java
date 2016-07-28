@@ -1,7 +1,6 @@
 package com.bailibao.Activity;
 
 import android.content.Intent;
-import android.os.Bundle;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -62,6 +61,7 @@ public class RedeemActivity extends BaseActivity implements IGetDataView, Redeem
     @Override
     protected void findView() {
         setContentView(R.layout.activity_redeem);
+        ButterKnife.inject(this);
         mClose = (ImageView) findViewById(R.id.title_right);
         mRedeemButton = (TextView) findViewById(R.id.redemption_activity_shuhui_btn);
         llLoading = (LinearLayout) findViewById(R.id.loading_layout);
@@ -136,12 +136,6 @@ public class RedeemActivity extends BaseActivity implements IGetDataView, Redeem
         llLoading.setVisibility(View.GONE);
     }
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        // TODO: add setContentView(...) invocation
-        ButterKnife.inject(this);
-    }
 
     @Override
     public void doContinueAction() {
@@ -157,6 +151,5 @@ public class RedeemActivity extends BaseActivity implements IGetDataView, Redeem
 
         String auth = PreferencesUtils.getString(mContext, ConfigsetData.CONFIG_KEY_AUTH);
         mPresenter.postNetDataWithAuth(parse.toString(), auth);
-
     }
 }
