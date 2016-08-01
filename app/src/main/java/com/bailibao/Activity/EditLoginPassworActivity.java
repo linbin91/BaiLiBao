@@ -106,12 +106,18 @@ public class EditLoginPassworActivity extends BaseActivity implements IGetDataVi
                     }
 
                     UrlParse parse = new UrlParse(url);
-                    parse.putValue("phone",mPhoneNum);
+
                     parse.putValue("password",Base64Util.encodeAndMD5(firstPassword));
                     parse.putValue("checkcode", mCheckCode);
 
                     ViewPresenter presenter = new ViewPresenter(this);
-                    presenter.postNetData(parse.toString());
+                    if (mSource == 2){
+                        String auth = PreferencesUtils.getString(mContext, ConfigsetData.CONFIG_KEY_AUTH);
+                        presenter.postNetDataWithAuth(parse.toString(),auth);
+                    }else{
+                        parse.putValue("phone",mPhoneNum);
+                        presenter.postNetData(parse.toString());
+                    }
                 }
             }else{
                 Toast.makeText(mContext,"两次输入的密码不一致",Toast.LENGTH_SHORT).show();
@@ -128,10 +134,12 @@ public class EditLoginPassworActivity extends BaseActivity implements IGetDataVi
             UserRegisterBean bean = gson.fromJson(content, UserRegisterBean.class);
             if (bean != null) {
                 if (bean.respCode == ResponseData.RESP_CODE_OK) {
-                    PreferencesUtils.putString(mContext, ConfigsetData.CONFIG_KEY_USER_UID, bean.uid);
-                    PreferencesUtils.putString(mContext, ConfigsetData.CONFIG_KEY_USER_TOKEN, Base64Util.decode(bean.token));
-                    String auth = "uid="+bean.uid+"|"+"token="+Base64Util.decode(bean.token);
-                    PreferencesUtils.putString(mContext, ConfigsetData.CONFIG_KEY_AUTH,Base64Util.encode(auth));
+                    if (mSource != 2){
+                        PreferencesUtils.putString(mContext, ConfigsetData.CONFIG_KEY_USER_UID, bean.uid);
+                        PreferencesUtils.putString(mContext, ConfigsetData.CONFIG_KEY_USER_TOKEN, Base64Util.decode(bean.token));
+                        String auth = "uid="+bean.uid+"|"+"token="+Base64Util.decode(bean.token);
+                        PreferencesUtils.putString(mContext, ConfigsetData.CONFIG_KEY_AUTH,Base64Util.encode(auth));
+                    }
                     finish();
                 }
             }

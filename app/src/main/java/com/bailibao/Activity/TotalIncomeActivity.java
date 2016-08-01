@@ -18,6 +18,7 @@ import com.bailibao.bean.TotalIncomingBean;
 import com.bailibao.data.ConfigsetData;
 import com.bailibao.data.HttpURLData;
 import com.bailibao.data.Status;
+import com.bailibao.module.model.GetNetData;
 import com.bailibao.module.presenter.ViewPresenter;
 import com.bailibao.module.view.IGetDataView;
 import com.bailibao.popupwindow.RefreshListviewPop;
@@ -29,9 +30,13 @@ import com.bailibao.view.myadapter.ViewHolder;
 import com.bailibao.view.pullview.PullToRefreshBase;
 import com.bailibao.view.pullview.PullToRefreshListView;
 import com.google.gson.Gson;
+import com.zhy.http.okhttp.callback.Callback;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import okhttp3.Call;
+import okhttp3.Response;
 
 /**
  * Created by Administrator on 2016/4/20.
@@ -57,6 +62,8 @@ public class TotalIncomeActivity extends BaseActivity implements IGetDataView{
     private ImageView ivLoading;
     private TextView tvCate;
     private TextView tvTime;
+
+    private TextView tvNoData;
     private List<TotalIncomingBean.IncomingItem> mListItems = new ArrayList<>();
 
     //上次选中的种类
@@ -64,7 +71,6 @@ public class TotalIncomeActivity extends BaseActivity implements IGetDataView{
     //上次选中的时间
     private int mSelectTime = 0;
 
-    private int mType = 0;
     private int mPage = 1;
 
     private Status mStatus = Status.NO_PULL;
@@ -111,9 +117,32 @@ public class TotalIncomeActivity extends BaseActivity implements IGetDataView{
 
         //请求产品的列表
         String urlProduct = HttpURLData.APPFUN_PRODUCT_SIMPLE;
-        ViewPresenter presenterProduct = new ViewPresenter(this);
-        presenterProduct.getNetData(urlProduct);
 
+        GetNetData tool = new GetNetData();
+        tool.requestNetData(new Callback<String>() {
+            @Override
+            public String parseNetworkResponse(Response response) throws Exception {
+                String content = response.body().string();
+                return content;
+            }
+
+            @Override
+            public void onError(Call call, Exception e) {
+
+            }
+
+            @Override
+            public void onResponse(String response) {
+                Gson gson = new Gson();
+
+                InvestProductBean bean = gson.fromJson(response, InvestProductBean.class);
+                if (bean != null && bean.resources != null && bean.resources.size() != 0) {
+                    mCateList.clear();
+                    mCateList.add(new InvestProductBean.ProductItem(0, "全部产品"));
+                    mCateList.addAll(bean.resources);
+                }
+            }
+        }, urlProduct);
         //界面数据的请求
         mUrl = HttpURLData.APPFUN_ACCOUNT_PROFIT;
         mAuth = PreferencesUtils.getString(mContext, ConfigsetData.CONFIG_KEY_AUTH);
@@ -147,6 +176,7 @@ public class TotalIncomeActivity extends BaseActivity implements IGetDataView{
         ivLoading = (ImageView) findViewById(R.id.iv_loading);
         tvCate = (TextView) findViewById(R.id.tv_cate);
         tvTime = (TextView) findViewById(R.id.tv_time);
+        tvNoData = (TextView) findViewById(R.id.tv_nodata);
     }
 
     @Override
@@ -185,8 +215,9 @@ public class TotalIncomeActivity extends BaseActivity implements IGetDataView{
                         break;
                     }
                 }
-
+                mPage = 1;
                 getNewData(mSelectCate,mSelectTime);
+
             }
 
             @Override
@@ -211,7 +242,7 @@ public class TotalIncomeActivity extends BaseActivity implements IGetDataView{
     private void getNewData(int mSelectCate, int mSelectTime) {
         UrlParse parse = new UrlParse(mUrl);
         parse.putValue("pageSize",10);
-        parse.putValue("pageNo",1);
+        parse.putValue("pageNo",mPage);
         if (mSelectCate != 0){
             parse.putValue("productId",mSelectCate);
         }
@@ -234,7 +265,9 @@ public class TotalIncomeActivity extends BaseActivity implements IGetDataView{
                 mSelectCate = product;
                 mStatus = Status.REFRESH;
                 tvCate.setText(mCateList.get(mSelectCate).name);
+                mPage = 1;
                 getNewData(mSelectCate,mSelectTime);
+
             }
 
             @Override
@@ -259,31 +292,26 @@ public class TotalIncomeActivity extends BaseActivity implements IGetDataView{
     public void fillView(String content) {
         if (content != null && !TextUtils.isEmpty(content)){
             Gson gson = new Gson();
-            if (content.contains("productId")){
-                InvestProductBean bean = gson.fromJson(content,InvestProductBean.class);
-                if (bean != null && bean.resources!= null && bean.resources.size() != 0){
 
-                    mCateList.clear();
-                    mCateList.add(new InvestProductBean.ProductItem(0,"全部产品"));
-                    mCateList.addAll(bean.resources);
+            TotalIncomingBean bean = gson.fromJson(content, TotalIncomingBean.class);
+            if (bean != null && bean.resources != null && bean.resources.size() != 0) {
+                boolean hasMoreData = bean.hasNextPage;
+                if (mStatus == Status.PULL_FROM_END) {
+                    mListItems.addAll(bean.resources);
+                } else {
+                    mListItems.clear();
+                    mListItems.addAll(bean.resources);
                 }
-
-            }else{
-                if (content.contains("createdDate")){
-                    TotalIncomingBean bean = gson.fromJson(content,TotalIncomingBean.class);
-                    if (bean != null && bean.resources != null && bean.resources.size() != 0){
-                        boolean hasMoreData = bean.hasNextPage;
-                        if (mStatus == Status.PULL_FROM_END){
-                            mListItems.addAll(bean.resources);
-                        }else{
-                            mListItems.clear();
-                            mListItems.addAll(bean.resources);
-                        }
-                        mAdapter.notifyDataSetChanged();
-                        mListView.onPullUpRefreshComplete();
-                        mListView.onPullDownRefreshComplete();
-                        mListView.setHasMoreData(hasMoreData);
-                    }
+                mAdapter.notifyDataSetChanged();
+                mListView.setVisibility(View.VISIBLE);
+                tvNoData.setVisibility(View.GONE);
+                mListView.onPullUpRefreshComplete();
+                mListView.onPullDownRefreshComplete();
+                mListView.setHasMoreData(hasMoreData);
+            } else {
+                if (mPage == 1) {
+                    mListView.setVisibility(View.GONE);
+                    tvNoData.setVisibility(View.VISIBLE);
                 }
             }
         }
@@ -294,33 +322,43 @@ public class TotalIncomeActivity extends BaseActivity implements IGetDataView{
         Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
     }
 
+    private boolean isFirst = true;
     @Override
     public void showProgress() {
-        if (mStatus == Status.NO_PULL){
-            if (mType == 0){
-                llLoading.setVisibility(View.VISIBLE);
-                Animation mRotateAnim = AnimationUtils.loadAnimation(this, R.anim.loading_rotate);
-                ivLoading.startAnimation(mRotateAnim);
-
-            }
-            mType ++;
-        }else if (mStatus == Status.REFRESH){
+//        if (mStatus == Status.NO_PULL){
+//            if (mType == 0){
+//                llLoading.setVisibility(View.VISIBLE);
+//                Animation mRotateAnim = AnimationUtils.loadAnimation(this, R.anim.loading_rotate);
+//                ivLoading.startAnimation(mRotateAnim);
+//
+//            }
+//            mType ++;
+//        }else if (mStatus == Status.REFRESH){
+//            llLoading.setVisibility(View.VISIBLE);
+//            Animation mRotateAnim = AnimationUtils.loadAnimation(this, R.anim.loading_rotate);
+//            ivLoading.startAnimation(mRotateAnim);
+//        }
+        if (isFirst){
             llLoading.setVisibility(View.VISIBLE);
             Animation mRotateAnim = AnimationUtils.loadAnimation(this, R.anim.loading_rotate);
             ivLoading.startAnimation(mRotateAnim);
         }
-
     }
 
     @Override
     public void hideProgress() {
-        if (mStatus == Status.NO_PULL){
-            if (mType == 2){
-                ivLoading.clearAnimation();
-                llLoading.setVisibility(View.GONE);
-                mType = 0;
-            }
-        }else if (mStatus == Status.REFRESH){
+//        if (mStatus == Status.NO_PULL){
+//            if (mType == 2){
+//                ivLoading.clearAnimation();
+//                llLoading.setVisibility(View.GONE);
+//                mType = 0;
+//            }
+//        }else if (mStatus == Status.REFRESH){
+//            ivLoading.clearAnimation();
+//            llLoading.setVisibility(View.GONE);
+//        }
+        if (isFirst){
+            isFirst = false;
             ivLoading.clearAnimation();
             llLoading.setVisibility(View.GONE);
         }

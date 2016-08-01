@@ -41,10 +41,11 @@ public class LoginActivity extends BaseActivity implements IGetDataView{
     private  int mNextStep;
     private LinearLayout llLoading;
     private ImageView ivLoading;
-
+    private int id;
     @Override
     protected void initData() {
         mNextStep = getIntent().getIntExtra("donext",0);
+        id = getIntent().getIntExtra("id",0);
     }
 
     @Override
@@ -84,6 +85,7 @@ public class LoginActivity extends BaseActivity implements IGetDataView{
                 finish();
                 break;
             case R.id.title_right:
+                //跳出用户的协议
                 toRegisterActivity();
                 break;
             default:
@@ -119,7 +121,7 @@ public class LoginActivity extends BaseActivity implements IGetDataView{
      */
     private void toRegisterActivity() {
 
-        Intent intent = new Intent(mContext,RegisterActivity.class);
+        Intent intent = new Intent(mContext,RegisterAgreementActivity.class);
         startActivity(intent);
     }
 
@@ -153,7 +155,8 @@ public class LoginActivity extends BaseActivity implements IGetDataView{
                     PreferencesUtils.putString(mContext, ConfigsetData.CONFIG_KEY_AUTH,Base64Util.encode(auth));
 
                     if (mNextStep == ConfigsetData.LOGIN_TO_BUY){
-                        Intent intent = new Intent(mContext,NewUserBuyActivity.class);
+                        Intent intent = new Intent(mContext,ProductBuyProtocol.class);
+                        intent.putExtra("productId",id);
                         startActivity(intent);
                     }
                     finish();

@@ -3,6 +3,7 @@ package com.bailibao.view;
 import android.content.Context;
 import android.os.Handler;
 import android.support.v4.view.ViewPager;
+import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewConfiguration;
 import android.view.animation.AccelerateInterpolator;
@@ -13,9 +14,12 @@ import android.widget.Scroller;
 
 import com.bailibao.R;
 import com.bailibao.bean.AdBean;
+import com.bailibao.data.HttpURLData;
 import com.bailibao.data.SystemVal;
+import com.bailibao.module.presenter.ViewPresenter;
 import com.bailibao.module.view.IGetDataView;
 import com.bailibao.view.myadapter.AdImageAdapter;
+import com.google.gson.Gson;
 
 import java.lang.reflect.Field;
 import java.util.LinkedList;
@@ -173,16 +177,12 @@ public class AdViewFlipperView implements IGetDataView {
      * 请求图片的url 与act
      */
     private void initData() {
-//        if (!TextUtils.isEmpty(url)) {
-//            //请求广告
-//            AdViewPresenter presenter = new AdViewPresenter(this, url);
-//        }
+        if (!TextUtils.isEmpty(url)) {
+            //请求广告
+            ViewPresenter presenter = new ViewPresenter(this);
+            presenter.getNetData(HttpURLData.APPFUN_GET_AD);
+        }
         mAdview.setVisibility(View.VISIBLE);
-        AdBean.AdItem item = new AdBean.AdItem();
-        item.imageUrl = "";
-        mAdList.add(item);
-        mAdList.add(item);
-        updateAdView(mAdList);
     }
 
     /**
@@ -194,11 +194,6 @@ public class AdViewFlipperView implements IGetDataView {
         if (adList == null) {
             return;
         }
-
-//        if (!adList.isEmpty() && !adList.equals(mAdList)) {
-//            mAdList.clear();
-//            mAdList.addAll(adList);
-//        }
         notifyChange();
     }
 
@@ -261,10 +256,13 @@ public class AdViewFlipperView implements IGetDataView {
     @Override
     public void fillView(String content) {
         mAdview.setVisibility(View.VISIBLE);
-        AdBean.AdItem item = new AdBean.AdItem();
-        item.imageUrl = "";
-        mAdList.add(item);
-        mAdList.add(item);
-        updateAdView(mAdList);
+        if (content != null && !content.isEmpty()){
+            Gson gson = new Gson();
+            AdBean bean = gson.fromJson(content,AdBean.class);
+            if (bean != null && bean.resources != null && bean.resources.size() > 0){
+                mAdList.addAll(bean.resources);
+                updateAdView(mAdList);
+            }
+        }
     }
 }

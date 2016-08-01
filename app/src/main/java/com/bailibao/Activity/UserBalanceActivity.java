@@ -72,6 +72,7 @@ public class UserBalanceActivity extends BaseActivity implements IGetDataView {
     private TextView tvMoney;
     private int type;
     private ViewPresenter mPresenter;
+    TextView emptyView;
     @Override
     protected void initData() {
 
@@ -156,6 +157,7 @@ public class UserBalanceActivity extends BaseActivity implements IGetDataView {
         tvTime = (TextView) findViewById(R.id.tv_time);
         tvOperate = (TextView) findViewById(R.id.tv_operate);
         tvMoney = (TextView) findViewById(R.id.tv_money);
+        emptyView = (TextView) findViewById(R.id.empty);
         ButterKnife.inject(this);
     }
 
@@ -216,14 +218,16 @@ public class UserBalanceActivity extends BaseActivity implements IGetDataView {
                         mListItems.addAll(bean.resources);
                     }
                     mListView.setVisibility(View.VISIBLE);
+                    emptyView.setVisibility(View.GONE);
                     mAdapter.notifyDataSetChanged();
                     mListView.onPullUpRefreshComplete();
                     mListView.onPullDownRefreshComplete();
                     mListView.setHasMoreData(hasMoreData);
                 } else {
-                    mListView.setVisibility(View.INVISIBLE);
-                    TextView emptyView = (TextView) findViewById(R.id.empty);
-                    emptyView.setVisibility(View.VISIBLE);
+                    if (mPage == 1){
+                        mListView.setVisibility(View.GONE);
+                        emptyView.setVisibility(View.VISIBLE);
+                    }
                 }
             }
         }
@@ -275,7 +279,7 @@ public class UserBalanceActivity extends BaseActivity implements IGetDataView {
                         break;
                     }
                 }
-
+                mPage = 1;
                 getNewData(mSelectOperate, mSelectTime);
             }
 
@@ -307,6 +311,7 @@ public class UserBalanceActivity extends BaseActivity implements IGetDataView {
                 mSelectOperate = product;
                 mStatus = Status.REFRESH;
                 tvOperate.setText(mOperateList.get(mSelectOperate).name);
+                mPage = 1;
                 getNewData(mSelectOperate, mSelectTime);
             }
 
@@ -338,7 +343,7 @@ public class UserBalanceActivity extends BaseActivity implements IGetDataView {
     private void getNewData(int mSelectCate, int mSelectTime) {
         UrlParse parse = new UrlParse(mUrl);
         parse.putValue("pageSize", 10);
-        parse.putValue("pageNo", 1);
+        parse.putValue("pageNo", mPage);
         if (mSelectCate != 0) {
             parse.putValue("optType", mSelectCate);
         }

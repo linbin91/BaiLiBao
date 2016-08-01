@@ -34,9 +34,10 @@
                 android:layout_centerVertical="true"
                 android:text="我的银行卡"
                 android:textColor="@color/lock_top_fontcolor"
-                android:textSize="@dimen/sp18"
-                android:textStyle="bold" />
+                android:textSize="18sp"
+                android:textStyle="bold"/>
         </RelativeLayout>
+
 
         <RelativeLayout
             android:layout_width="match_parent"

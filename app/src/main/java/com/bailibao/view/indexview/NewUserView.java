@@ -1,7 +1,6 @@
 package com.bailibao.view.indexview;
 
 import android.content.Context;
-import android.content.Intent;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.animation.Animation;
@@ -9,13 +8,12 @@ import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
-import com.bailibao.Activity.ProductBuyActivity;
 import com.bailibao.R;
 import com.bailibao.bean.user.IndexUnloginBean;
 import com.bailibao.data.HttpURLData;
 import com.bailibao.data.ResponseData;
-import com.bailibao.dialog.LoginDialog;
 import com.bailibao.module.presenter.ViewPresenter;
 import com.bailibao.module.view.IGetDataView;
 import com.google.gson.Gson;
@@ -26,13 +24,13 @@ import com.google.gson.Gson;
 public class NewUserView extends BaseView implements IGetDataView{
 
     private TextView mNewUserBuy;
-    private LoginDialog mDialog;
     private OnBuyCallBack mListener;
 
     private LinearLayout llLoading;
     private ImageView ivLoading;
     private TextView tvYield;
     private TextView tvIndroduct;
+    private IndexUnloginBean bean;
 
     public NewUserView(Context context) {
         super(context);
@@ -77,18 +75,18 @@ public class NewUserView extends BaseView implements IGetDataView{
 
     private void doBuyAction() {
         if (mListener != null){
-            mListener.buyAction();
+            mListener.buyAction(bean.id);
         }
 
-        Intent intent = new Intent(mContext, ProductBuyActivity.class);
-        mContext.startActivity(intent);
+//        Intent intent = new Intent(mContext, ProductBuyActivity.class);
+//        mContext.startActivity(intent);
     }
 
     @Override
     public void fillView(String content) {
         if (content != null && !TextUtils.isEmpty(content)){
             Gson gson = new Gson();
-            IndexUnloginBean bean = gson.fromJson(content, IndexUnloginBean.class);
+            bean = gson.fromJson(content, IndexUnloginBean.class);
             if (bean != null && bean.respCode == ResponseData.RESP_CODE_OK){
                 tvYield.setText(bean.yield + "%");
                 tvIndroduct.setText(bean.introduce);
@@ -97,9 +95,10 @@ public class NewUserView extends BaseView implements IGetDataView{
         }
     }
 
+
     @Override
     public void toast(String msg) {
-
+        Toast.makeText(mContext,msg,Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -118,7 +117,7 @@ public class NewUserView extends BaseView implements IGetDataView{
 
 
     public interface  OnBuyCallBack{
-        public void  buyAction();
+        public void  buyAction(int id);
     }
 
     public void setListener(OnBuyCallBack listener){

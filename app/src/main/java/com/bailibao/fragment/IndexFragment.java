@@ -9,11 +9,13 @@ import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bailibao.Activity.MessageActivity;
 import com.bailibao.R;
 import com.bailibao.base.BaseFragment;
 import com.bailibao.data.ConfigsetData;
+import com.bailibao.data.HttpURLData;
 import com.bailibao.dialog.LoginDialog;
 import com.bailibao.module.view.IGetDataView;
 import com.bailibao.util.PreferencesUtils;
@@ -76,7 +78,7 @@ public class IndexFragment extends BaseFragment implements IGetDataView {
         mFragmentAd.removeAllViews();
         mFragmentContent.removeAllViews();
 
-        mAdViewFlipper = new AdViewFlipperView(mContext, "www.baidu.com");
+        mAdViewFlipper = new AdViewFlipperView(mContext, HttpURLData.APPFUN_GET_AD);
         mFragmentAd.addView(mAdViewFlipper.getHeadView());
         boolean isLogin = PreferencesUtils.getBoolean(mContext, ConfigsetData.CONFIG_KEY_LOGIN);
         if (isLogin){
@@ -109,11 +111,12 @@ public class IndexFragment extends BaseFragment implements IGetDataView {
         mNewUserView = mNewUser.getView();
         mNewUser.setListener(new NewUserView.OnBuyCallBack() {
             @Override
-            public void buyAction() {
+            public void buyAction(int id) {
                 if (mDialog == null){
                     mDialog = new LoginDialog();
                 }
                 mDialog.setData(ConfigsetData.LOGIN_TO_BUY);
+                mDialog.setProductId(id);
                 mDialog.show(getFragmentManager(),"");
             }
         });
@@ -179,7 +182,7 @@ public class IndexFragment extends BaseFragment implements IGetDataView {
 
     @Override
     public void toast(String msg) {
-
+        Toast.makeText(getActivity(),msg,Toast.LENGTH_SHORT).show();
     }
 
     @Override

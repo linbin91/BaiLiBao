@@ -6,6 +6,8 @@ package com.bailibao.data;
 public class ConfigsetData {
     //login完后到购买的界面
     public static final int LOGIN_TO_BUY = 1001;
+    //跳转到用户购买的协议
+    public static final int LOGIN_TO_PROTOCOL = 1002;
 
     public static final String CONFIG_KEY_LOGIN = "isLogin";
     public static final String CONFIG_KEY_LOGIN_NUM = "phonenum";

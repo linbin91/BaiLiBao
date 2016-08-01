@@ -20,9 +20,9 @@ public class WithdrawResultActivity extends BaseActivity implements IGetDataView
     private TextView tvSeeAccont;
     @Override
     protected void initData() {
-        int redeemMoney = getIntent().getIntExtra("money",0);
+        int redeemMoney = getIntent().getIntExtra("money",0) / 100;
         String str = "<font color=#ff71706e>提现金额为</font>"
-                + "<font color= #48c262></font>"
+                + "<font color= #48c262>"+redeemMoney+"</font>"
                 +"<font color= #ff71706e>元</font>";
         tvResult.setText(Html.fromHtml(str));
 
@@ -47,11 +47,11 @@ public class WithdrawResultActivity extends BaseActivity implements IGetDataView
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.title_right:
-                Intent intent = new Intent(this,TotalIncomeActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(intent);
-                finish();
-                break;
+//                Intent intent = new Intent(this,UserBalanceActivity.class);
+//                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+//                startActivity(intent);
+//                finish();
+//                break;
             case R.id.tv_see_account:
                 Intent intent1 = new Intent(this,MainActivity.class);
                 intent1.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);

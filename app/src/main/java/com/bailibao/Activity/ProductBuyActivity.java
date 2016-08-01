@@ -12,7 +12,6 @@ import android.widget.Toast;
 import com.bailibao.R;
 import com.bailibao.base.BaseActivity;
 import com.bailibao.bean.product.ProductBuyBean;
-import com.bailibao.bean.product.ProductBuyResultBean;
 import com.bailibao.data.ConfigsetData;
 import com.bailibao.data.HttpURLData;
 import com.bailibao.module.presenter.ViewPresenter;
@@ -124,17 +123,13 @@ public class ProductBuyActivity extends BaseActivity implements IGetDataView {
      * 点击购买的按钮
      */
     private void doBuyAction() {
-        String buyCount = etBuyCount.getText().toString();
+        String buyCount = etBuyCount.getText().toString().trim();
         if (buyCount != null && !buyCount.isEmpty()){
-            String auth = PreferencesUtils.getString(mContext, ConfigsetData.CONFIG_KEY_AUTH);
-            if (auth != null && !TextUtils.isEmpty(auth)) {
-                UrlParse parse = new UrlParse(HttpURLData.APPFUN_PRODUCT_PAY);
-
-                parse.putValue("orderId",productId);
-                parse.putValue("count", Integer.parseInt(buyCount));
-                mPresenter.postNetDataWithAuth(parse.toString(), auth);
-                type = 3;
-            }
+            Intent intent = new Intent(this,ProductBuyState.class);
+            intent.putExtra("productId",productId);
+            intent.putExtra("buyCount",Integer.parseInt(buyCount));
+            startActivity(intent);
+            finish();
         }else{
             Toast.makeText(this,"请输入购买的份额",Toast.LENGTH_SHORT).show();
         }
@@ -164,13 +159,14 @@ public class ProductBuyActivity extends BaseActivity implements IGetDataView {
                     etBuyCount.setHint("每份价格元" + bean.price + "元");
                     productId = bean.orderId;
                 }
-            }else if (type == 3){
-                Gson gson = new Gson();
-                ProductBuyResultBean result = gson.fromJson(content,ProductBuyResultBean.class);
-                if (result != null){
-                    Toast.makeText(this,result.orderNo,Toast.LENGTH_SHORT).show();
-                }
             }
+//            else if (type == 3){
+//                Gson gson = new Gson();
+//                ProductBuyResultBean result = gson.fromJson(content,ProductBuyResultBean.class);
+//                if (result != null){
+//                    Toast.makeText(this,result.orderNo,Toast.LENGTH_SHORT).show();
+//                }
+//            }
 
         }
     }

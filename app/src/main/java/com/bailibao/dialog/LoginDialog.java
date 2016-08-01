@@ -25,6 +25,7 @@ public class LoginDialog extends DialogFragment {
     //用于传给登入界面
     private int mActionKey = 0;
     private OnClickCallBack mListener;
+    private int mId;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -56,6 +57,7 @@ public class LoginDialog extends DialogFragment {
                 dismiss();
                 Intent intent = new Intent(getContext(), LoginActivity.class);
                 intent.putExtra("donext",mActionKey);
+                intent.putExtra("id",mId);
                 startActivity(intent);
 
             }
@@ -75,6 +77,12 @@ public class LoginDialog extends DialogFragment {
     public void setData(int data){
         mActionKey = data;
     }
+
+
+    public void setProductId(int id){
+        mId = id;
+    }
+
 
     public interface OnClickCallBack{
         public void doCancelAction();

@@ -160,7 +160,12 @@ public class NewEditPassword extends BaseActivity implements IGetDataView{
             parse.putValue("phone",mPhoneNum);
             mCheckCode = Base64Util.encodeAndMD5(verifyCode);
             parse.putValue("checkcode",mCheckCode);
-            parse.putValue("api","forgetPassword");
+            if (mSource == 2){
+                parse.putValue("api","forgetTradePassword");
+            }else{
+                parse.putValue("api","forgetPassword");
+            }
+
             mPresenter.postNetData(parse.toString());
         }
     }
@@ -180,7 +185,12 @@ public class NewEditPassword extends BaseActivity implements IGetDataView{
                         String url = HttpURLData.APPFUN_USER_CHECKCODE;
                         UrlParse parse = new UrlParse(url);
                         parse.putValue("phone", mPhoneNum);
-                        parse.putValue("api", "forgetPassword");
+                        if (mSource == 2){
+                            parse.putValue("api", "forgetTradePassword");
+                        }else{
+                            parse.putValue("api", "forgetPassword");
+                        }
+
                         mPresenter.getNetData(parse.toString());
                     }
                 }
@@ -203,7 +213,7 @@ public class NewEditPassword extends BaseActivity implements IGetDataView{
                         intent.putExtra("phone", mPhoneNum);
                         intent.putExtra("checkcode",mCheckCode);
                         if (mSource == 2){
-                            intent.putExtra("soure",2);
+                            intent.putExtra("source",2);
                         }
                         startActivity(intent);
                         finish();

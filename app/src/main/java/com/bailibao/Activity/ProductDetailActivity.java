@@ -15,9 +15,12 @@ import com.bailibao.R;
 import com.bailibao.base.BaseActivity;
 import com.bailibao.bean.product.ProductDetailBean;
 import com.bailibao.bean.product.ProductProfitBean;
+import com.bailibao.data.ConfigsetData;
 import com.bailibao.data.HttpURLData;
+import com.bailibao.dialog.LoginDialog;
 import com.bailibao.module.presenter.ViewPresenter;
 import com.bailibao.module.view.IGetDataView;
+import com.bailibao.util.PreferencesUtils;
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
@@ -139,10 +142,19 @@ public class ProductDetailActivity extends BaseActivity implements IGetDataView 
      * 进入购买的界面
      */
     private void doBuyAction() {
-
-        Intent intent = new Intent(mContext,ProductBuyActivity.class);
-        intent.putExtra("id",mId);
-        startActivity(intent);
+        //判断用户登入了没有
+        boolean isLogin = PreferencesUtils.getBoolean(mContext, ConfigsetData.CONFIG_KEY_LOGIN);
+        if (isLogin){
+            //跳出服务协议
+            Intent intent = new Intent(this,ProductBuyProtocol.class);
+            intent.putExtra("productId",mId);
+            startActivity(intent);
+        }else{
+            //弹出登入dialog
+            LoginDialog  mDialog = new LoginDialog();
+            mDialog.setData(ConfigsetData.LOGIN_TO_PROTOCOL);
+            mDialog.show(getSupportFragmentManager(),"");
+        }
     }
 
     @Override
@@ -236,8 +248,6 @@ public class ProductDetailActivity extends BaseActivity implements IGetDataView 
      * tip 轮播
      */
     private void startTipAnimation() {
-
-
         rlProfit.setAnimation(mAnimation);
         rlProfit.requestLayout();
         mAnimation.start();

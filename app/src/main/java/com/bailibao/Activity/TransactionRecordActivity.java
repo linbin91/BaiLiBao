@@ -2,8 +2,6 @@ package com.bailibao.Activity;
 
 import android.text.TextUtils;
 import android.view.View;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -18,6 +16,7 @@ import com.bailibao.bean.user.UserTransactionBean;
 import com.bailibao.data.ConfigsetData;
 import com.bailibao.data.HttpURLData;
 import com.bailibao.data.Status;
+import com.bailibao.module.model.GetNetData;
 import com.bailibao.module.presenter.ViewPresenter;
 import com.bailibao.module.view.IGetDataView;
 import com.bailibao.popupwindow.RefreshListviewPop;
@@ -29,9 +28,13 @@ import com.bailibao.view.myadapter.ViewHolder;
 import com.bailibao.view.pullview.PullToRefreshBase;
 import com.bailibao.view.pullview.PullToRefreshListView;
 import com.google.gson.Gson;
+import com.zhy.http.okhttp.callback.Callback;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import okhttp3.Call;
+import okhttp3.Response;
 
 /**
  * Created by Administrator on 2016/4/26.
@@ -70,7 +73,7 @@ public class TransactionRecordActivity extends BaseActivity implements IGetDataV
     private Status mStatus = Status.NO_PULL;
     private String mUrl = HttpURLData.APPFUN_USER_TRADE;
     private String mAuth;
-
+    private TextView tvEmpty;
 
     private List<UserTransactionBean.TransactionBean> mListItems = new ArrayList<>();
 
@@ -128,8 +131,31 @@ public class TransactionRecordActivity extends BaseActivity implements IGetDataV
 
         //请求产品的列表
         String urlProduct = HttpURLData.APPFUN_PRODUCT_SIMPLE;
-        ViewPresenter presenterProduct = new ViewPresenter(this);
-        presenterProduct.getNetData(urlProduct);
+        GetNetData tool = new GetNetData();
+        tool.requestNetData(new Callback<String>() {
+            @Override
+            public String parseNetworkResponse(Response response) throws Exception {
+                String content = response.body().string();
+                return content;
+            }
+
+            @Override
+            public void onError(Call call, Exception e) {
+
+            }
+
+            @Override
+            public void onResponse(String response) {
+                Gson gson = new Gson();
+
+                InvestProductBean bean = gson.fromJson(response, InvestProductBean.class);
+                if (bean != null && bean.resources != null && bean.resources.size() != 0) {
+                    mCateList.clear();
+                    mCateList.add(new InvestProductBean.ProductItem(0, "全部产品"));
+                    mCateList.addAll(bean.resources);
+                }
+            }
+        }, urlProduct);
 
         //界面数据的请求
         mUrl = HttpURLData.APPFUN_USER_TRADE;
@@ -169,6 +195,7 @@ public class TransactionRecordActivity extends BaseActivity implements IGetDataV
         tvTime = (TextView) findViewById(R.id.tv_time);
         tvOpreate = (TextView) findViewById(R.id.tv_operate);
         tvProduct = (TextView) findViewById(R.id.tv_product);
+        tvEmpty = (TextView) findViewById(R.id.tv_empty);
     }
 
     @Override
@@ -195,31 +222,26 @@ public class TransactionRecordActivity extends BaseActivity implements IGetDataV
     public void fillView(String content) {
         if (content != null && !TextUtils.isEmpty(content)){
             Gson gson = new Gson();
-            if (content.contains("productId")){
-                InvestProductBean bean = gson.fromJson(content,InvestProductBean.class);
-                if (bean != null && bean.resources!= null && bean.resources.size() != 0){
 
-                    mCateList.clear();
-                    mCateList.add(new InvestProductBean.ProductItem(0,"全部产品"));
-                    mCateList.addAll(bean.resources);
+            UserTransactionBean bean = gson.fromJson(content, UserTransactionBean.class);
+            if (bean != null && bean.resources != null && bean.resources.size() != 0) {
+                boolean hasMoreData = bean.hasNextPage;
+                if (mStatus == Status.PULL_FROM_END) {
+                    mListItems.addAll(bean.resources);
+                } else {
+                    mListItems.clear();
+                    mListItems.addAll(bean.resources);
                 }
-
+                mAdapter.notifyDataSetChanged();
+                mListView.onPullUpRefreshComplete();
+                mListView.onPullDownRefreshComplete();
+                mListView.setHasMoreData(hasMoreData);
+                tvEmpty.setVisibility(View.GONE);
+                mListView.setVisibility(View.VISIBLE);
             }else{
-                if (content.contains("tradeDate")){
-                    UserTransactionBean bean = gson.fromJson(content,UserTransactionBean.class);
-                    if (bean != null && bean.resources != null && bean.resources.size() != 0){
-                        boolean hasMoreData = bean.hasNextPage;
-                        if (mStatus == Status.PULL_FROM_END){
-                            mListItems.addAll(bean.resources);
-                        }else{
-                            mListItems.clear();
-                            mListItems.addAll(bean.resources);
-                        }
-                        mAdapter.notifyDataSetChanged();
-                        mListView.onPullUpRefreshComplete();
-                        mListView.onPullDownRefreshComplete();
-                        mListView.setHasMoreData(hasMoreData);
-                    }
+                if (mPage == 1){
+                    tvEmpty.setVisibility(View.VISIBLE);
+                    mListView.setVisibility(View.GONE);
                 }
             }
         }
@@ -232,33 +254,33 @@ public class TransactionRecordActivity extends BaseActivity implements IGetDataV
 
     @Override
     public void showProgress() {
-        if (mStatus == Status.NO_PULL){
-            if (mType == 0){
-                llLoading.setVisibility(View.VISIBLE);
-                Animation mRotateAnim = AnimationUtils.loadAnimation(this, R.anim.loading_rotate);
-                ivLoading.startAnimation(mRotateAnim);
-
-            }
-            mType ++;
-        }else if (mStatus == Status.REFRESH){
-            llLoading.setVisibility(View.VISIBLE);
-            Animation mRotateAnim = AnimationUtils.loadAnimation(this, R.anim.loading_rotate);
-            ivLoading.startAnimation(mRotateAnim);
-        }
+//        if (mStatus == Status.NO_PULL){
+//            if (mType == 0){
+//                llLoading.setVisibility(View.VISIBLE);
+//                Animation mRotateAnim = AnimationUtils.loadAnimation(this, R.anim.loading_rotate);
+//                ivLoading.startAnimation(mRotateAnim);
+//
+//            }
+//            mType ++;
+//        }else if (mStatus == Status.REFRESH){
+//            llLoading.setVisibility(View.VISIBLE);
+//            Animation mRotateAnim = AnimationUtils.loadAnimation(this, R.anim.loading_rotate);
+//            ivLoading.startAnimation(mRotateAnim);
+//        }
     }
 
     @Override
     public void hideProgress() {
-        if (mStatus == Status.NO_PULL){
-            if (mType == 2){
-                ivLoading.clearAnimation();
-                llLoading.setVisibility(View.GONE);
-                mType = 0;
-            }
-        }else if (mStatus == Status.REFRESH){
-            ivLoading.clearAnimation();
-            llLoading.setVisibility(View.GONE);
-        }
+//        if (mStatus == Status.NO_PULL){
+//            if (mType == 2){
+//                ivLoading.clearAnimation();
+//                llLoading.setVisibility(View.GONE);
+//                mType = 0;
+//            }
+//        }else if (mStatus == Status.REFRESH){
+//            ivLoading.clearAnimation();
+//            llLoading.setVisibility(View.GONE);
+//        }
     }
     /**
      * 时间pop
@@ -277,7 +299,7 @@ public class TransactionRecordActivity extends BaseActivity implements IGetDataV
                         break;
                     }
                 }
-
+                mPage = 1;
                 getNewData(mSelectCate,mSelectTime,mSelectOperate);
             }
 
@@ -305,6 +327,7 @@ public class TransactionRecordActivity extends BaseActivity implements IGetDataV
             public void selectItem(int product) {
                 mSelectOperate = product;
                 mStatus = Status.REFRESH;
+                mPage = 1;
                 getNewData(mSelectCate,mSelectTime,mSelectOperate);
                 tvOpreate.setText(mOperateList.get(mSelectOperate).name);
             }
@@ -333,6 +356,7 @@ public class TransactionRecordActivity extends BaseActivity implements IGetDataV
             public void selectItem(int product) {
                 mSelectCate = product;
                 tvProduct.setText(mCateList.get(mSelectCate).name);
+                mPage = 1;
                 getNewData(mSelectCate,mSelectTime,mSelectOperate);
             }
 
@@ -363,7 +387,7 @@ public class TransactionRecordActivity extends BaseActivity implements IGetDataV
     private void getNewData(int mSelectCate, int mSelectTime, int mSelectOperate) {
         UrlParse parse = new UrlParse(mUrl);
         parse.putValue("pageSize",10);
-        parse.putValue("pageNo",1);
+        parse.putValue("pageNo",mPage);
         if (mSelectCate != 0){
             parse.putValue("productId",mSelectCate);
         }

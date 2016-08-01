@@ -21,7 +21,8 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
                 android:layout_centerInParent="true"
-                android:layout_marginLeft="@dimen/dp11"
+                android:paddingLeft="@dimen/dp11"
+                android:paddingRight="@dimen/dp11"
                 android:src="@mipmap/title_left_back" />
 
             <TextView
@@ -31,11 +32,11 @@
                 android:layout_centerInParent="true"
                 android:layout_centerVertical="true"
                 android:text="交易记录"
-                android:textStyle="bold"
                 android:textColor="@color/lock_top_fontcolor"
-                android:textSize="@dimen/sp18" />
-
+                android:textSize="18sp"
+                android:textStyle="bold"/>
         </RelativeLayout>
+
 
         <LinearLayout
             android:background="#f1f1f1"
@@ -149,14 +150,27 @@
                     android:src="@mipmap/arrow_down" />
             </LinearLayout>
         </LinearLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <com.bailibao.view.pullview.PullToRefreshListView
+                android:background="@color/white"
+                android:id="@+id/record_list"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:cacheColorHint="#00000000"
+                android:divider="@null" />
 
-        <com.bailibao.view.pullview.PullToRefreshListView
-            android:background="@color/white"
-            android:id="@+id/record_list"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:cacheColorHint="#00000000"
-            android:divider="@null" />
+            <TextView
+                android:id="@+id/tv_empty"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="没有数据哦"
+                android:textSize="@dimen/dp20"
+                android:visibility="gone" />
+        </RelativeLayout>
+
     </LinearLayout>
    <include layout="@layout/loading_view"/>
 </RelativeLayout>

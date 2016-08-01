@@ -6,8 +6,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import com.bailibao.Activity.WebViewActivity;
 import com.bailibao.R;
 import com.bailibao.bean.AdBean;
+import com.nostra13.universalimageloader.core.ImageLoader;
 
 import java.util.List;
 
@@ -15,8 +17,10 @@ import java.util.List;
  * Created by lin on 2016/4/10.
  */
 public class AdImageAdapter extends  BasePagerAdapter<AdBean.AdItem> {
+    private Context mContext;
     public AdImageAdapter(Context context, List<AdBean.AdItem> list) {
         super(context, list);
+        mContext = context;
     }
 
     /**
@@ -42,16 +46,9 @@ public class AdImageAdapter extends  BasePagerAdapter<AdBean.AdItem> {
                 View convertView = mInflater.inflate(R.layout.ad_item,container,false);
                 ImageView img = (ImageView) convertView.findViewById(R.id.ad_imageView1);
                 container.addView(convertView);
-//                ImageLoader.getInstance().displayImage(mList.get(curPos).logo ,img,options);
-//
-//                img.setOnClickListener(new AdOnClickListener(mList.get(curPos).act));
-                if (curPos == 0){
-                    img.setImageResource(R.mipmap.test1);
-                }else if (curPos == 1){
-                    img.setImageResource(R.mipmap.test2);
-                }else {
-                    img.setImageResource(R.mipmap.test3);
-                }
+                ImageLoader.getInstance().displayImage(mList.get(curPos).imageUrl ,img,options);
+                img.setOnClickListener(new AdOnClickListener(mList.get(curPos).linkUrl));
+
                 return  convertView;
             }
             return  null;
@@ -73,10 +70,9 @@ public class AdImageAdapter extends  BasePagerAdapter<AdBean.AdItem> {
         }
         @Override
         public void onClick(View v) {
-//          Intent in = new Intent(mContext, TopicDetailActivity.class);
-            if (url != null){
-                Intent in = null;
-                in.putExtra("URL", url);
+            if (url != null && !url.isEmpty()){
+                Intent in = new Intent(mContext, WebViewActivity.class);
+                in.putExtra("path", url);
                 ctx.startActivity(in);
             }
         }

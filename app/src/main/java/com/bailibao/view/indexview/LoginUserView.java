@@ -8,6 +8,7 @@ import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bailibao.R;
 import com.bailibao.bean.IndexLoginBean;
@@ -213,7 +214,7 @@ public class LoginUserView extends BaseView implements IGetDataView{
 
     @Override
     public void toast(String msg) {
-
+        Toast.makeText(mContext,msg,Toast.LENGTH_SHORT).show();
     }
 
     @Override

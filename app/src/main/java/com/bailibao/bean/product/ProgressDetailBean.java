@@ -11,4 +11,5 @@ public class ProgressDetailBean extends BaseBean{
     public String title;
     public String content;
     public String createdDate;
+    public String imageUrl;
 }

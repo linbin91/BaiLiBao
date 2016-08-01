@@ -41,7 +41,7 @@
             android:text="运动保险"
             android:layout_marginTop="@dimen/dp20"
             android:textColor="#353535"
-            android:textSize="23sp"
+            android:textSize="20sp"
             android:paddingLeft="@dimen/dp10"
             android:paddingRight="@dimen/dp10"
             android:textStyle="bold"
@@ -51,7 +51,7 @@
         <TextView
             android:id="@+id/tv_time"
             android:text="2015-08-09 20:00"
-            android:layout_marginTop="@dimen/dp15"
+            android:layout_marginTop="@dimen/dp10"
             android:textColor="#777777"
             android:textSize="15sp"
             android:paddingLeft="@dimen/dp10"
@@ -67,6 +67,12 @@
             android:paddingLeft="@dimen/dp10"
             android:paddingRight="@dimen/dp10" />
 
+        <ImageView
+            android:id="@+id/iv"
+            android:paddingLeft="@dimen/dp10"
+            android:paddingRight="@dimen/dp10"
+            android:layout_width="match_parent"
+            android:layout_height="200dp" />
         <TextView
             android:id="@+id/content"
             android:paddingLeft="@dimen/dp10"

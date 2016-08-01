@@ -9,7 +9,6 @@ import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.Toast;
 
 import com.bailibao.R;
@@ -23,7 +22,6 @@ import com.bailibao.util.DataUtil;
 import com.bailibao.util.UrlParse;
 import com.bailibao.view.myadapter.CommonAdapter;
 import com.bailibao.view.myadapter.ViewHolder;
-import com.bailibao.view.pullview.PullToRefreshBase;
 import com.bailibao.view.pullview.PullToRefreshListView;
 import com.google.gson.Gson;
 
@@ -53,7 +51,9 @@ public class ProductProgressActivity extends BaseActivity implements IGetDataVie
 
             @Override
             public void convert(ViewHolder helper, ProductProgressBean.ProgressItem item) {
-
+                helper.setImageByUrl(R.id.icon,item.imageUrl);
+                helper.setText(R.id.title,item.title);
+                helper.setText(R.id.msg,item.content);
             }
         });
 
@@ -66,22 +66,23 @@ public class ProductProgressActivity extends BaseActivity implements IGetDataVie
             }
         });
 
-        mListView.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener<ListView>() {
-            @Override
-            public void onPullDownToRefresh(PullToRefreshBase<ListView> refreshView) {
-                mPage = 1;
-                mStatus = Status.PULL_FROM_START;
-                setLastUpdateTime();
-                getData();
-            }
-
-            @Override
-            public void onPullUpToRefresh(PullToRefreshBase<ListView> refreshView) {
-                mPage += 1;
-                mStatus = Status.PULL_FROM_END;
-                getData();
-            }
-        });
+//        mListView.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener<ListView>() {
+//            @Override
+//            public void onPullDownToRefresh(PullToRefreshBase<ListView> refreshView) {
+//                mPage = 1;
+//                mStatus = Status.PULL_FROM_START;
+//                setLastUpdateTime();
+//                getData();
+//            }
+//
+//            @Override
+//            public void onPullUpToRefresh(PullToRefreshBase<ListView> refreshView) {
+//                mPage += 1;
+//                mStatus = Status.PULL_FROM_END;
+//                getData();
+//            }
+//        });
+        mListView.setHasMoreData(false);
         getData();
     }
 

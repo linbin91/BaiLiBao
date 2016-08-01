@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bailibao.Activity.ProductDetailActivity;
 import com.bailibao.Activity.WebViewActivity;
@@ -219,7 +220,7 @@ public class ManagerFragment extends BaseFragment implements IGetDataView{
 
     @Override
     public void toast(String msg) {
-
+        Toast.makeText(getActivity(),msg,Toast.LENGTH_SHORT).show();
     }
 
     @Override

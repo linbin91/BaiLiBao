@@ -88,6 +88,9 @@ public class HttpURLData {
     //支付
     public static final String APPFUN_MONEY_PAY = HOST_BAILIBAO_API + "fuiou/pay";
 
+    //用户购买协议
+    public static final String APPFUN_PRODUCT_AGREEMENT = HOST_BAILIBAO_API + "product/agreement";
+
     //购买产品的具体界面
     public static final String APPFUN_PRODUCT_BUY = HOST_BAILIBAO_API + "order";
 
@@ -99,6 +102,12 @@ public class HttpURLData {
     public static final String APPFUN_BANK_CARD = HOST_BAILIBAO_API + "account/bank";
     //提现接口
     public static final String APPFUN_MONEY_WITHDRAW = HOST_BAILIBAO_API + "withdraw";
+    //用户注册协议
+    public static final String APPFUN_USER_AGREEMENT = HOST_BAILIBAO_API +"user/agreement";
+
+    //获取广告的接口
+    public static final String APPFUN_GET_AD = HOST_BAILIBAO_API + "ad";
+
 
     public static final String JZH_API_APP_WEB_REG_URL = JZH_API_BASE_URL+"/app/appWebReg.action";
     public static final String JZH_API_APP_500001_URL = JZH_API_BASE_URL+"/app/500001.action";

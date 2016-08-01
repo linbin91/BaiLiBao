@@ -118,7 +118,7 @@
                         android:layout_height="match_parent" />
 
                     <TextView
-                        android:id="@+id/product_tv_alarm"
+                        android:id="@+id/product_buy_count"
                         android:gravity="center"
                         android:layout_centerVertical="true"
                         android:textSize="@dimen/sp13"

@@ -201,6 +201,8 @@ public class MoreFragment extends BaseFragment implements IGetDataView{
     private void doLoginAction(boolean isLogin) {
         if (isLogin) {
             Intent intent = new Intent(mContext, NewEditPassword.class);
+            String phone = PreferencesUtils.getString(mContext,ConfigsetData.CONFIG_KEY_LOGIN_NUM);
+            intent.putExtra("phoneNum",phone);
             startActivity(intent);
         } else {
             LoginDialog dialog = new LoginDialog();

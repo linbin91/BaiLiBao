@@ -22,7 +22,7 @@ public class RedemptionResultActivity extends BaseActivity implements IGetDataVi
     protected void initData() {
         int redeemMoney = getIntent().getIntExtra("redeemMoney",0);
         String str = "<font color=#ff71706e>赎回金额为</font>"
-                + "<font color= #48c262></font>"
+                + "<font color= #48c262>" + redeemMoney +"</font>"
                 +"<font color= #ff71706e>元</font>";
         tvResult.setText(Html.fromHtml(str));
 

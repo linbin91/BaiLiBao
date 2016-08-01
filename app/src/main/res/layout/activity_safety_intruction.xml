@@ -4,144 +4,102 @@
     android:layout_height="fill_parent"
     android:orientation="vertical" >
 
-    <RelativeLayout
-        android:id="@+id/safety_title"
-        android:gravity="center_vertical"
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dp50"
-        android:background="@mipmap/title_red_bg">
+        android:layout_height="match_parent">
+        <RelativeLayout
+            android:id="@+id/safety_title"
+            android:gravity="center_vertical"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp50"
+            android:background="@mipmap/title_red_bg">
 
-        <ImageView
-            android:src="@mipmap/title_left_back"
-            android:id="@+id/title_left"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_centerVertical="true" />
+            <RelativeLayout
+                android:id="@+id/about_rl_tilte"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp50"
+                android:background="@color/title_container_color"
+                android:gravity="center_vertical">
 
-        <TextView
-            android:id="@+id/title_content"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:layout_centerVertical="true"
-            android:text="安全说明"
-            android:textSize="16sp" />
+                <ImageView
+                    android:id="@+id/title_left"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerInParent="true"
+                    android:paddingRight="@dimen/dp11"
+                    android:paddingLeft="@dimen/dp11"
+                    android:src="@mipmap/title_left_back" />
+
+                <TextView
+                    android:id="@+id/title_content"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:layout_centerVertical="true"
+                    android:textColor="@color/title_text_color"
+                    android:text="购买说明"
+                    android:textStyle="bold"
+                    android:textSize="18sp" />
+            </RelativeLayout>
+        </RelativeLayout>
 
 
-    </RelativeLayout>
+      <RelativeLayout
+          android:layout_marginRight="@dimen/dp20"
+          android:layout_marginLeft="@dimen/dp20"
+          android:layout_marginTop="@dimen/dp20"
+          android:layout_width="match_parent"
+          android:layout_height="match_parent">
+
+          <TextView
+              android:id="@+id/content"
+              android:textSize="@dimen/sp15"
+              android:text="1111111111111111111"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content" />
 
 
-    <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_below="@+id/safety_title"
-        android:orientation="vertical" >
+          <TextView
+              android:id="@+id/safe_intruction_next_btn"
+              android:layout_width="fill_parent"
+              android:layout_height="@dimen/dp50"
+              android:layout_alignParentBottom="true"
+              android:layout_marginBottom="@dimen/dp50"
+              android:layout_marginLeft="@dimen/dp20"
+              android:layout_marginRight="@dimen/dp20"
+              android:background="@drawable/rectangle"
+              android:clickable="true"
+              android:gravity="center"
+              android:text="下一步"
+              android:textColor="@color/white"
+              android:textSize="@dimen/sp15" />
 
-        <LinearLayout
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/dp15"
-            android:layout_marginRight="@dimen/dp15"
-            android:layout_marginTop="@dimen/dp20"
-            android:orientation="horizontal" >
+          <LinearLayout
+              android:layout_width="fill_parent"
+              android:layout_height="wrap_content"
+              android:layout_above="@id/safe_intruction_next_btn"
+              android:layout_marginBottom="@dimen/dp30"
+              android:gravity="center"
+              android:orientation="horizontal" >
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/dp3"
-                android:background="@mipmap/start" />
+              <CheckBox
+                  android:id="@+id/safe_intruction_ctv"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:checkMark="@drawable/checkbox_style" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/dp2"
-                android:lineSpacingExtra="@dimen/dp6"
-                android:text="为保障您账号资金的安全性，每个用户只能绑定一张银行卡作为认证银行卡。一旦绑定认证银行卡后，只可以提现到认证银行卡。之前绑定的其他提现银行卡将失效。" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/dp15"
-            android:layout_marginRight="@dimen/dp15"
-            android:layout_marginTop="@dimen/dp15"
-            android:orientation="horizontal" >
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/dp3"
-                android:background="@mipmap/start" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/dp2"
-                android:lineSpacingExtra="@dimen/dp6"
-                android:text="通过网站进行网银充值不受此限制，仍可使用多张银行卡充值，但只可提现到认证银行卡" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/dp15"
-            android:layout_marginRight="@dimen/dp15"
-            android:layout_marginTop="@dimen/dp15"
-            android:orientation="horizontal" >
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/dp3"
-                android:background="@mipmap/start" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/dp2"
-                android:lineSpacingExtra="@dimen/dp6"
-                android:text="绑定认证银行卡后，如需解除绑定或更换绑定其他银行卡，请联系火球客服，提供相关资料。客服确认资料真实性后，会为您解除绑定。用户可以再次自行完成认证银行卡的绑定。" />
-        </LinearLayout>
+              <TextView
+                  android:id="@+id/safe_intruction_agree_tv"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:layout_marginLeft="@dimen/dp6"
+                  android:text="我已经阅读并同意此说明"
+                  android:textColor="@color/black"
+                  android:textSize="@dimen/buy_agreefont" />
+          </LinearLayout>
+      </RelativeLayout>
     </LinearLayout>
-
-    <TextView
-        android:id="@+id/safe_intruction_next_btn"
-        android:layout_width="fill_parent"
-        android:layout_height="@dimen/dp50"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="@dimen/dp50"
-        android:layout_marginLeft="@dimen/dp20"
-        android:layout_marginRight="@dimen/dp20"
-        android:background="@drawable/rectangle"
-        android:clickable="true"
-        android:gravity="center"
-        android:text="下一步"
-        android:textColor="@color/white"
-        android:textSize="@dimen/sp15" />
-
-    <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_above="@id/safe_intruction_next_btn"
-        android:layout_marginBottom="@dimen/dp30"
-        android:gravity="center"
-        android:orientation="horizontal" >
-
-        <CheckedTextView
-            android:id="@+id/safe_intruction_ctv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:checkMark="@drawable/checkbox_style" />
-
-        <TextView
-            android:id="@+id/safe_intruction_agree_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/dp6"
-            android:text="我已经阅读并同意此说明"
-            android:textColor="@color/black"
-            android:textSize="@dimen/buy_agreefont" />
-    </LinearLayout>
-
+    <include layout="@layout/loading_view"/>
 </RelativeLayout>

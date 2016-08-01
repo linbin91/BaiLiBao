@@ -8,4 +8,6 @@ import com.bailibao.bean.base.BaseBean;
 public class IndexUnloginBean extends BaseBean {
     public  int yield;
     public  String introduce;
+    public  int id;
+    public  String name;
 }
