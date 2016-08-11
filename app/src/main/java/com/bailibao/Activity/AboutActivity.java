@@ -111,8 +111,8 @@ public class AboutActivity extends BaseActivity implements IGetDataView {
         ShareSDK.initSDK(mContext);
         OnekeyShare oks = new OnekeyShare();
         oks.disableSSOWhenAuthorize();
-        oks.setTitle("测试app分享");
-        oks.setText("我是分享的内容");
+        oks.setTitle("百利宝理财app分享");
+        oks.setText("百利宝理财app真好用，赚大钱");
         oks.setTitleUrl("www.baidu.com");
         oks.setSite("nihao");
         oks.setUrl("www.baidu.com");

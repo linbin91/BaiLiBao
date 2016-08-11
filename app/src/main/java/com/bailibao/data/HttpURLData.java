@@ -91,6 +91,9 @@ public class HttpURLData {
     //用户购买协议
     public static final String APPFUN_PRODUCT_AGREEMENT = HOST_BAILIBAO_API + "product/agreement";
 
+    //用户帮助页面
+
+    public static final String APPFUN_USER_HELP = HOST_BAILIBAO_API +"help/help.jsp  ";
     //购买产品的具体界面
     public static final String APPFUN_PRODUCT_BUY = HOST_BAILIBAO_API + "order";
 

@@ -56,6 +56,8 @@ public class ProductDetailActivity extends BaseActivity implements IGetDataView 
     private int mType = 0;
     private int mId = 0;
 
+    private String mIntroPath;
+
     //剩余可购买的数量
     private int mLeftCount;
 
@@ -132,10 +134,12 @@ public class ProductDetailActivity extends BaseActivity implements IGetDataView 
      * 进入项目详情页
      */
     private void doIntroduceAction() {
-        Intent intent = new Intent(mContext,ProductIntroduceActivity.class);
-        startActivity(intent);
-//        WebView webView = new WebView(mContext);
-//        webView.loadUrl("http://baidu.com");
+        if (!TextUtils.isEmpty(mIntroPath)){
+            Intent intent = new Intent(mContext,WebViewActivity.class);
+            intent.putExtra("title","项目介绍");
+            intent.putExtra("path",mIntroPath);
+            startActivity(intent);
+        }
     }
 
     /**
@@ -145,8 +149,7 @@ public class ProductDetailActivity extends BaseActivity implements IGetDataView 
         //判断用户登入了没有
         boolean isLogin = PreferencesUtils.getBoolean(mContext, ConfigsetData.CONFIG_KEY_LOGIN);
         if (isLogin){
-            //跳出服务协议
-            Intent intent = new Intent(this,ProductBuyProtocol.class);
+            Intent intent = new Intent(mContext,ProductBuyActivity.class);
             intent.putExtra("productId",mId);
             startActivity(intent);
         }else{
@@ -188,6 +191,7 @@ public class ProductDetailActivity extends BaseActivity implements IGetDataView 
                 mLeftCount = bean.leftCount;
                 tvLeft.setText(bean.leftCount+"");
                 mId = bean.id;
+                mIntroPath = bean.introPath;
             }
         }
     }

@@ -123,18 +123,29 @@ public class ProductBuyActivity extends BaseActivity implements IGetDataView {
      * 点击购买的按钮
      */
     private void doBuyAction() {
-        String buyCount = etBuyCount.getText().toString().trim();
-        if (buyCount != null && !buyCount.isEmpty()){
-            Intent intent = new Intent(this,ProductBuyState.class);
-            intent.putExtra("productId",productId);
-            intent.putExtra("buyCount",Integer.parseInt(buyCount));
-            startActivity(intent);
-            finish();
+        if (mErrMessage != null && TextUtils.isEmpty(mErrMessage)){
+            String buyCount = etBuyCount.getText().toString().trim();
+            if (buyCount != null && !buyCount.isEmpty()){
+//            Intent intent = new Intent(this,ProductBuyState.class);
+//            intent.putExtra("productId",productId);
+//            intent.putExtra("buyCount",Integer.parseInt(buyCount));
+//            startActivity(intent);
+                Intent intent = new Intent(this,ProductBuyProtocol.class);
+                intent.putExtra("productId",productId);
+                intent.putExtra("buyCount",Integer.parseInt(buyCount));
+                intent.putExtra("path",mAgreementPath);
+                startActivity(intent);
+                finish();
+            }else{
+                Toast.makeText(this,"请输入购买的份额",Toast.LENGTH_SHORT).show();
+            }
         }else{
-            Toast.makeText(this,"请输入购买的份额",Toast.LENGTH_SHORT).show();
+            Toast.makeText(this,mErrMessage,Toast.LENGTH_SHORT).show();
         }
+
     }
 
+    private String mAgreementPath;
     @Override
     public void fillView(String content) {
         if (content != null && !TextUtils.isEmpty(content)) {
@@ -158,6 +169,7 @@ public class ProductBuyActivity extends BaseActivity implements IGetDataView {
                     tvLeftMoney.setText(bean.balance + "");
                     etBuyCount.setHint("每份价格元" + bean.price + "元");
                     productId = bean.orderId;
+                    mAgreementPath = bean.agreementPath;
                 }
             }
 //            else if (type == 3){
@@ -184,8 +196,10 @@ public class ProductBuyActivity extends BaseActivity implements IGetDataView {
         }
     }
 
+    private String mErrMessage;
     @Override
     public void toast(String msg) {
+        mErrMessage = msg;
         Toast.makeText(this,msg,Toast.LENGTH_SHORT).show();
     }
 

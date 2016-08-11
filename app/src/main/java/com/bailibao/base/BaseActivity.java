@@ -32,6 +32,8 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
     public static boolean isShowGestureLock = false;
     //避免刚刚设置完手势密码，就进入到解密界面中
     public static boolean isJustSetGestureLock = false;
+
+    public static boolean isFirsrRun = true;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,19 +58,18 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
     protected void onStart() {
         super.onStart();
         boolean state = LockUtil.getPwdStatus(mContext);
-        if (isShowGestureLock && state){
-            if (isJustSetGestureLock){
-                isJustSetGestureLock = false;
-            }else{
-//                boolean isFrist = PreferencesUtils.getBoolean(this, ConfigsetData.CONFIG_KEY_ISFIRST,true);
-//                if (isFrist){
-//
-//                }
-
-                doSomethingOnScreenOff();
+        if (isFirsrRun && state){
+            isFirsrRun = false;
+            doSomethingOnScreenOff();
+        }else {
+            if (isShowGestureLock && state){
+                if (isJustSetGestureLock){
+                    isJustSetGestureLock = false;
+                }else{
+                    doSomethingOnScreenOff();
+                }
             }
         }
-
     }
 
     @Override

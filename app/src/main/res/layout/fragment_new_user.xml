@@ -75,6 +75,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
+                        android:singleLine="true"
+                        android:maxLength="10"
                         android:text="上限一万 期限7天"
                         android:textColor="@color/fragment_new_user_buy"
                         android:textSize="@dimen/sp11" />

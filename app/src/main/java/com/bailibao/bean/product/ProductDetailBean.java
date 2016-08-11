@@ -12,7 +12,7 @@ public class ProductDetailBean extends BaseBean {
     public int yield;
     public int status;
     public String name;
-    public String introduce;
+    public String introPath;
     public String tips;
     public double currentTimes;
     public int period;

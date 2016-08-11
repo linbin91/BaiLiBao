@@ -39,7 +39,7 @@
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
                     android:layout_centerVertical="true"
-                    android:text="购买说明"
+                    android:text="注册说明"
                     android:textColor="@color/title_text_color"
                     android:textSize="18sp"
                     android:textStyle="bold" />
@@ -47,17 +47,18 @@
         </RelativeLayout>
 
         <WebView
-            android:id="@+id/myWebview"
+            android:id="@+id/webView"
+            android:layout_marginLeft="@dimen/dp20"
+            android:layout_marginRight="@dimen/dp20"
             android:layout_width="match_parent"
-            android:layout_height="350dp">
-
+            android:layout_height="370dp">
         </WebView>
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginLeft="@dimen/dp20"
             android:layout_marginRight="@dimen/dp20"
-            android:layout_marginTop="@dimen/dp20">
+            android:layout_marginTop="@dimen/dp10">
 
             <TextView
                 android:id="@+id/safe_intruction_next_btn"

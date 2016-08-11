@@ -18,5 +18,6 @@ public class ProductProgressBean extends BaseBean{
         public String title;
         public String imageUrl;
         public String content;
+        public String path;
     }
 }

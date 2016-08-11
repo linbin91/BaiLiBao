@@ -180,7 +180,7 @@ public class ManagerFragment extends BaseFragment implements IGetDataView{
             case R.id.title_right:
                 Intent intent = new Intent(getContext(), WebViewActivity.class);
                 intent.putExtra("title","新手帮助");
-                intent.putExtra("path","http://ksylbmfyd.ymvip9010.com/?id=HHLL");
+                intent.putExtra("path",HttpURLData.APPFUN_USER_HELP);
                 startActivity(intent);
                 break;
             default:

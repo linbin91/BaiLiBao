@@ -155,7 +155,11 @@ public class LoginActivity extends BaseActivity implements IGetDataView{
                     PreferencesUtils.putString(mContext, ConfigsetData.CONFIG_KEY_AUTH,Base64Util.encode(auth));
 
                     if (mNextStep == ConfigsetData.LOGIN_TO_BUY){
-                        Intent intent = new Intent(mContext,ProductBuyProtocol.class);
+//                        Intent intent = new Intent(mContext,ProductBuyProtocol.class);
+//                        intent.putExtra("productId",id);
+//                        startActivity(intent);
+
+                        Intent intent = new Intent(mContext,ProductBuyActivity.class);
                         intent.putExtra("productId",id);
                         startActivity(intent);
                     }

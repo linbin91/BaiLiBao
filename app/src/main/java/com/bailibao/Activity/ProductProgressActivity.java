@@ -60,8 +60,10 @@ public class ProductProgressActivity extends BaseActivity implements IGetDataVie
         mListView.getRefreshableView().setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(ProductProgressActivity.this,ProgressDetailActivity.class);
-                intent.putExtra("id",bean.resources.get(position).id);
+                Intent intent = new Intent(ProductProgressActivity.this,WebViewActivity.class);
+
+                intent.putExtra("title",bean.resources.get(position).title);
+                intent.putExtra("path",bean.resources.get(position).path);
                 startActivity(intent);
             }
         });

@@ -15,5 +15,5 @@ public class ProductBuyBean extends BaseBean {
     public int lockDays;
     public int leftCount;
     public int orderId;
-
+    public String agreementPath;
 }

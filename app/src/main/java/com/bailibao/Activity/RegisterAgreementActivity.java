@@ -1,26 +1,21 @@
 package com.bailibao.Activity;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bailibao.R;
 import com.bailibao.base.BaseActivity;
-import com.bailibao.data.HttpURLData;
-import com.bailibao.module.presenter.ViewPresenter;
 import com.bailibao.module.view.IGetDataView;
-import com.bailibao.util.UrlParse;
-import com.fasterxml.jackson.databind.ObjectMapper;
-
-import java.io.IOException;
-import java.util.Map;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
@@ -30,16 +25,10 @@ import butterknife.InjectView;
  */
 public class RegisterAgreementActivity extends BaseActivity implements IGetDataView {
 
+
     @InjectView(R.id.title_left)
     ImageView titleLeft;
-    @InjectView(R.id.title_content)
-    TextView titleContent;
-    @InjectView(R.id.about_rl_tilte)
-    RelativeLayout aboutRlTilte;
-    @InjectView(R.id.safety_title)
-    RelativeLayout safetyTitle;
-    @InjectView(R.id.content)
-    TextView tvContent;
+
     @InjectView(R.id.safe_intruction_next_btn)
     TextView safeIntructionNextBtn;
     @InjectView(R.id.safe_intruction_ctv)
@@ -50,14 +39,12 @@ public class RegisterAgreementActivity extends BaseActivity implements IGetDataV
     ImageView ivLoading;
     @InjectView(R.id.loading_layout)
     LinearLayout loadingLayout;
+    @InjectView(R.id.webView)
+    WebView webView;
 
     @Override
     protected void initData() {
 
-        ViewPresenter presenter = new ViewPresenter(this);
-        UrlParse parse = new UrlParse(HttpURLData.APPFUN_USER_AGREEMENT);
-        presenter.getNetData(parse.toString());
-        titleContent.setText("注册说明");
     }
 
     @Override
@@ -68,13 +55,24 @@ public class RegisterAgreementActivity extends BaseActivity implements IGetDataV
 
     @Override
     protected void findView() {
-        setContentView(R.layout.activity_safety_intruction);
+        setContentView(R.layout.register_agreement);
         ButterKnife.inject(this);
+
+        webView.getSettings().setJavaScriptEnabled(true);
+        webView.setWebViewClient(new WebViewClient() {
+            @Override
+            public boolean shouldOverrideUrlLoading(WebView view, String url) {
+                view.loadUrl(url);
+                return true;
+            }
+        });
+
+        webView.loadUrl("http://139.196.173.191:42000/blb-api/user/agreement.jsp");
     }
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.title_left:
                 finish();
                 break;
@@ -90,27 +88,19 @@ public class RegisterAgreementActivity extends BaseActivity implements IGetDataV
      * 点击下一步的操作
      */
     private void doNextAction() {
-        if (safeIntructionCtv.isChecked()){
-            Intent intent = new Intent(mContext,RegisterActivity.class);
+        if (safeIntructionCtv.isChecked()) {
+            Intent intent = new Intent(mContext, RegisterActivity.class);
             startActivity(intent);
             finish();
 
-        }else{
-            Toast.makeText(mContext,"请同意协议后再进行注册",Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(mContext, "请同意协议后再进行注册", Toast.LENGTH_SHORT).show();
         }
     }
 
     @Override
     public void fillView(String content) {
-        if (content != null && !content.isEmpty()){
-            ObjectMapper objectMapper = new ObjectMapper();
-            try {
-                Map<String, String> map = objectMapper.readValue(content, Map.class);
-                tvContent.setText(map.get("content"));
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
+
     }
 
     @Override
@@ -129,5 +119,12 @@ public class RegisterAgreementActivity extends BaseActivity implements IGetDataV
     public void hideProgress() {
         ivLoading.clearAnimation();
         loadingLayout.setVisibility(View.GONE);
+    }
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        // TODO: add setContentView(...) invocation
+        ButterKnife.inject(this);
     }
 }

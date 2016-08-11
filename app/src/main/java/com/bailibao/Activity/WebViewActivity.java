@@ -2,6 +2,7 @@ package com.bailibao.Activity;
 
 import android.view.View;
 import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -23,7 +24,15 @@ public class WebViewActivity extends BaseActivity {
         String title = getIntent().getStringExtra("title");
         String path = getIntent().getStringExtra("path");
         tvTitle.setText(title);
+        mWebView.getSettings().setJavaScriptEnabled(true);
         mWebView.loadUrl(path);
+        mWebView.setWebViewClient(new WebViewClient() {
+            @Override
+            public boolean shouldOverrideUrlLoading(WebView view, String url) {
+                view.loadUrl(url);
+                return true;
+            }
+        });
     }
 
     @Override

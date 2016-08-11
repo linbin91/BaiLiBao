@@ -15,3 +15,17 @@
 #-keepclassmembers class fqcn.of.javascript.interface.for.webview {
 #   public *;
 #}
+-dontwarn butterknife.internal.**
+-keep class **$$ViewInjector { *; }
+-keepnames class * { @butterknife.InjectView *;}
+
+-dontwarn okio.**
+-dontwarn java.nio.file.Files
+-dontwarn java.nio.file.Path
+-dontwarn java.nio.file.OpenOption
+-dontwarn org.codehaus.mojo.animal_sniffer.IgnoreJRERequirement
+-dontwarn org.apache.http.**
+-dontwarn android.net.http.AndroidHttpClient
+-dontwarn com.android.volley.toolbox.**
+-dontwarn android.support.**
+-dontwarn com.google.android.gms.**
