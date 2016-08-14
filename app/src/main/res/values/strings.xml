@@ -17,7 +17,7 @@
     <string name="pull_to_refresh_from_bottom_release_label">@string/pull_to_refresh_release_label</string>
     <string name="pull_to_refresh_from_bottom_refreshing_label">@string/pull_to_refresh_refreshing_label</string>
     <string name="about_content2">" "<p>　　火球网（www.huoqiu.cn）是专业的互联网金融投资理财平台，提供优质，低风险，高收益，低门槛的互联网理财服务。</p>" "</string>
-    <string name="telephone_num">4000220101</string>
+    <string name="telephone_num">95588</string>
     <string name="register_name">您可以继续完成以提高账户安全性</string>
     <string name="authentication_title_info">请务必使用真实的身份信息，否则可能导致无法购 买提现等操作</string>
     <string name="product_buy_loading">系统正在努力地为您购买，请耐心等待片刻。您可以选择继续等待也可以点击\"完成\"稍后到个人账户里的\"账单\"查看订单。</string>

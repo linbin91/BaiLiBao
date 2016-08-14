@@ -66,10 +66,10 @@ public class SetLockActivity extends Activity implements View.OnClickListener{
                     mTvReset.setText("重新设置手势");
                 }else if(times==1){
                     //将密码设置在本地
-                    BaseActivity.isJustSetGestureLock = true;
                     LockUtil.setPwdToDisk(mContext.getApplicationContext(), mIndexs);
                     LockUtil.setPwdStatus(mContext.getApplicationContext(), true);
                     Toast.makeText(mContext,"设置成功",Toast.LENGTH_SHORT).show();
+                    BaseActivity.isShowGestureLock = false;
                     finish();
                 }
             }

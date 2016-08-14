@@ -78,7 +78,7 @@ public class RechargeActivity extends BaseActivity implements IGetDataView {
         String money = etInputMoney.getText().toString().trim();
         if (money != null && !money.isEmpty()){
             if (mPresenter == null){
-                mPresenter = new ViewPresenter(this);
+                mPresenter = new ViewPresenter(this,this);
             }
 
             String auth = PreferencesUtils.getString(mContext, ConfigsetData.CONFIG_KEY_AUTH);
@@ -86,7 +86,7 @@ public class RechargeActivity extends BaseActivity implements IGetDataView {
                 UrlParse parse = new UrlParse(HttpURLData.APPFUN_MONEY_PAY);
                 parse.putValue("amt",Integer.parseInt(money) * 100);
                 if (mPresenter == null) {
-                    mPresenter = new ViewPresenter(this);
+                    mPresenter = new ViewPresenter(this,this);
                 }
                 mPresenter.getNetDataWithAuth(parse.toString(), auth);
             }

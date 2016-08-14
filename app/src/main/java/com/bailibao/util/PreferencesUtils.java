@@ -249,4 +249,10 @@ public class PreferencesUtils {
         return settings.edit().commit();
 
     }
+
+    public static  void  cleaConifg(Context context){
+        SharedPreferences settings = context.getSharedPreferences(PREFERENCE_NAME, Context.MODE_PRIVATE);
+        settings.edit().clear().commit();
+    }
+
 }

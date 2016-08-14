@@ -1,5 +1,7 @@
 package com.bailibao.base;
 
+import android.content.Context;
+
 import com.zhy.http.okhttp.callback.Callback;
 
 import okhttp3.Call;
@@ -17,7 +19,9 @@ import okhttp3.Response;
 public abstract  class BasePresenterImpl<T extends  BaseView,V> extends  Callback<String> implements  BasePresenter {
 
     protected  T mView;
-    protected  BasePresenterImpl(T view){
+    protected Context mContext;
+    protected  BasePresenterImpl(T view,Context context){
+        mContext = context;
         mView = view;
     }
 

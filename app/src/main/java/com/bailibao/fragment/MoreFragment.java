@@ -78,7 +78,7 @@ public class MoreFragment extends BaseFragment implements IGetDataView{
 //            mGestureToggle.setBackgroundResource(R.mipmap.toggle_button_on);
 //        }
 
-        mPresenter = new ViewPresenter(this);
+        mPresenter = new ViewPresenter(this,getActivity());
     }
 
     private void findView() {

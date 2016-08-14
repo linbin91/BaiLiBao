@@ -44,7 +44,7 @@ public class BuyDetailActivity extends BaseActivity implements IGetDataView {
         String url = HttpURLData.APPFUN_ACCOUNT_INVEST;
         UrlParse parse = new UrlParse(url);
         parse.putValue("id",id);
-        ViewPresenter presenter = new ViewPresenter(this);
+        ViewPresenter presenter = new ViewPresenter(this,this);
         presenter.getNetDataWithAuth(parse.toString(),auth);
         tvTitlte.setText(name);
     }

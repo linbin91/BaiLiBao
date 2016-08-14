@@ -85,9 +85,9 @@ public class PersonFragment extends BaseFragment implements IGetDataView{
                 hasGetNetData = true;
                 String url = HttpURLData.APPFUN_PERSON_ACCOUNT;
                 if (mPresenter == null){
-                    mPresenter = new ViewPresenter(this);
+                    mPresenter = new ViewPresenter(this,getActivity());
                 }
-                mPresenter = new ViewPresenter(this);
+                mPresenter = new ViewPresenter(this,getActivity());
                 String auth = PreferencesUtils.getString(mContext,ConfigsetData.CONFIG_KEY_AUTH);
                 mPresenter.getNetDataWithAuth(url,auth);
                 type = 1;
@@ -265,7 +265,7 @@ public class PersonFragment extends BaseFragment implements IGetDataView{
                         UrlParse parse = new UrlParse(HttpURLData.APPFUN_MONEY_REGISTER);
 
                         if (mPresenter == null) {
-                            mPresenter = new ViewPresenter(this);
+                            mPresenter = new ViewPresenter(this,getActivity());
                         }
                         mPresenter.getNetDataWithAuth(parse.toString(), auth);
 

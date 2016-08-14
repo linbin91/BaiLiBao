@@ -92,11 +92,11 @@ public class LoginUserView extends BaseView implements IGetDataView{
     private void setData() {
         mAuth = PreferencesUtils.getString(mContext, ConfigsetData.CONFIG_KEY_AUTH);
 
-        ViewPresenter mPresenter = new ViewPresenter(this);
+        ViewPresenter mPresenter = new ViewPresenter(this,mContext);
         String indexLogin = HttpURLData.APPFUN_INDEX_LOGIN;
         mPresenter.getNetDataWithAuth(indexLogin,mAuth);
 
-        ViewPresenter tipPresenter = new ViewPresenter(this);
+        ViewPresenter tipPresenter = new ViewPresenter(this,mContext);
         String tipUrl = HttpURLData.APPFUN_BUY_TIP;
         tipPresenter.getNetDataWithAuth(tipUrl,mAuth);
     }

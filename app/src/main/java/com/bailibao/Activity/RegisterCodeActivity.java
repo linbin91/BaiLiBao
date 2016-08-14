@@ -73,7 +73,7 @@ public class RegisterCodeActivity extends BaseActivity implements IGetDataView {
         mStepsView.setBarColorIndicator(getResources().getColor(R.color.register_line_color));
         mStepsView.setCompletedPosition(0);
         mPhoneNum = getIntent().getStringExtra("phoneNum");
-        presenter = new ViewPresenter(this);
+        presenter = new ViewPresenter(this,this);
     }
 
     @Override

@@ -141,7 +141,7 @@ public class RedeemActivity extends BaseActivity implements IGetDataView, Redeem
     public void doContinueAction() {
         //去请求
         if (mPresenter == null) {
-            mPresenter = new ViewPresenter(this);
+            mPresenter = new ViewPresenter(this,this);
         }
         String url = HttpURLData.APPFUN_PRODUCT_REDEEM;
         UrlParse parse = new UrlParse(url);

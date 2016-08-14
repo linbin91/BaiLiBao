@@ -51,7 +51,7 @@ public class ProgressDetailActivity extends BaseActivity implements IGetDataView
     @Override
     protected void initData() {
         int id = getIntent().getIntExtra("id", 0);
-        mPresenter = new ViewPresenter(this);
+        mPresenter = new ViewPresenter(this,this);
         request(id);
     }
 

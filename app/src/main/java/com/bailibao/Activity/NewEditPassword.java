@@ -80,7 +80,7 @@ public class NewEditPassword extends BaseActivity implements IGetDataView{
             tvPhoneNum.setText(showNum);
         }
 
-        mPresenter = new ViewPresenter(this);
+        mPresenter = new ViewPresenter(this,this);
     }
 
     @Override

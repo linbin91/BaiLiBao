@@ -65,11 +65,11 @@ public class ProductDetailActivity extends BaseActivity implements IGetDataView 
     protected void initData() {
         mUrl = getIntent().getStringExtra("url");
 
-        ViewPresenter presenter = new ViewPresenter(this);
+        ViewPresenter presenter = new ViewPresenter(this,this);
         presenter.getNetData(mUrl);
 
         String profitUrl = HttpURLData.APPFUN_GET_PROFIT;
-        ViewPresenter profitpPresenter = new ViewPresenter(this);
+        ViewPresenter profitpPresenter = new ViewPresenter(this,this);
         profitpPresenter.getNetData(profitUrl);
     }
 

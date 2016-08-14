@@ -184,7 +184,7 @@ public class InvestmentActivity extends BaseActivity implements IGetDataView {
         parse.putValue("pageNo",mPages);
 
         if (mPresenter == null){
-            mPresenter = new ViewPresenter(this);
+            mPresenter = new ViewPresenter(this,this);
         }
         mPresenter.getNetDataWithAuth(parse.toString(),mAuth);
     }

@@ -54,7 +54,7 @@ public class ProductBuyActivity extends BaseActivity implements IGetDataView {
     @Override
     protected void initData() {
 
-        mPresenter = new ViewPresenter(this);
+        mPresenter = new ViewPresenter(this,this);
         int productId = getIntent().getIntExtra("id", 0);
 
         String auth = PreferencesUtils.getString(mContext, ConfigsetData.CONFIG_KEY_AUTH);
@@ -111,7 +111,7 @@ public class ProductBuyActivity extends BaseActivity implements IGetDataView {
             UrlParse parse = new UrlParse(HttpURLData.APPFUN_MONEY_PAY);
             parse.putValue("amt",1000);
             if (mPresenter == null) {
-                mPresenter = new ViewPresenter(this);
+                mPresenter = new ViewPresenter(this,this);
             }
             mPresenter.getNetDataWithAuth(parse.toString(), auth);
             type = 2;

@@ -52,7 +52,7 @@ public class ProductBuyState extends BaseActivity implements IGetDataView{
 
             parse.putValue("orderId",productId);
             parse.putValue("count", buyCount);
-            ViewPresenter presenter = new ViewPresenter(this);
+            ViewPresenter presenter = new ViewPresenter(this,this);
             presenter.postNetDataWithAuth(parse.toString(), auth);
         }
 

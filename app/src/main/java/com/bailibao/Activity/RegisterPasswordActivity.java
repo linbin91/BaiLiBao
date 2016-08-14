@@ -103,7 +103,7 @@ public class RegisterPasswordActivity extends BaseActivity implements IGetDataVi
         parse.putValue("password", Base64Util.encodeAndMD5(password));
         parse.putValue("checkcode",mCheckCode);
 
-        ViewPresenter presenter = new ViewPresenter(this);
+        ViewPresenter presenter = new ViewPresenter(this,this);
         presenter.postNetData(parse.toString());
     }
 

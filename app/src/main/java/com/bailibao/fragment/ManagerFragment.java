@@ -46,8 +46,8 @@ public class ManagerFragment extends BaseFragment implements IGetDataView{
     private ImageView ivLoading;
     private TextView tvHelp;
 
-    private final String regularPeriod = "【活期】";
-    private final String activityPeriod = "【死期】";
+    private final String regularPeriod = "【死期】";
+    private final String activityPeriod = "【活期】";
 
     //页数
     private  int mPage = 1;
@@ -74,7 +74,7 @@ public class ManagerFragment extends BaseFragment implements IGetDataView{
      * 获取数据或者请求数据
      */
     private void initData() {
-        ViewPresenter presenter = new ViewPresenter(this);
+        ViewPresenter presenter = new ViewPresenter(this,getActivity());
         String url = HttpURLData.APPFUN_PRODUCT_ITEMS;
         UrlParse parse = new UrlParse(url);
         parse.putValue("pageSize",10);

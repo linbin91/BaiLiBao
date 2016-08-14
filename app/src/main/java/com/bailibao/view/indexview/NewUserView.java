@@ -41,7 +41,7 @@ public class NewUserView extends BaseView implements IGetDataView{
      */
     private void getData() {
         String url = HttpURLData.APPFUN_INDEX_UNLOGIN;
-        ViewPresenter presenter = new ViewPresenter(this);
+        ViewPresenter presenter = new ViewPresenter(this, mContext);
         presenter.getNetData(url);
     }
 

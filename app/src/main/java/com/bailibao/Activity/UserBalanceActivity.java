@@ -128,7 +128,7 @@ public class UserBalanceActivity extends BaseActivity implements IGetDataView {
         UrlParse parse = new UrlParse(mUrl);
         parse.putValue("pageSize", 10);
         parse.putValue("pageNo", 1);
-        ViewPresenter presenterProfit = new ViewPresenter(this);
+        ViewPresenter presenterProfit = new ViewPresenter(this,this);
         presenterProfit.getNetDataWithAuth(parse.toString(), mAuth);
         type = 1;
     }
@@ -350,7 +350,7 @@ public class UserBalanceActivity extends BaseActivity implements IGetDataView {
         if (mSelectTime != 0) {
             parse.putValue("timeType", mSelectTime);
         }
-        ViewPresenter presenterProfit = new ViewPresenter(this);
+        ViewPresenter presenterProfit = new ViewPresenter(this,this);
         presenterProfit.getNetDataWithAuth(parse.toString(), mAuth);
         type = 1;
     }

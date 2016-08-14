@@ -49,7 +49,7 @@ public class RegisterActivity extends BaseActivity implements IGetDataView {
         ForegroundColorSpan redSpan = new ForegroundColorSpan(getResources().getColor(R.color.dream_dark_bluecolor));
         builder.setSpan(redSpan,14,26, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
         mRegisterExplain.setText(builder);
-        mPresenter = new ViewPresenter(this);
+        mPresenter = new ViewPresenter(this,this);
 
     }
 

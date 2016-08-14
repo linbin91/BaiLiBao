@@ -30,8 +30,6 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
     public  final static  String FINISH_ACTIVITY = "finish activity";
 
     public static boolean isShowGestureLock = false;
-    //避免刚刚设置完手势密码，就进入到解密界面中
-    public static boolean isJustSetGestureLock = false;
 
     public static boolean isFirsrRun = true;
     @Override
@@ -58,17 +56,28 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
     protected void onStart() {
         super.onStart();
         boolean state = LockUtil.getPwdStatus(mContext);
-        if (isFirsrRun && state){
-            isFirsrRun = false;
-            doSomethingOnScreenOff();
-        }else {
-            if (isShowGestureLock && state){
-                if (isJustSetGestureLock){
-                    isJustSetGestureLock = false;
-                }else{
-                    doSomethingOnScreenOff();
-                }
+//        if (isFirsrRun && state){
+//            isFirsrRun = false;
+//            doSomethingOnScreenOff();
+//        }else {
+//            if (isShowGestureLock && state){
+//                if (isJustSetGestureLock){
+//                    isJustSetGestureLock = false;
+//                }else{
+//                    doSomethingOnScreenOff();
+//                }
+//            }
+//        }
+        if (state){
+            if (isFirsrRun){
+                isFirsrRun = false;
+                doSomethingOnScreenOff();
+            }else if (isShowGestureLock){
+                isShowGestureLock = false;
+                doSomethingOnScreenOff();
             }
+        }else{
+            isFirsrRun = false;
         }
     }
 

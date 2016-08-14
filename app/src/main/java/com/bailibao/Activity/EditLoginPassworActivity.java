@@ -110,7 +110,7 @@ public class EditLoginPassworActivity extends BaseActivity implements IGetDataVi
                     parse.putValue("password",Base64Util.encodeAndMD5(firstPassword));
                     parse.putValue("checkcode", mCheckCode);
 
-                    ViewPresenter presenter = new ViewPresenter(this);
+                    ViewPresenter presenter = new ViewPresenter(this,this);
                     if (mSource == 2){
                         String auth = PreferencesUtils.getString(mContext, ConfigsetData.CONFIG_KEY_AUTH);
                         presenter.postNetDataWithAuth(parse.toString(),auth);

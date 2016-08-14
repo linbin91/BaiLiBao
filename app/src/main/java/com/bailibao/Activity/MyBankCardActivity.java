@@ -64,7 +64,7 @@ public class MyBankCardActivity extends BaseActivity implements IGetDataView {
 
     @Override
     protected void initData() {
-        mPresenter = new ViewPresenter(this);
+        mPresenter = new ViewPresenter(this,this);
         String auth = PreferencesUtils.getString(mContext, ConfigsetData.CONFIG_KEY_AUTH);
         mPresenter.getNetDataWithAuth(HttpURLData.APPFUN_BANK_CARD, auth);
         type = 1;
@@ -119,7 +119,7 @@ public class MyBankCardActivity extends BaseActivity implements IGetDataView {
             UrlParse parse = new UrlParse(HttpURLData.APPFUN_MONEY_REGISTER);
 
             if (mPresenter == null){
-                mPresenter = new ViewPresenter(this);
+                mPresenter = new ViewPresenter(this,this);
             }
             mPresenter.getNetDataWithAuth(parse.toString(),auth);
 

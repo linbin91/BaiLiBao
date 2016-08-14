@@ -95,7 +95,7 @@ public class FeedbackActivity extends BaseActivity implements IGetDataView {
             UrlParse parse = new UrlParse(url);
             parse.putValue("contactWay",contact);
             parse.putValue("content",content);
-            ViewPresenter presenter = new ViewPresenter(this);
+            ViewPresenter presenter = new ViewPresenter(this,this);
             presenter.postNetDataWithAuth(parse.toString(),auth);
         }
     }

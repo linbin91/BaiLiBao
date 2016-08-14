@@ -107,7 +107,7 @@ public class WithdrawActivity extends BaseActivity implements IGetDataView {
      */
     private void request(String money, String password) {
         if (mPresenter == null){
-            mPresenter = new ViewPresenter(this);
+            mPresenter = new ViewPresenter(this,this);
         }
         String url = HttpURLData.APPFUN_MONEY_WITHDRAW;
         UrlParse parse = new UrlParse(url);

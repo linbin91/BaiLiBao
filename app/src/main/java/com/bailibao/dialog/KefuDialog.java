@@ -46,8 +46,11 @@ public class KefuDialog extends DialogFragment {
             @Override
             public void onClick(View v) {
                 dismiss();
-
-                Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:"+R.string.telephone_num));
+//系统默认的action，用来打开默认的电话界面
+//                intent.setAction(Intent.ACTION_CALL);
+//                //需要拨打的号码
+//                intent.setData(Uri.parse("tel:"+10086));
+                Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:"+"4000220101"));
                 startActivity(intent);
             }
         });

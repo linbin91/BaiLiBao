@@ -95,7 +95,7 @@ public class ProductProgressActivity extends BaseActivity implements IGetDataVie
         urlParse.putValue("pageSize",10);
         urlParse.putValue("pageNo",mPage);
         urlParse.putValue("productId",id);
-        ViewPresenter presenter = new ViewPresenter(this);
+        ViewPresenter presenter = new ViewPresenter(this,this);
         presenter.getNetData(urlParse.toString());
     }
 

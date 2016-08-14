@@ -146,7 +146,7 @@ public class MessageActivity extends BaseActivity implements IGetDataView {
      */
     private void doDeleteAction(int position) {
         mDeletePosition = position;
-        ViewPresenter presenter = new ViewPresenter(this);
+        ViewPresenter presenter = new ViewPresenter(this,this);
         String url = HttpURLData.APPFUN_DELETE_MESSAGE;
         UrlParse parse = new UrlParse(url);
         parse.putValue("id",mMessageList.get(position).id);
@@ -268,7 +268,7 @@ public class MessageActivity extends BaseActivity implements IGetDataView {
         parse.putValue("pageNo",mPages);
 
         if (mPresenter == null){
-            mPresenter = new ViewPresenter(this);
+            mPresenter = new ViewPresenter(this,this);
         }
         mPresenter.getNetDataWithAuth(parse.toString(),mAuth);
 

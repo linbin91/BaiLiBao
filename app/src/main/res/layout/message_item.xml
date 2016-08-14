@@ -1,68 +1,64 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:paddingTop="@dimen/dp5"
     android:layout_width="match_parent"
-    android:layout_height="55dp" >
+    android:layout_height="wrap_content">
 
-    <RelativeLayout
-        android:gravity="center"
+    <ImageView
+        android:id="@+id/icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="5dp"
+        android:src="@mipmap/message_system" />
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dp10"
+        android:layout_toRightOf="@id/icon"
+        android:text="系统消息"
+        android:textColor="#353535"
+        android:textSize="15sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/msg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/title"
+        android:layout_marginLeft="@dimen/dp10"
+        android:layout_toRightOf="@id/icon"
+        android:text="功能更强大的2.1版本上线，立即升级！"
+        android:textColor="#777777" />
+
+    <TextView
+        android:id="@+id/time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignTop="@id/title"
+        android:layout_marginRight="@dimen/dp10"
+        android:text="2015-09-09 15:40"
+        android:textColor="#777777"
+        android:textSize="@dimen/sp11" />
+
+    <ImageView
+        android:id="@+id/iv_status"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/msg"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="@dimen/dp10"
+        android:src="@mipmap/no_read_messag" />
+
+    <View
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <ImageView
-            android:id="@+id/icon"
-            android:layout_alignParentLeft="true"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:src="@mipmap/message_system" />
-
-        <TextView
-            android:id="@+id/title"
-            android:text="系统消息"
-            android:layout_marginLeft="@dimen/dp10"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_toRightOf="@id/icon"
-            android:textColor="#353535"
-            android:textStyle="bold"
-            android:textSize="15sp" />
-
-        <TextView
-            android:id="@+id/msg"
-            android:text="功能更强大的2.1版本上线，立即升级！"
-            android:layout_marginLeft="@dimen/dp10"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/title"
-            android:layout_toRightOf="@id/icon"
-            android:textColor="#777777" />
-
-        <TextView
-            android:text="2015-09-09 15:40"
-            android:layout_marginRight="@dimen/dp10"
-            android:id="@+id/time"
-            android:textSize="@dimen/sp11"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_alignTop="@id/title"
-            android:textColor="#777777" />
-        <ImageView
-            android:id="@+id/iv_status"
-            android:layout_alignBottom="@id/msg"
-            android:layout_marginRight="@dimen/dp10"
-            android:layout_alignParentRight="true"
-            android:src="@mipmap/no_read_messag"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-        <View
-            android:layout_below="@+id/icon"
-            android:background="@color/gray"
-            android:layout_marginRight="@dimen/dp5"
-            android:layout_marginLeft="@dimen/dp5"
-            android:layout_width="match_parent"
-            android:layout_marginTop="@dimen/dp5"
-            android:layout_height="@dimen/dp0.5"/>
-    </RelativeLayout>
-
-
-</LinearLayout>
+        android:layout_height="@dimen/dp0.5"
+        android:layout_below="@+id/icon"
+        android:layout_marginLeft="@dimen/dp5"
+        android:layout_marginRight="@dimen/dp5"
+        android:layout_marginTop="@dimen/dp5"
+        android:background="@color/gray" />
+</RelativeLayout>

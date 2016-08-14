@@ -179,7 +179,7 @@ public class AdViewFlipperView implements IGetDataView {
     private void initData() {
         if (!TextUtils.isEmpty(url)) {
             //请求广告
-            ViewPresenter presenter = new ViewPresenter(this);
+            ViewPresenter presenter = new ViewPresenter(this,mContext);
             presenter.getNetData(HttpURLData.APPFUN_GET_AD);
         }
         mAdview.setVisibility(View.VISIBLE);

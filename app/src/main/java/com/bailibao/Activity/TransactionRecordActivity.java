@@ -163,7 +163,7 @@ public class TransactionRecordActivity extends BaseActivity implements IGetDataV
         UrlParse parse = new UrlParse(mUrl);
         parse.putValue("pageSize",10);
         parse.putValue("pageNo",1);
-        ViewPresenter presenterProfit = new ViewPresenter(this);
+        ViewPresenter presenterProfit = new ViewPresenter(this,this);
         presenterProfit.getNetDataWithAuth(parse.toString(),mAuth);
     }
 
@@ -397,7 +397,7 @@ public class TransactionRecordActivity extends BaseActivity implements IGetDataV
         if (mSelectOperate != 0){
             parse.putValue("optType",mSelectOperate);
         }
-        ViewPresenter presenterProfit = new ViewPresenter(this);
+        ViewPresenter presenterProfit = new ViewPresenter(this,this);
         presenterProfit.getNetDataWithAuth(parse.toString(),mAuth);
     }
 }

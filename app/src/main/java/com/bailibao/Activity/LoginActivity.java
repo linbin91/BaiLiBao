@@ -108,7 +108,7 @@ public class LoginActivity extends BaseActivity implements IGetDataView{
                 parse.putValue("phone",phoneNum);
                 parse.putValue("password", Base64Util.encodeAndMD5(password));
 
-                ViewPresenter presenter = new ViewPresenter(this);
+                ViewPresenter presenter = new ViewPresenter(this,this);
                 presenter.postNetData(parse.toString());
             }else{
                 Toast.makeText(mContext,"手机号格式不对",Toast.LENGTH_SHORT).show();
