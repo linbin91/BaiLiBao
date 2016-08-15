@@ -94,7 +94,7 @@ public class ProductBuyActivity extends BaseActivity implements IGetDataView {
                         tvLeftCount.setText(bean.leftCount + "");
                         tvMaxBuy.setText(bean.maxBuyCount + "");
                         tvLeftMoney.setText(bean.balance + "");
-                        etBuyCount.setHint("每份价格元" + bean.price + "元");
+                        etBuyCount.setHint("每份价格" + bean.price + "元");
                         mProductId = bean.orderId;
                         mAgreementPath = bean.agreementPath;
                     }else{
@@ -208,7 +208,7 @@ public class ProductBuyActivity extends BaseActivity implements IGetDataView {
                     tvLeftCount.setText(bean.leftCount + "");
                     tvMaxBuy.setText(bean.maxBuyCount + "");
                     tvLeftMoney.setText(bean.balance + "");
-                    etBuyCount.setHint("每份价格元" + bean.price + "元");
+                    etBuyCount.setHint("每份价格" + bean.price + "元");
                     mProductId = bean.orderId;
                     mAgreementPath = bean.agreementPath;
                 }
