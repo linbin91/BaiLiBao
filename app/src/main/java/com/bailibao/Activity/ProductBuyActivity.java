@@ -14,6 +14,7 @@ import com.bailibao.base.BaseActivity;
 import com.bailibao.bean.product.ProductBuyBean;
 import com.bailibao.data.ConfigsetData;
 import com.bailibao.data.HttpURLData;
+import com.bailibao.module.model.GetNetData;
 import com.bailibao.module.presenter.ViewPresenter;
 import com.bailibao.module.view.IGetDataView;
 import com.bailibao.util.PreferencesUtils;
@@ -21,12 +22,15 @@ import com.bailibao.util.StringUtil;
 import com.bailibao.util.UrlParse;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
+import com.zhy.http.okhttp.callback.Callback;
 
 import java.io.IOException;
 import java.util.Map;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
+import okhttp3.Call;
+import okhttp3.Response;
 
 /**
  * Created by Administrator on 2016/4/25.
@@ -50,19 +54,55 @@ public class ProductBuyActivity extends BaseActivity implements IGetDataView {
     private TextView tvLeftMoney;
     private ViewPresenter mPresenter;
     private int type;
+    private int mProductId;
 
     @Override
     protected void initData() {
 
-        mPresenter = new ViewPresenter(this,this);
-        int productId = getIntent().getIntExtra("id", 0);
+        mPresenter = new ViewPresenter(this, this);
+        int productId = getIntent().getIntExtra("productId", 0);
 
         String auth = PreferencesUtils.getString(mContext, ConfigsetData.CONFIG_KEY_AUTH);
         if (auth != null && !TextUtils.isEmpty(auth)) {
             UrlParse parse = new UrlParse(HttpURLData.APPFUN_PRODUCT_BUY);
-            parse.putValue("productId",productId);
-            mPresenter.postNetDataWithAuth(parse.toString(), auth);
-            type = 1;
+            parse.putValue("productId", productId);
+//            mPresenter.postNetDataWithAuth(parse.toString(), auth);
+//            type = 1;
+
+            String urlBuy = parse.toString();
+
+            GetNetData tool = new GetNetData();
+            tool.postNetDataWithAuth(new Callback<String>() {
+                @Override
+                public String parseNetworkResponse(Response response) throws Exception {
+                    String content = response.body().string();
+                    return content;
+                }
+
+                @Override
+                public void onError(Call call, Exception e) {
+
+                }
+
+                @Override
+                public void onResponse(String response) {
+                    Gson gson = new Gson();
+                    ProductBuyBean bean = gson.fromJson(response, ProductBuyBean.class);
+                    if (bean != null && bean.respCode == 0) {
+                        tvLock.setText(bean.lockDays + "");
+                        tvLimit.setText(bean.toplimit + "");
+                        tvLeftCount.setText(bean.leftCount + "");
+                        tvMaxBuy.setText(bean.maxBuyCount + "");
+                        tvLeftMoney.setText(bean.balance + "");
+                        etBuyCount.setHint("每份价格元" + bean.price + "元");
+                        mProductId = bean.orderId;
+                        mAgreementPath = bean.agreementPath;
+                    }else{
+                        finish();
+                        ProductBuyActivity.this.toast(bean.respMsg);
+                    }
+                }
+            },urlBuy,auth);
         }
     }
 
@@ -109,9 +149,9 @@ public class ProductBuyActivity extends BaseActivity implements IGetDataView {
         String auth = PreferencesUtils.getString(mContext, ConfigsetData.CONFIG_KEY_AUTH);
         if (auth != null && !TextUtils.isEmpty(auth)) {
             UrlParse parse = new UrlParse(HttpURLData.APPFUN_MONEY_PAY);
-            parse.putValue("amt",1000);
+            parse.putValue("amt", 1000);
             if (mPresenter == null) {
-                mPresenter = new ViewPresenter(this,this);
+                mPresenter = new ViewPresenter(this, this);
             }
             mPresenter.getNetDataWithAuth(parse.toString(), auth);
             type = 2;
@@ -123,29 +163,30 @@ public class ProductBuyActivity extends BaseActivity implements IGetDataView {
      * 点击购买的按钮
      */
     private void doBuyAction() {
-        if (mErrMessage != null && TextUtils.isEmpty(mErrMessage)){
+        if (mErrMessage != null && TextUtils.isEmpty(mErrMessage)) {
             String buyCount = etBuyCount.getText().toString().trim();
-            if (buyCount != null && !buyCount.isEmpty()){
+            if (buyCount != null && !buyCount.isEmpty()) {
 //            Intent intent = new Intent(this,ProductBuyState.class);
 //            intent.putExtra("productId",productId);
 //            intent.putExtra("buyCount",Integer.parseInt(buyCount));
 //            startActivity(intent);
-                Intent intent = new Intent(this,ProductBuyProtocol.class);
-                intent.putExtra("productId",productId);
-                intent.putExtra("buyCount",Integer.parseInt(buyCount));
-                intent.putExtra("path",mAgreementPath);
+                Intent intent = new Intent(this, ProductBuyProtocol.class);
+                intent.putExtra("productId", mProductId);
+                intent.putExtra("buyCount", Integer.parseInt(buyCount));
+                intent.putExtra("path", mAgreementPath);
                 startActivity(intent);
                 finish();
-            }else{
-                Toast.makeText(this,"请输入购买的份额",Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(this, "请输入购买的份额", Toast.LENGTH_SHORT).show();
             }
-        }else{
-            Toast.makeText(this,mErrMessage,Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(this, mErrMessage, Toast.LENGTH_SHORT).show();
         }
 
     }
 
     private String mAgreementPath;
+
     @Override
     public void fillView(String content) {
         if (content != null && !TextUtils.isEmpty(content)) {
@@ -168,7 +209,7 @@ public class ProductBuyActivity extends BaseActivity implements IGetDataView {
                     tvMaxBuy.setText(bean.maxBuyCount + "");
                     tvLeftMoney.setText(bean.balance + "");
                     etBuyCount.setHint("每份价格元" + bean.price + "元");
-                    productId = bean.orderId;
+                    mProductId = bean.orderId;
                     mAgreementPath = bean.agreementPath;
                 }
             }
@@ -183,7 +224,7 @@ public class ProductBuyActivity extends BaseActivity implements IGetDataView {
         }
     }
 
-    private int productId;
+
 
     private void gotoWebView(Map<String, String> map) {
         if (map != null) {
@@ -197,10 +238,11 @@ public class ProductBuyActivity extends BaseActivity implements IGetDataView {
     }
 
     private String mErrMessage;
+
     @Override
     public void toast(String msg) {
         mErrMessage = msg;
-        Toast.makeText(this,msg,Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
     }
 
     @Override

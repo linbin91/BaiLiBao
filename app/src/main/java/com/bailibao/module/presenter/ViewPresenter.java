@@ -42,7 +42,6 @@ public class ViewPresenter extends BasePresenterImpl<IGetDataView,String>{
                     clearConfigData();
                     Intent intent = new Intent(mContext, LoginActivity.class);
                     mContext.startActivity(intent);
-
                 }
             }
 

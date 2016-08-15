@@ -46,7 +46,7 @@ public class ManagerFragment extends BaseFragment implements IGetDataView{
     private ImageView ivLoading;
     private TextView tvHelp;
 
-    private final String regularPeriod = "【死期】";
+    private final String regularPeriod = "【定期】";
     private final String activityPeriod = "【活期】";
 
     //页数
