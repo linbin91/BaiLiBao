@@ -29,4 +29,6 @@ public class ConfigsetData {
     public static final String CONFIG_KEY_LEFT_MONEY = "left_money";
 
     public static final String CONFIG_KEY_ISFIRST = "first_run";
+
+
 }

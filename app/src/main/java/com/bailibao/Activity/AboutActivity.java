@@ -1,7 +1,7 @@
 package com.bailibao.Activity;
 
 import android.content.Intent;
-import android.os.Handler;
+import android.text.TextUtils;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -12,9 +12,14 @@ import android.widget.Toast;
 
 import com.bailibao.R;
 import com.bailibao.base.BaseActivity;
+import com.bailibao.bean.VersionBean;
+import com.bailibao.data.HttpURLData;
 import com.bailibao.dialog.KefuDialog;
+import com.bailibao.module.presenter.ViewPresenter;
 import com.bailibao.module.view.IGetDataView;
 import com.bailibao.util.SysHelpFun;
+import com.bailibao.util.UrlParse;
+import com.google.gson.Gson;
 
 import cn.sharesdk.framework.ShareSDK;
 import cn.sharesdk.onekeyshare.OnekeyShare;
@@ -84,19 +89,10 @@ public class AboutActivity extends BaseActivity implements IGetDataView {
     }
 
     private void checkNewVersion() {
-        mLoadingLayout.setVisibility(View.VISIBLE);
-        Animation mRotateAnim = AnimationUtils.loadAnimation(this, R.anim.loading_rotate);
-        mLoadingIv.startAnimation(mRotateAnim);
-
-        Handler handler = new Handler();
-        Runnable runnable = new Runnable() {
-            @Override
-            public void run() {
-                mLoadingIv.clearAnimation();
-                mLoadingLayout.setVisibility(View.GONE);
-            }
-        };
-        handler.postDelayed(runnable,2000);
+        ViewPresenter presenter = new ViewPresenter(this,this);
+        UrlParse parse = new UrlParse(HttpURLData.APPFUN_VERSION_CODE);
+        parse.putValue("type","1");
+        presenter.getNetData(parse.toString());
     }
 
     /**
@@ -126,7 +122,25 @@ public class AboutActivity extends BaseActivity implements IGetDataView {
 
     @Override
     public void fillView(String content) {
+        if (content != null && !TextUtils.isEmpty(content)){
+            Gson gson = new Gson();
+            VersionBean bean = gson.fromJson(content,VersionBean.class);
+            if (bean != null){
+                String version = bean.version;
+                String myVersion = SysHelpFun.getAppVersionName(mContext.getApplicationContext());
+                try {
+                    double dVersion = Double.parseDouble(version);
+                    double dMyVersion = Double.parseDouble(myVersion);
+                    if (dVersion > dMyVersion){
+                        Toast.makeText(this,"快去应用宝下载新的版本吧",Toast.LENGTH_SHORT).show();
+                    }else if (dVersion == dMyVersion){
+                        Toast.makeText(this,"已经是最新版本了哦",Toast.LENGTH_SHORT).show();
+                    }
+                }catch (Exception e){
 
+                }
+            }
+        }
     }
 
     @Override
@@ -136,12 +150,15 @@ public class AboutActivity extends BaseActivity implements IGetDataView {
 
     @Override
     public void showProgress() {
-
+        mLoadingLayout.setVisibility(View.VISIBLE);
+        Animation mRotateAnim = AnimationUtils.loadAnimation(this, R.anim.loading_rotate);
+        mLoadingIv.startAnimation(mRotateAnim);
     }
 
     @Override
     public void hideProgress() {
-
+        mLoadingLayout.setVisibility(View.GONE);
+        mLoadingIv.clearAnimation();
     }
 
     @Override

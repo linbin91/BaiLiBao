@@ -38,39 +38,6 @@
                 android:orientation="vertical" >
 
                 <LinearLayout
-                    android:id="@+id/more_frame_authentication_name_ll"
-                    style="@style/bk_layout"
-                    android:layout_marginTop="20.0dip" >
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/dp15"
-                        android:background="@mipmap/authen" />
-
-                    <TextView
-                        style="@style/bk_textView"
-                        android:layout_marginLeft="10dip"
-                        android:layout_weight="0.0"
-                        android:gravity="left|center"
-                        android:text="实名认证" />
-
-                    <TextView
-                        android:text="未认证"
-                        android:id="@+id/more_frame_authentication_name_tv"
-                        android:layout_width="wrap_content"
-                        android:layout_height="fill_parent"
-                        android:layout_weight="1.0"
-                        android:gravity="right|center"
-                        android:textColor="@color/more_item_state_clore" />
-
-                    <ImageView
-                        android:id="@+id/more_frame_authentication_iv"
-                        style="@style/list_item_chevron"
-                        android:visibility="invisible" />
-                </LinearLayout>
-
-                <LinearLayout
                     android:id="@+id/more_frame_bangding_phone_ll"
                     style="@style/bk_layout"
                     android:layout_marginTop="10.0dip" >

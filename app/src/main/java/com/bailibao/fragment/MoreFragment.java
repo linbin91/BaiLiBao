@@ -32,7 +32,6 @@ import com.bailibao.module.view.IGetDataView;
 import com.bailibao.util.Base64Util;
 import com.bailibao.util.LockUtil;
 import com.bailibao.util.PreferencesUtils;
-import com.bailibao.util.StringUtil;
 import com.bailibao.util.UrlParse;
 import com.google.gson.Gson;
 
@@ -42,7 +41,6 @@ import com.google.gson.Gson;
 public class MoreFragment extends BaseFragment implements IGetDataView{
 
     private  static  MoreFragment mInstance;
-    private LinearLayout mAuthenticationNameLayout;
     private LinearLayout mBangdingphoneLayout;
     private LinearLayout mLoginpasswordLayout;
     private LinearLayout mDealPasswordLayout;
@@ -52,7 +50,6 @@ public class MoreFragment extends BaseFragment implements IGetDataView{
     private LinearLayout llLoading;
     private ImageView ivLoading;
     private TextView mPhoneText;
-    private TextView mAuthenText;
     private CheckBox mGestureToggle;
 //    //用来判断时候登入过了，特别是登入后，回来，账号要显示出来
 //    private boolean mIsLogin;
@@ -82,7 +79,6 @@ public class MoreFragment extends BaseFragment implements IGetDataView{
     }
 
     private void findView() {
-        mAuthenticationNameLayout = (LinearLayout) mView.findViewById(R.id.more_frame_authentication_name_ll);
         mBangdingphoneLayout = (LinearLayout) mView.findViewById(R.id.more_frame_bangding_phone_ll);
         mLoginpasswordLayout = (LinearLayout) mView.findViewById(R.id.more_frame_login_password_ll);
         mDealPasswordLayout = (LinearLayout) mView.findViewById(R.id.more_frame_deal_password_ll);
@@ -91,7 +87,6 @@ public class MoreFragment extends BaseFragment implements IGetDataView{
         mLoginoutLayout = (LinearLayout) mView.findViewById(R.id.more_frame_loginout_ll);
         mPhoneText = (TextView) mView.findViewById(R.id.more_frame_bangding_phone_tv);
         mGestureToggle = (CheckBox) mView.findViewById(R.id.more_frame_toggle_btn);
-        mAuthenText = (TextView) mView.findViewById(R.id.more_frame_authentication_name_tv);
         llLoading = (LinearLayout) mView.findViewById(R.id.loading_layout);
         ivLoading = (ImageView) mView.findViewById(R.id.iv_loading);
     }
@@ -112,7 +107,6 @@ public class MoreFragment extends BaseFragment implements IGetDataView{
     }
 
     private void setListener() {
-        mAuthenticationNameLayout.setOnClickListener(this);
         mBangdingphoneLayout.setOnClickListener(this);
         mLoginpasswordLayout.setOnClickListener(this);
         mDealPasswordLayout.setOnClickListener(this);
@@ -127,9 +121,6 @@ public class MoreFragment extends BaseFragment implements IGetDataView{
         boolean isLogin = PreferencesUtils.getBoolean(mContext.getApplicationContext(),
                 ConfigsetData.CONFIG_KEY_LOGIN);
         switch (v.getId()) {
-            case R.id.more_frame_authentication_name_ll:
-                doAutherAction(isLogin);
-                break;
             case R.id.more_frame_loginout_ll:
                 doOutAction();
                 break;
@@ -254,6 +245,7 @@ public class MoreFragment extends BaseFragment implements IGetDataView{
 
             @Override
             public void checkPasswordRight(String password) {
+                type = 3;
                 requestCheckPassword(password);
             }
         });
@@ -283,6 +275,7 @@ public class MoreFragment extends BaseFragment implements IGetDataView{
                 @Override
                 public void checkPasswordRight(String password) {
                     if (!isOpenGesture){
+                        type = 2;
                         requestCheckPassword(password);
                     }else{
                         //那就关闭掉
@@ -305,7 +298,6 @@ public class MoreFragment extends BaseFragment implements IGetDataView{
         parse.putValue("password",pwd);
         String auth = PreferencesUtils.getString(mContext, ConfigsetData.CONFIG_KEY_AUTH);
         mPresenter.postNetDataWithAuth(parse.toString(),auth);
-        type = 2;
     }
 
     /**
@@ -331,18 +323,6 @@ public class MoreFragment extends BaseFragment implements IGetDataView{
                 String showNum = phoneNum.substring(0,3)+"****"+phoneNum.substring(7,11);
                 mPhoneText.setText(showNum);
                 mPhoneText.setVisibility(View.VISIBLE);
-            }
-
-            String name = PreferencesUtils.getString(mContext, phoneNum);
-            if (!StringUtil.isEmpty(name)){
-                int lenth= name.length() -1;
-                StringBuilder builder = new StringBuilder();
-                for (int i = 0; i < lenth; i++){
-                    builder.append("*");
-                }
-                String showName = name.substring(0,1) + builder.toString();
-                mAuthenText.setText(showName);
-                mAuthenText.setVisibility(View.VISIBLE);
             }
 
             //退出当前账户可见
@@ -373,10 +353,20 @@ public class MoreFragment extends BaseFragment implements IGetDataView{
                 //启动手势图密码界面
                 BaseBean bean = gson.fromJson(content,BaseBean.class);
                 if (bean.respCode == 0){
-                    Intent intent = new Intent(getActivity(), SetLockActivity.class);
-                    startActivity(intent);
+                    int[] pwd = LockUtil.getPwd(getContext());
+                    if (pwd.length > 1){
+                        mGestureToggle.setBackgroundResource(R.mipmap.toggle_button_on);
+                        mModifyPasswordLayout.setVisibility(View.VISIBLE);
+                        LockUtil.setPwdStatus(getContext(),true);
+                    }else {
+                        Intent intent = new Intent(getActivity(), SetLockActivity.class);
+                        startActivity(intent);
+                    }
                 }
 
+            }else if (type == 3){
+                Intent intent = new Intent(getActivity(), SetLockActivity.class);
+                startActivity(intent);
             }
 
         }

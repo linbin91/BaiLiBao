@@ -6,6 +6,7 @@ import android.content.Intent;
 import com.bailibao.Activity.LoginActivity;
 import com.bailibao.base.BasePresenterImpl;
 import com.bailibao.bean.base.BaseBean;
+import com.bailibao.data.ConfigsetData;
 import com.bailibao.module.model.GetNetData;
 import com.bailibao.module.model.IGetNetData;
 import com.bailibao.module.view.IGetDataView;
@@ -54,16 +55,16 @@ public class ViewPresenter extends BasePresenterImpl<IGetDataView,String>{
      * 清除登录的信息
      */
     private void clearConfigData() {
-//        PreferencesUtils.removeConfig(mContext, ConfigsetData.CONFIG_KEY_LOGIN);
-//        PreferencesUtils.removeConfig(mContext,ConfigsetData.CONFIG_KEY_LOGIN_NUM);
-//        PreferencesUtils.removeConfig(mContext,ConfigsetData.CONFIG_KEY_HAND_PASSWORD);
-//        PreferencesUtils.removeConfig(mContext,ConfigsetData.CONFIG_KEY_AUTH);
-//        PreferencesUtils.removeConfig(mContext,ConfigsetData.CONFIG_KEY_AUTHEN_NAME);
-//        PreferencesUtils.removeConfig(mContext,ConfigsetData.CONFIG_KEY_USER_UID);
-//        PreferencesUtils.removeConfig(mContext,ConfigsetData.CONFIG_KEY_USER_TOKEN);
-//        PreferencesUtils.removeConfig(mContext,ConfigsetData.CONFIG_KEY_AUTH);
+        PreferencesUtils.removeConfig(mContext,ConfigsetData.CONFIG_KEY_LOGIN);
+        PreferencesUtils.removeConfig(mContext,ConfigsetData.CONFIG_KEY_LOGIN_NUM);
+        PreferencesUtils.removeConfig(mContext,ConfigsetData.CONFIG_KEY_HAND_PASSWORD);
+        PreferencesUtils.removeConfig(mContext,ConfigsetData.CONFIG_KEY_AUTH);
+        PreferencesUtils.removeConfig(mContext,ConfigsetData.CONFIG_KEY_AUTHEN_NAME);
+        PreferencesUtils.removeConfig(mContext,ConfigsetData.CONFIG_KEY_USER_UID);
+        PreferencesUtils.removeConfig(mContext,ConfigsetData.CONFIG_KEY_USER_TOKEN);
+        PreferencesUtils.removeConfig(mContext,ConfigsetData.CONFIG_KEY_AUTH);
 
-        PreferencesUtils.cleaConifg(mContext);
+//        PreferencesUtils.cleaConifg(mContext);
     }
 
     public void getNetData(String url){

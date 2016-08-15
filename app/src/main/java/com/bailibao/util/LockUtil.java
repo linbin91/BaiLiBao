@@ -2,6 +2,7 @@ package com.bailibao.util;
 
 
 import android.content.Context;
+import android.text.TextUtils;
 
 import com.bailibao.data.ConfigsetData;
 import com.bailibao.entity.Point;
@@ -108,10 +109,11 @@ public class LockUtil {
      * @return
      */
     public static int[] getPwd(Context context){
-        String str= PreferencesUtils.getString(context,"handpswd");
-        if(str!=null){
+        String phone = PreferencesUtils.getString(context,ConfigsetData.CONFIG_KEY_LOGIN_NUM);
+        String str= PreferencesUtils.getString(context,phone);
+        if(str != null){
             String[] s=str.split(",");
-            int[] indexs=new int[s.length];
+            int[] indexs = new int[s.length];
             if(s.length>1){
                 for(int i=0;i<s.length;i++){
                     indexs[i]=Integer.valueOf(s[i]);
@@ -150,6 +152,9 @@ public class LockUtil {
         for(int i:mIndexs){
             str+=i+",";
         }
-        PreferencesUtils.putString(context,"handpswd",str);
+        String phone = PreferencesUtils.getString(context,ConfigsetData.CONFIG_KEY_LOGIN_NUM);
+        if (phone != null && !TextUtils.isEmpty(phone)){
+            PreferencesUtils.putString(context,phone,str);
+        }
     }
 }

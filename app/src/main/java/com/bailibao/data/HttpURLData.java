@@ -111,6 +111,9 @@ public class HttpURLData {
     //获取广告的接口
     public static final String APPFUN_GET_AD = HOST_BAILIBAO_API + "ad";
 
+    //获取版本号的信息
+    public static  final String APPFUN_VERSION_CODE = HOST_BAILIBAO_API + "version";
+
 
     public static final String JZH_API_APP_WEB_REG_URL = JZH_API_BASE_URL+"/app/appWebReg.action";
     public static final String JZH_API_APP_500001_URL = JZH_API_BASE_URL+"/app/500001.action";

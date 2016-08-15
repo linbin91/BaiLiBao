@@ -244,10 +244,7 @@ public class PreferencesUtils {
 
     public static boolean removeConfig(Context context,String key){
         SharedPreferences settings = context.getSharedPreferences(PREFERENCE_NAME, Context.MODE_PRIVATE);
-        settings.edit().remove(key);
-
-        return settings.edit().commit();
-
+        return  settings.edit().remove(key).commit();
     }
 
     public static  void  cleaConifg(Context context){
