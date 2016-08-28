@@ -55,6 +55,7 @@ public class ProductBuyActivity extends BaseActivity implements IGetDataView {
     private ViewPresenter mPresenter;
     private int type;
     private int mProductId;
+    private TextView tvContent;
 
     @Override
     protected void initData() {
@@ -90,13 +91,14 @@ public class ProductBuyActivity extends BaseActivity implements IGetDataView {
                     ProductBuyBean bean = gson.fromJson(response, ProductBuyBean.class);
                     if (bean != null && bean.respCode == 0) {
                         tvLock.setText(bean.lockDays + "");
-                        tvLimit.setText(bean.toplimit + "");
+                        tvLimit.setText(((double)bean.toplimit/100) + "");
                         tvLeftCount.setText(bean.leftCount + "");
                         tvMaxBuy.setText(bean.maxBuyCount + "");
-                        tvLeftMoney.setText(bean.balance + "");
-                        etBuyCount.setHint("每份价格" + bean.price + "元");
+                        tvLeftMoney.setText(((double)bean.balance/100) + "");
+                        etBuyCount.setHint("每份价格" + ((double)bean.price/100) + "元");
                         mProductId = bean.orderId;
                         mAgreementPath = bean.agreementPath;
+                        tvContent.setText("购买" + bean.name);
                     }else{
                         finish();
                         ProductBuyActivity.this.toast(bean.respMsg);
@@ -122,7 +124,7 @@ public class ProductBuyActivity extends BaseActivity implements IGetDataView {
         tvLeftCount = (TextView) findViewById(R.id.tv_product_letfcount);
         //当前余额
         tvLeftMoney = (TextView) findViewById(R.id.tv_left_money);
-
+        tvContent = (TextView) findViewById(R.id.title_content);
     }
 
     @Override
@@ -163,7 +165,7 @@ public class ProductBuyActivity extends BaseActivity implements IGetDataView {
      * 点击购买的按钮
      */
     private void doBuyAction() {
-        if (mErrMessage != null && TextUtils.isEmpty(mErrMessage)) {
+        if (TextUtils.isEmpty(mErrMessage)) {
             String buyCount = etBuyCount.getText().toString().trim();
             if (buyCount != null && !buyCount.isEmpty()) {
 //            Intent intent = new Intent(this,ProductBuyState.class);
@@ -199,28 +201,7 @@ public class ProductBuyActivity extends BaseActivity implements IGetDataView {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-            } else if (type == 1) {
-                Gson gson = new Gson();
-                ProductBuyBean bean = gson.fromJson(content, ProductBuyBean.class);
-                if (bean != null) {
-                    tvLock.setText(bean.lockDays + "");
-                    tvLimit.setText(bean.toplimit + "");
-                    tvLeftCount.setText(bean.leftCount + "");
-                    tvMaxBuy.setText(bean.maxBuyCount + "");
-                    tvLeftMoney.setText(bean.balance + "");
-                    etBuyCount.setHint("每份价格" + bean.price + "元");
-                    mProductId = bean.orderId;
-                    mAgreementPath = bean.agreementPath;
-                }
             }
-//            else if (type == 3){
-//                Gson gson = new Gson();
-//                ProductBuyResultBean result = gson.fromJson(content,ProductBuyResultBean.class);
-//                if (result != null){
-//                    Toast.makeText(this,result.orderNo,Toast.LENGTH_SHORT).show();
-//                }
-//            }
-
         }
     }
 

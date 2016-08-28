@@ -27,7 +27,11 @@
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:layout_centerVertical="true"
-            android:text="购买产品"
+            android:text=""
+            android:paddingRight="@dimen/dp10"
+            android:paddingLeft="@dimen/dp10"
+            android:maxEms="16"
+            android:singleLine="true"
             android:textColor="@color/title_text_color"
             android:textSize="18sp"
             android:textStyle="bold" />

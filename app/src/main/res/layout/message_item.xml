@@ -1,6 +1,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:paddingTop="@dimen/dp5"
+    android:addStatesFromChildren="true"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
@@ -14,6 +15,10 @@
 
     <TextView
         android:id="@+id/title"
+        android:maxEms="10"
+        android:singleLine="true"
+        android:ellipsize="end"
+        android:lines="1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/dp10"
@@ -25,6 +30,10 @@
 
     <TextView
         android:id="@+id/msg"
+        android:maxEms="15"
+        android:singleLine="true"
+        android:ellipsize="end"
+        android:lines="1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/title"

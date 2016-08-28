@@ -18,4 +18,5 @@ public class ProductDetailBean extends BaseBean {
     public int period;
     public int type;
     public int leftCount;
+    public long leftTime;
 }

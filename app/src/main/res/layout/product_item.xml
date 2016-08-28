@@ -44,7 +44,6 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="@dimen/dp9"
                         android:paddingBottom="@dimen/dp2"
-                        android:paddingRight="@dimen/dp2"
                         android:paddingTop="@dimen/dp2"
                         android:text="小火球"
                         android:textStyle="bold"
@@ -56,8 +55,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:paddingBottom="@dimen/dp2"
-                        android:paddingLeft="@dimen/dp2"
-                        android:paddingRight="@dimen/dp5"
+                        android:paddingLeft="@dimen/dp1"
                         android:paddingTop="@dimen/dp2"
                         android:text="【活期】"
                         android:textStyle="bold"
@@ -78,8 +76,7 @@
                         android:layout_height="fill_parent"
                         android:layout_weight="1.0"
                         android:gravity="right|center"
-                        android:orientation="horizontal"
-                        android:paddingLeft="@dimen/star_dp" >
+                        android:orientation="horizontal">
 
                         <TextView
                             android:layout_width="wrap_content"

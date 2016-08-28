@@ -120,7 +120,10 @@ public class ProductBuyState extends BaseActivity implements IGetDataView{
 
     @Override
     public void toast(String msg) {
-
+        mIvState.setImageResource(R.mipmap.product_state_error);
+        mTvState.setText("抢购失败");
+        mTvBuyExplain.setText(msg);
+        mllProductSuccess.setVisibility(View.GONE);
         Toast.makeText(this,msg,Toast.LENGTH_SHORT).show();
     }
 

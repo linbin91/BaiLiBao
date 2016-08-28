@@ -94,7 +94,7 @@ public class TotalIncomeActivity extends BaseActivity implements IGetDataView{
             public void convert(ViewHolder helper, TotalIncomingBean.IncomingItem item) {
                 helper.setText(R.id.product_name, item.name);
                 helper.setText(R.id.product_time, item.createdDate);
-                helper.setText(R.id.tv_income,item.profit+ "");
+                helper.setText(R.id.tv_income,((double)item.profit/100)+ "");
             }
         });
 

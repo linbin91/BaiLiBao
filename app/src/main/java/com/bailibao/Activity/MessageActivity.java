@@ -139,6 +139,7 @@ public class MessageActivity extends BaseActivity implements IGetDataView {
         UrlParse parse = new UrlParse(url);
         parse.putValue("id",mMessageList.get(position).id);
         mPresenter.postNetDataWithAuth(parse.toString(),mAuth);
+        type = 3;
     }
 
     /**
@@ -203,10 +204,8 @@ public class MessageActivity extends BaseActivity implements IGetDataView {
                     mMessageContainer.onPullUpRefreshComplete();
                     mMessageContainer.onPullDownRefreshComplete();
                     mMessageContainer.setHasMoreData(hasMoreData);
-                }else{
-                    rlNoMessage.setVisibility(View.VISIBLE);
                 }
-            }else{
+            }else if (type == 2){
                 BaseBean baseBean = gson.fromJson(content,BaseBean.class);
                 if (baseBean != null){
                     if (baseBean.respCode == ResponseData.RESP_CODE_OK){
@@ -220,7 +219,6 @@ public class MessageActivity extends BaseActivity implements IGetDataView {
                     }
                 }
             }
-
         }
     }
 

@@ -109,9 +109,9 @@ public class ManagerFragment extends BaseFragment implements IGetDataView{
                     helper.setText(R.id.tv_tip,item.tips);
                 }
                 if (item.status == 1){
-                    helper.setImageResource(R.id.iv_status,R.mipmap.icon_sell_before);
-                }else if (item.status == 2){
                     helper.setImageResource(R.id.iv_status,R.mipmap.icon_sell_begin);
+                }else if (item.status == 2){
+                    helper.setImageResource(R.id.iv_status,R.mipmap.icon_sell_before);
                 }else{
                     helper.setImageResource(R.id.iv_status,R.mipmap.icon_sellout);
                 }

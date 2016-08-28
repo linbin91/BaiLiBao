@@ -1,6 +1,7 @@
 package com.bailibao.Activity;
 
 import android.content.Intent;
+import android.os.Handler;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.animation.Animation;
@@ -23,7 +24,9 @@ import com.bailibao.module.view.IGetDataView;
 import com.bailibao.util.PreferencesUtils;
 import com.google.gson.Gson;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -60,6 +63,40 @@ public class ProductDetailActivity extends BaseActivity implements IGetDataView 
 
     //剩余可购买的数量
     private int mLeftCount;
+    //距离开售时间
+    private long leftTime;
+
+    private LinearLayout llTimeContain;
+    private TextView tvTime;
+
+    private SimpleDateFormat mFormat;
+
+    private Handler mHandler = new Handler();
+
+    private boolean canBuy;
+
+    private Runnable timeRunable = new Runnable() {
+        @Override
+        public void run() {
+            Date date = new Date(leftTime);
+            String time = mFormat.format(date);
+            tvTime.setText(time);
+            if (leftTime > 0){
+                leftTime -= 1000;
+                mHandler.postDelayed(this,1000);
+            }else {
+                canBuy = true;
+                llTimeContain.setVisibility(View.GONE);
+                mHandler.removeCallbacks(this);
+            }
+        }
+    };
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        mHandler.removeCallbacks(timeRunable);
+    }
 
     @Override
     protected void initData() {
@@ -71,6 +108,9 @@ public class ProductDetailActivity extends BaseActivity implements IGetDataView 
         String profitUrl = HttpURLData.APPFUN_GET_PROFIT;
         ViewPresenter profitpPresenter = new ViewPresenter(this,this);
         profitpPresenter.getNetData(profitUrl);
+
+        mFormat=new SimpleDateFormat("HH:mm:ss");
+
     }
 
     @Override
@@ -79,16 +119,6 @@ public class ProductDetailActivity extends BaseActivity implements IGetDataView 
         mTvProductBuy.setOnClickListener(this);
         mLlProductIntroduce.setOnClickListener(this);
         mProductProgress.setOnClickListener(this);
-        llLoading = (LinearLayout) findViewById(R.id.loading_layout);
-        ivLoading = (ImageView) findViewById(R.id.iv_loading);
-        tvTitle = (TextView) findViewById(R.id.title_content);
-        tvBank = (TextView) findViewById(R.id.tv_bank);
-        tvYield = (TextView) findViewById(R.id.huoqiuplans_fragment_multiple);
-        tvAlarm = (TextView) findViewById(R.id.product_tv_alarm);
-        tvLeft = (TextView) findViewById(R.id.tv_left);
-        rlProfit = (RelativeLayout) findViewById(R.id.rl_profit);
-        tvName = (TextView) findViewById(R.id.tv_name);
-        tvCount = (TextView) findViewById(R.id.tv_count);
     }
 
     @Override
@@ -99,6 +129,18 @@ public class ProductDetailActivity extends BaseActivity implements IGetDataView 
         mLlProductIntroduce = (LinearLayout) findViewById(R.id.product_ll_introduce);
         mProductProgress = (TextView) findViewById(R.id.title_right);
         rlAlarm = (RelativeLayout) findViewById(R.id.rl_alarm);
+        llLoading = (LinearLayout) findViewById(R.id.loading_layout);
+        ivLoading = (ImageView) findViewById(R.id.iv_loading);
+        tvTitle = (TextView) findViewById(R.id.title_content);
+        tvBank = (TextView) findViewById(R.id.tv_bank);
+        tvYield = (TextView) findViewById(R.id.huoqiuplans_fragment_multiple);
+        tvAlarm = (TextView) findViewById(R.id.product_tv_alarm);
+        tvLeft = (TextView) findViewById(R.id.tv_left);
+        rlProfit = (RelativeLayout) findViewById(R.id.rl_profit);
+        tvName = (TextView) findViewById(R.id.tv_name);
+        tvCount = (TextView) findViewById(R.id.tv_count);
+        llTimeContain = (LinearLayout) findViewById(R.id.ll_contain);
+        tvTime = (TextView) findViewById(R.id.tv_time);
     }
 
     @Override
@@ -146,6 +188,10 @@ public class ProductDetailActivity extends BaseActivity implements IGetDataView 
      * 进入购买的界面
      */
     private void doBuyAction() {
+        if (!canBuy){
+            Toast.makeText(mContext,"对不起，刚产品还未开始出售，请耐心等待",Toast.LENGTH_SHORT).show();
+            return;
+        }
         //判断用户登入了没有
         boolean isLogin = PreferencesUtils.getBoolean(mContext, ConfigsetData.CONFIG_KEY_LOGIN);
         if (isLogin){
@@ -159,6 +205,7 @@ public class ProductDetailActivity extends BaseActivity implements IGetDataView 
             mDialog.show(getSupportFragmentManager(),"");
         }
     }
+
 
     @Override
     public void fillView(String content) {
@@ -180,7 +227,7 @@ public class ProductDetailActivity extends BaseActivity implements IGetDataView 
                 if (bean.type == 1){
                     tvBank.setText(bean.currentTimes + "倍银行活期");
                 }else{
-                    tvBank.setText(bean.currentTimes + "倍银行死期");
+                    tvBank.setText(bean.currentTimes + "倍银行定期");
                 }
                 tvYield.setText(bean.yield + "%");
                 if (bean.tips == null || TextUtils.isEmpty(bean.tips)){
@@ -192,6 +239,13 @@ public class ProductDetailActivity extends BaseActivity implements IGetDataView 
                 tvLeft.setText(bean.leftCount+"");
                 mId = bean.id;
                 mIntroPath = bean.introPath;
+                leftTime = bean.leftTime;
+                if (leftTime == 0){
+                    llTimeContain.setVisibility(View.GONE);
+                }else{
+                    canBuy = false;
+                    mHandler.post(timeRunable);
+                }
             }
         }
     }

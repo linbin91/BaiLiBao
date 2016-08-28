@@ -44,6 +44,7 @@
             android:layout_height="fill_parent"
             android:cacheColorHint="#00000000"
             android:divider="@null"
+            android:addStatesFromChildren="true"
             android:listSelector="@android:color/transparent">
 
         </com.bailibao.view.pullview.PullToRefreshListView>
